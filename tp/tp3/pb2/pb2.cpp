@@ -53,30 +53,8 @@ bool buttonPressed()
     return false;
 }
 
-void mydelay(int n)
-{
-    while(n--)
-    {
-        _delay_ms(1);
-    }
-}
-
-
 int main()
 {
-    setIOPorts();
-    int counter =1;
-    while(counter<25)
-    {
-        for (int i=25;i>0;i--)
-        {
-          setDelColor(color::green);
-          mydelay(i);
-          setDelColor(color::closed);
-          mydelay(counter);  
-          counter++;
-        }
-        
-    }
 
+    
 }
