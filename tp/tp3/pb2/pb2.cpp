@@ -64,17 +64,65 @@ void mydelay(int n)
 int main()
 {
     setIOPorts();
-    int counter =1;
-    while(counter<25)
+    
+    double b=1000;
+    double a=0;
+
+    //Sur 60Hz
+    switch ((a/b)*100)
     {
-        for (int i=25;i>0;i--)
-        {
-          PORTB=...
-          mydelay(i);
-          PORTB=...
-          mydelay(counter);  
-          counter++;
-        }
-        
+        case 0:
+            PORTB=0x00;
+            _delay_ms(2000);
+            a=250;
+            break;
+        case 25:
+            PORTB=0x02;
+            _delay_ms(2000);
+            a=500;
+            break;
+        case 50:
+            PORTB=0x02;
+            _delay_ms(2000);
+            a=750;
+            break;
+        case 75:
+            PORTB=0x02;
+            _delay_ms(2000);
+            a=1000;
+            break;
+        case 100:
+            PORTB=0x02;
+            _delay_ms(2000);
+            break;
+    }
+
+    //Sur 400Hz
+        switch (a/b)
+    {
+        case 0:
+            PORTB=0x00;
+            _delay_ms(2000);
+            a=250;
+            break;
+        case 25:
+            PORTB=0x02;
+            _delay_ms(2000);
+            a=500;
+            break;
+        case 50:
+            PORTB=0x02;
+            _delay_ms(2000);
+            a=750;
+            break;
+        case 75:
+            PORTB=0x02;
+            _delay_ms(2000);
+            a=1000;
+            break;
+        case 100:
+            PORTB=0x02;
+            _delay_ms(2000);
+            break;
     }
 }
