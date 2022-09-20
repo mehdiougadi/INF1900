@@ -7,7 +7,7 @@
 void setIOPorts()
 {
     //Mode output
-    DDRA |= ((1<< PA1) | (1<< PA0));
+    DDRB |= ((1<< PB1) | (1<< PB0));
 }
 
 //Couleur
@@ -53,8 +53,28 @@ bool buttonPressed()
     return false;
 }
 
+void mydelay(int n)
+{
+    while(n--)
+    {
+        _delay_ms(1);
+    }
+}
+
 int main()
 {
-
-    
+    setIOPorts();
+    int counter =1;
+    while(counter<25)
+    {
+        for (int i=25;i>0;i--)
+        {
+          PORTB=...
+          mydelay(i);
+          PORTB=...
+          mydelay(counter);  
+          counter++;
+        }
+        
+    }
 }
