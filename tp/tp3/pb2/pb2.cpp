@@ -57,72 +57,71 @@ void mydelay(int n)
 {
     while(n--)
     {
-        _delay_ms(1);
+        _delay_us(5);
     }
 }
+
+void rotation(int a,int b)
+{
+    for(int i=0;i<120;i++)
+    {
+        PORTB=0x02;
+        mydelay(a);
+        PORTB=0x00;
+        mydelay(b-a);
+    }
+}
+
 
 int main()
 {
     setIOPorts();
-    
-    double b=1000;
-    double a=0;
+
 
     //Sur 60Hz
-    switch ((a/b)*100)
-    {
-        case 0:
-            PORTB=0x00;
-            _delay_ms(2000);
-            a=250;
-            break;
-        case 25:
-            PORTB=0x02;
-            _delay_ms(2000);
-            a=500;
-            break;
-        case 50:
-            PORTB=0x02;
-            _delay_ms(2000);
-            a=750;
-            break;
-        case 75:
-            PORTB=0x02;
-            _delay_ms(2000);
-            a=1000;
-            break;
-        case 100:
-            PORTB=0x02;
-            _delay_ms(2000);
-            break;
-    }
+    int b=16666;
+    int a=0;
+    int counter=0;
 
-    //Sur 400Hz
-        switch (a/b)
+    while(counter<5)
     {
-        case 0:
-            PORTB=0x00;
-            _delay_ms(2000);
-            a=250;
-            break;
-        case 25:
-            PORTB=0x02;
-            _delay_ms(2000);
-            a=500;
-            break;
-        case 50:
-            PORTB=0x02;
-            _delay_ms(2000);
-            a=750;
-            break;
-        case 75:
-            PORTB=0x02;
-            _delay_ms(2000);
-            a=1000;
-            break;
-        case 100:
-            PORTB=0x02;
-            _delay_ms(2000);
-            break;
-    }
+        switch (a)
+        {
+            case 0:
+
+                PORTB=0x00;
+                _delay_ms(2000);
+                a=4166;
+                counter++;
+                break;
+
+            case 4166:
+
+                rotation(a,b);
+                a=8333;
+                counter++;
+                break;
+
+            case 8333:
+
+                rotation(a,b);
+                a=12499;
+                counter++;
+                break;
+
+            case 12499:
+
+                rotation(a,b);
+                a=16666;
+                counter++;
+                break;
+
+            case 16666:
+
+                rotation(a,b);
+                a=0;
+                counter++;
+                break;                                                            
+        }   
+    } 
 }
