@@ -68,103 +68,94 @@ enum etat{INIT,E1,E2,E3,E4,E5};
 
 
 //Global state
-volatile etat state=INIT;
+volatile etat state= etat::INIT;
 
 ISR (INT0_vect) 
 {
-    _delay_ms(30);
-    switch (state)
-    {
-        case INIT:
-            state= E1;
-            break;
-
-        case E1:
-            state= E2;
-            break;
-
-        case E2:
-            state= E3;
-            break;
-
-        case E3:
-            state= E4;
-            break;
-
-        case E4:
-            state= E5;
-            break;
-
-        case E5:
-            state= INIT;
-            break;
-
-    } 
-    EIFR |=(1<<INTF0);
-}
-
-void initInterrupt()
-{
     cli();
-    setIOPorts();
-    EICRA=(1<<ISC11); //Rising edge Clock
-    
-    EIMSK=(1<<INT0);
-    sei();
-}
-
-//Algorithme pour probleme 1
-void problem1()
-{
-    while(true)
+    _delay_ms(30);
+    if (PIND & 0x04)
     {
-        //Changement d'état
         switch (state)
         {
             case INIT:
-                //Couleur rouge dans INIT
-                setDelColor(color::red);
+                state= E1;
                 break;
 
             case E1:
-                //Couleur ambré dans E1
-                setDelColor(color::amber);
-
+                state= E2;
                 break;
 
             case E2:
-                //Couleur vert dans E2
-                setDelColor(color::green);
-
+                state= E3;
                 break;
 
             case E3:
-                //Couleur rouge dans E3
-                setDelColor(color::red);
-
+                state= E4;
                 break;
 
             case E4:
-                //Le LED est fermé dans E4
-                setDelColor(color::closed);
-
+                state= E5;
                 break;
 
             case E5:
-                //Couleur vert dans E5
-                setDelColor(color::green);
+                state= INIT;
+                break;
+            default:
                 break;
 
         } 
     }
+
+    EIFR |=(1<<INTF0);
+    sei();
+}
+
+void initInterrupt()
+{
+    cli(); //Est une routine qui bloque toutes les interruptions
+
+    setIOPorts();
+
+    EICRA|=(1<<ISC10) | (1<<ISC11); //Rising edge Clock
+
+    EIMSK|=(1<<INT0);    //Ajuste le registre EIMSK de l'ATmega324PA pour permettre les interruptions externes
+
+    sei(); //Permet de recevoir à nouveau des interruptions
 }
 
 int main()
 {
-    //Initialisation
+
     initInterrupt();
+    
+    while(true)
+    {
+        switch (state)
+        {
+            case INIT:
+                setDelColor(color::red);
+                break;
 
-    //Problème 2
-    problem1();
+            case E1:
+                setDelColor(color::closed);
+                break;
 
+            case E2:
+                setDelColor(color::green);
+                break;
+
+            case E3:
+                setDelColor(color::red);
+                break;
+
+            case E4:
+                setDelColor(color::closed);
+                break;
+
+            case E5:
+                setDelColor(color::green);
+                break;
+        } 
+    }
 }
