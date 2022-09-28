@@ -1,7 +1,8 @@
 #define F_CPU 8000000
 
-#include <util/delay.h>
+
 #include "avr/io.h"
+#include <util/delay.h>
 #include <avr/interrupt.h>
 
 //Constante de Delay
@@ -68,11 +69,10 @@ enum etat{INIT,E1,E2,E3,E4,E5};
 
 
 //Global state
-volatile etat state= etat::INIT;
+volatile etat state;
 
 ISR (INT0_vect) 
 {
-    cli();
     _delay_ms(30);
     if (PIND & 0x04)
     {
@@ -108,7 +108,6 @@ ISR (INT0_vect)
     }
 
     EIFR |=(1<<INTF0);
-    sei();
 }
 
 void initInterrupt()
@@ -117,7 +116,7 @@ void initInterrupt()
 
     setIOPorts();
 
-    EICRA|=(1<<ISC10) | (1<<ISC11); //Rising edge Clock
+    EICRA|=(1<<ISC00) | (1<<ISC01); //Rising edge Clock
 
     EIMSK|=(1<<INT0);    //Ajuste le registre EIMSK de l'ATmega324PA pour permettre les interruptions externes
 
@@ -128,7 +127,8 @@ int main()
 {
 
     initInterrupt();
-    
+    state= etat::INIT;
+
     while(true)
     {
         switch (state)

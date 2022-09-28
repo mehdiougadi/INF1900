@@ -95,7 +95,7 @@ void initInterrupt()
 
     setIOPorts();
 
-    EICRA|=(1<<ISC10) | (1<<ISC11); //Rising edge Clock
+    EICRA|=(1<<ISC00) | (1<<ISC01); //Rising edge Clock
 
     EIMSK|=(1<<INT0); //Ajuste le registre EIMSK de l'ATmega324PA pour permettre les interruptions externes
 

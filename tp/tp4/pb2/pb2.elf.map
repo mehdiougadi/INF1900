@@ -211,7 +211,7 @@ END GROUP
                 0x00000000000000a0                __vector_16
                 0x00000000000000a0                __vector_18
                 0x00000000000000a0                __vector_20
- .text          0x00000000000000a4       0xea pb2.o
+ .text          0x00000000000000a4       0xee pb2.o
                 0x00000000000000a4                _Z10setIOPortsv
                 0x00000000000000ae                _Z13buttonPressedv
                 0x00000000000000cc                _Z11setDelColor5color
@@ -219,12 +219,12 @@ END GROUP
                 0x000000000000012e                __vector_1
                 0x0000000000000152                _Z15partirMinuteriej
                 0x000000000000017c                _Z13initInterruptv
- .text          0x000000000000018e        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
- .text          0x000000000000018e        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_clear_bss.o)
-                0x000000000000018e                . = ALIGN (0x2)
+ .text          0x0000000000000192        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
+ .text          0x0000000000000192        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_clear_bss.o)
+                0x0000000000000192                . = ALIGN (0x2)
  *(.text.*)
- .text.startup  0x000000000000018e       0x8a pb2.o
-                0x000000000000018e                main
+ .text.startup  0x0000000000000192       0x86 pb2.o
+                0x0000000000000192                main
  .text.libgcc.mul
                 0x0000000000000218        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
  .text.libgcc.div
