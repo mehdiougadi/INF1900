@@ -1,34 +1,10 @@
-// Auteurs : Nathan THOELEN 2065331, Mehdi OUGADI 2051559, Younes LAZZALI 2025718.
-// Vendredi 16 septembre 2022.
-// Description du code : Code qui allume la LED de differentes couleurs en fonction du nombres de fois que le boutton est appuye.
-
-//             Machine à État
-// Etat present	  A	    Etat suivant   Sortie
-//   Init	      0	        Init	   Rouge
-//   Init         1	        E1	       Rouge
-//   E1	          0	        E1	       Ambré 
-//   E1           1	        E2         Ambré
-//   E2	          0         E2	       Vert   
-//   E2	          1	        E3	       Vert   
-//   E3	          0	        E3	       Rouge  
-//   E3	          1	        E4         Rouge 
-//   E4           0	        E4	       Éteint   
-//   E4	          1	        E5         Éteint
-//   E5           0	        E5	       Vert   
-//   E5	          1	        Init       Vert 
-
-
-
-
 #define F_CPU 8000000
 
 #include <util/delay.h>
 #include "avr/io.h"
 
-//Constante de Delay
 const uint8_t delay= 5;
 
-//Initialisation des entrées et sorties
 void setIOPorts()
 {
     //Mode input
