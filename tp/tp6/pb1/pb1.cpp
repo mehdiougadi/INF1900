@@ -8,9 +8,8 @@
 #define AMBER Color::amber
 #define CLOSED Color::closed
 
-//Les constantes de délais
-const uint8_t delayButton=5;
-uint8_t delay;
+
+
 void setIOPorts()
 {
     //Mode input au port D
@@ -21,11 +20,21 @@ void setIOPorts()
 
 }
 
+//Cette fonction établie un delay de temps  en millisecondes
+void msDelay(int delay)
+{
+    for(int i=0; i < delay ;i++)
+    {
+        _delay_ms(1);
+    }
+}
+
 bool buttonIsPressed()
 {
     if (PIND & 0x04)
     {
-        _delay_ms(delayButton);
+        //Pour s'assurer que le button est bien appuyé on met un delay de 5 ms
+        msDelay(5);
         return (PIND & 0x04);
     }
     return false;
@@ -51,15 +60,6 @@ void setDelColor (Color color)
             PORTB &= ~(1 << PB0);
             break;
 
-        case AMBER:
-
-            //La couleur verte et rouge alterne pour donner un jaune ambré
-            setDelColor(GREEN);
-            _delay_ms(delayButton*2);
-            setDelColor(RED);
-            _delay_ms(delayButton-4);
-            break;
-
         case CLOSED:
 
             //Le DEL fermé signifique que le port B est 0x00 
@@ -68,54 +68,54 @@ void setDelColor (Color color)
     }
 }
 
-void blinkingLED(Color color)
+void blinkingLED(Color color,int delay)
 {
     setDelColor(color);
-    _delay_ms(delay);
-    setDelColor(color);
-    _delay_ms(delay);
+    msDelay(delay);
+    setDelColor(Color::closed);
+    msDelay(delay);
 }
 
+//Fonction que résout la situation dans l'énoncé
 void problem1()
 {
     uint8_t counter = 0;
     while(true)
     {
 
-        //Si le button est appuyé
         if(buttonIsPressed())
         {
             while(buttonIsPressed())
             {
+                //Si le compteur atteint 120, on sort de la  while
                 if(counter==120)
                 {
                     break;
                 }
+                //On incrémente 10 au compteur à chaque seconde
                 counter+=10;
-                _delay_ms(1000);
+                msDelay(1000);
             }
 
             //la lumière clignote vert pendant 1/2 seconde
-            delay=25;
             for(int i=0;i<10;i++)
             {
-                blinkingLED(GREEN);
+                blinkingLED(GREEN,25);
             }
 
             //Attendre 2 secondes
-            _delay_ms(2000);
+            msDelay(2000);
             
-            //Le LED clignote (compteur / 2) fois au rythme de 2 fois par seconde 
-            delay=250;
+            //Le LED clignote (compteur / 2) fois au rythme de 2 fois par seconde
             for(int i=0;i<int(counter/2);i++)
             {
-                blinkingLED(RED);
-                blinkingLED(RED);
+                blinkingLED(RED,250);
+                blinkingLED(RED,250);
             }
 
             //la lumière tourne au vert pendant une seconde
             setDelColor(GREEN);
-            _delay_ms(1000);
+            msDelay(1000);
         }
     }
 }
@@ -123,8 +123,5 @@ void problem1()
 int main()
 {
     setIOPorts();
-
-    //Problème 1
     problem1();
-
 }
