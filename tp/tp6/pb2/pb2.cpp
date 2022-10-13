@@ -2,28 +2,45 @@
 
 #include <util/delay.h>
 #include "avr/io.h"
+#include "can.cpp"
 
 #define GREEN Color::green
 #define RED Color::red
 #define AMBER Color::amber
 #define CLOSED Color::closed
 
-//Constante utilisé
+"""
+On sait que
+
+Si la lumière est basse, DEL == verte.
+Si la lumière est à un bon niveau, DEL == ambré.
+Si la lumière est trop forte,DEL == rouge.
+
+Étant sur 5 volts, nous prendrons des valeurs subjectives en voltage, 
+trouver le pourcentage de cette valeur au 5 volts et 
+les convertir en numérique sur 8 bits relative
+
+Nous avons établie les valeurs de high(80%) et low dans la section de constante
+
+"""
+
+//Constantes utilisées
 const uint8_t delay=5; 
-
-enum class Color {red, green, amber, closed};
-
-//Fonctions de base nécessaires 
+const uint8_t position = 0;
+const uint8_t high = 204;
+const uint8_t low = 128;
 
 void setIOPorts()
 {
-    //Mode input au port D
-    DDRD &= ~(1 << PD2);
+    //Mode input au port A
+    DDRA |= ~( (1 << PA1) | (1<< PA0) );
 
     //Mode output au port B
     DDRB |= ( (1 << PB1) | (1<< PB0) );
 
 }
+
+enum class Color {red, green, amber, closed};
 
 void setDelColor (Color color)
 {
@@ -46,32 +63,36 @@ void setDelColor (Color color)
         case AMBER:
 
             //Le DEL ambré signifie que le vert et le rouge alterne rapidement
-            while(true)
-            {
-                setDelColor(GREEN);
-                _delay_ms(delay*2);
-                setDelColor(RED);
-                _delay_ms(delay-4);
-            }
+            setDelColor(GREEN);
+            _delay_ms(delay*2);
+            setDelColor(RED);
+            _delay_ms(delay-4);
             break;
     }
 }
 
 void problem2()
 {
+    can photoresistor;
+    uint8_t valeurCan;
+
     while(true)
     {
-        if()
+        //La méthode lecture me renvoit une valeur sur 16 bit
+        //et nous voulons les 8 bits les moins significatives comme input
+        valeurCan = photoresistor.lecture(position) >> 0x10;
+        
+        if(valeurCan < low)
         {
             setDelColor(GREEN);
         }
-        else if()
+        else if(valeurCan > high)
         {
-            setDelColor(AMBER);
+            setDelColor(RED);
         }
         else
         {
-            setDelColor(RED);
+            setDelColor(AMBER);
         }
     }
 }
