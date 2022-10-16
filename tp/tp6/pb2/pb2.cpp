@@ -9,8 +9,8 @@
 #define AMBER Color::amber
 #define CLOSED Color::closed
 
-"""
-On sait que
+
+/*On sait que
 
 Si la lumière est basse, DEL == verte.
 Si la lumière est à un bon niveau, DEL == ambré.
@@ -22,7 +22,7 @@ les convertir en numérique sur 8 bits relative
 
 Nous avons établie les valeurs de high(80%) et low dans la section de constante
 
-"""
+*/
 
 //Constantes utilisées
 const uint8_t delay=5; 
@@ -40,7 +40,7 @@ void setIOPorts()
 
 }
 
-enum class Color {red, green, amber, closed};
+enum class Color {red, green, amber};
 
 void setDelColor (Color color)
 {
@@ -71,22 +71,25 @@ void setDelColor (Color color)
     }
 }
 
+//Fonction que résout la situation dans l'énoncé
 void problem2()
 {
     can photoresistor;
-    uint8_t valeurCan;
+    uint8_t valueCan;
+    uint16_t rawValue;
 
     while(true)
     {
         //La méthode lecture me renvoit une valeur sur 16 bit
         //et nous voulons les 8 bits les moins significatives comme input
-        valeurCan = photoresistor.lecture(position) >> 0x10;
+        rawValue = photoresistor.lecture(position);
+        valueCan= rawValue >> 2;
         
-        if(valeurCan < low)
+        if(valueCan < low)
         {
             setDelColor(GREEN);
         }
-        else if(valeurCan > high)
+        else if(valueCan > high)
         {
             setDelColor(RED);
         }
@@ -102,4 +105,4 @@ int main()
     setIOPorts();
     problem2();
 }
-
+//Problème avec le makefile peut pas avoir le  pb2.elf
