@@ -1,4 +1,13 @@
+// Cours:       INF1900 - Projet initial de syst?me embarqu?
+// Auteurs:     THOELEN Nathan
+//              OUGADI Mehdi
+//              ALLAIRE Mederic
+//              WACRENIER Paul
+//              LAZZALI Younes
+// Date:        31 octobre 2022
+
 #include "timer.h"
+
 timer::timer(waveform mode1, compare mode2)
 {
     currentMode1 = mode1;
