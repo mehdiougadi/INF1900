@@ -19,7 +19,7 @@
 
 # Nom de votre projet
 # (utilisez un seul mot, exemple: 'monprojet')
-PROJECTNAME=liblibrairie
+PROJECTNAME=lib_dir
 
 # Fichiers sources
 # Utilisez le suffixe .cpp pour les fichiers C++
