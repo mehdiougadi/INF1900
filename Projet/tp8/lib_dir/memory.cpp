@@ -31,7 +31,7 @@
 # define F_CPU 8000000UL
 #endif
 
-#include "memoire_24.h"
+#include "memory.h"
 
 uint8_t Memoire24CXXX::m_adresse_peripherique = 0xA0;
 
@@ -277,8 +277,8 @@ uint8_t Memoire24CXXX::lecture(const uint16_t adresse, uint8_t *donnee,
       if (longueur == 1)
          twcr = _BV(TWINT) | _BV(TWEN);  // Derniere donnee, NACK
       TWCR = twcr;                       // R. a Z., interrupt. - Depart de transm.
-      while ((TWCR & _BV(TWINT)) == 0) ; // Attente de fin de transmission
-         *donnee++ = TWDR;               // Lecture
+      while ((TWCR & _BV(TWINT)) == 0); // Attente de fin de transmission
+      *donnee++ = TWDR;               // Lecture
   }
 
   //________________ Transmission de la condition d'arret _________________

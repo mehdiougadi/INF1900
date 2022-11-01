@@ -35,7 +35,7 @@ PRJSRC= main.cpp
 INC= -I../lib_dir
 
 # Libraires a lier (ex: -lmylib)
-LIBS= -L../lib_dir 
+LIBS= -L../lib_dir -l _dir
 
 # Niveau d'optimization
 # Utilisez s (size opt), 1, 2, 3 ou 0 (off)

@@ -3,12 +3,14 @@
 
 #include <avr/io.h>
 #include <pwm.h>
+#include <util/delay.h>
 
 class Engine
 {
 public:
 
     //Méthode Publique
+    Engine()=default;
     void start();
     void stop();
     void forward(uint8_t percent);
@@ -19,7 +21,7 @@ public:
 private:
 
     //Attributs
-    PWM pwm_;
+    PWM pwm_=PWM();
     bool direction_;
 };
 

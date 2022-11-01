@@ -1,5 +1,5 @@
 #include "pwm.h"
-#include "LED.h"
+#include "motor.h"
 
 
 int main()

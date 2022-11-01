@@ -18,7 +18,6 @@
 class PWM 
 {
 public:
-
     //Méthode Publique
     void generatePWM();
     void setPercentageLeft(uint8_t percentage);
@@ -31,7 +30,7 @@ public:
 private:
     //Méthode Privée
     void adjustPWM(uint8_t counterValueLeft,uint8_t counterValueRight);
-    void percentageToInt(uint8_t percentage);
+    uint8_t percentageToInt(uint8_t percentage);
 
     //Attributs
     const uint8_t maxValue = 255;

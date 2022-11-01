@@ -17,6 +17,10 @@
 #####      Details specifique a la cible       #####
 #####  Vous devez les adapter a votre projet   #####
 
+# Nom du microcontroleur cible
+# (exemple: 'at90s8515')
+MCU=atmega324pa
+
 # Nom de votre projet
 # (utilisez un seul mot, exemple: 'monprojet')
 PROJECTNAME=lib_dir
@@ -26,6 +30,14 @@ PROJECTNAME=lib_dir
 # Listez tous les fichiers a compiler, separes par
 # un espace. exemple: 'tp1.c tp2.cpp':
 PRJSRC=$(wildcard *.cpp)
+
+# Niveau d'optimization
+# Utilisez s (size opt), 1, 2, 3 ou 0 (off)
+OPTLEVEL=s
+
+# Programmer ID - Ne pas changer 
+# Liste complete des IDs disponible avec avrdude
+AVRDUDE_PROGRAMMERID=usbasp
 
 # Inclusions additionnels (ex: -I/path/to/mydir)
 INC=
@@ -48,8 +60,15 @@ LIBS=
 ####### variables #######
 
 #compilateur utilise
+CC=avr-gcc
+#Pour créer la librairie statique
 AR=avr-ar
-
+#pour copier le contenu d'un fichier objet vers un autre
+OBJCOPY=avr-objcopy
+#pour permettre le transfert vers le microcontroleur
+AVRDUDE=avrdude
+#pour supprimer les fichiers lorsque l'on appel make clean
+REMOVE=rm -f
 ####### Options de compilation #######
 
 # Flags pour le compilateur en C

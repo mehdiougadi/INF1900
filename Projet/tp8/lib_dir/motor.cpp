@@ -2,6 +2,7 @@
 
 void Engine::start(){
     pwm_.generatePWM();
+    DDRD |= ((1<< PD4) | (1<< PD5)| (1<< PD6) | (1<< PD7));
 }
 
 void Engine::stop(){
@@ -9,16 +10,20 @@ void Engine::stop(){
 }
 
 void Engine::forward(uint8_t percentage){
-    PINB &= ~(1 << PB5); 
-    PINB &= ~(1 << PB7);  
+    PORTD |= (1 << PD4);
+    PORTD |= (1 << PD5);
+    PIND &= ~(1 << PD6); 
+    PIND &= ~(1 << PD7);  
     pwm_.setPercentageLeft(percentage);
     pwm_.setPercentageRight(percentage);
     pwm_.resumePWM();
 }
 
 void Engine::backward(uint8_t percentage){
-    PINB |= (1 << PB5); 
-    PINB |= (1 << PB7);   
+    PORTD |= (1 << PD4);
+    PORTD |= (1 << PD5);
+    PIND |= (1 << PD6); 
+    PIND |= (1 << PD7);   
     pwm_.setPercentageLeft(percentage);
     pwm_.setPercentageRight(percentage);
     pwm_.resumePWM();
@@ -29,7 +34,7 @@ void Engine::turnRight(){
     pwm_.setPercentageRight(0);
     pwm_.resumePWM();
 
-    _delay_ms();
+    _delay_ms(100);
     
     pwm_.setPercentageRight(previousPWM);
     pwm_.resumePWM();
@@ -51,8 +56,8 @@ void Engine::uTurn(){
     uint8_t previousPWM1 = pwm_.getPercentageRight();
     uint8_t previousPWM2 = pwm_.getPercentageLeft();
 
-    PINB &= ~(1 << PB5);
-    PINB |= (1 << PB7);   
+    PIND &= ~(1 << PD6);
+    PIND |= (1 << PD7);   
 
     pwm_.setPercentageRight(50);
     pwm_.setPercentageLeft(50);

@@ -8,7 +8,7 @@
 
 #include "pwm.h"
 
-void PWM::percentageToInt(uint8_t percentage)
+uint8_t PWM::percentageToInt(uint8_t percentage)
 {
     return (percentage/100) * maxValue;
 }
@@ -47,20 +47,20 @@ void PWM::resumePWM()
 
 void PWM::adjustPWM(uint8_t leftPWM, uint8_t rightPWM)
 {
-    TCNT0 = 0;
+    TCNT1 = 0;
 
-    OCR0A = leftPWM;
-    OCR0B = rightPWM;
+    OCR1A = leftPWM;
+    OCR1B = rightPWM;
 
-    TCCR0A |= (1 << COM0A1) | (1 << WGM00) | (1 << COM0A0) | (1 << COM0B1) | (1 << COM0B0);
-    TCCR0B |= (1 << CS01);
+    TCCR1A |= (1<<WGM10)|(1<<COM1A1)|(1<<COM1B1);
+    TCCR1B |= (1<< CS11); //prescaler à 8
+    TCCR1C |= 0;
+
 
 }
 
 void PWM::stopPWM()
 {
-    OCR0A = 0xFF;
-    OCR0B = 0xFF;
-    TCCR0A = 0;
-    TCCR0B = 0;
+    OCR1A = 0xFF;
+    OCR1B = 0xFF;
 }
