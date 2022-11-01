@@ -5,7 +5,6 @@
 #include <pwm.h>
 #include <util/delay.h>
 
-enum class direction {forward, backward};
 class motor
 {
 public:
@@ -16,8 +15,6 @@ public:
 private:
 	//Attribut
 	const uint8_t maxValue = 255;
-	void moveLeftWheel(direction direction);
-	void moveRightWheel(direction direction);
 	uint8_t percentageToInt(int percentage);
 	void adjustPWM( uint8_t rightPWM, uint8_t leftPWM);
 };
