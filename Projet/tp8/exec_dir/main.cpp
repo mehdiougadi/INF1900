@@ -1,16 +1,13 @@
 #include "pwm.h"
 #include "motor.h"
 
-
 int main()
 {
-    Engine motor;
+    motor motor1;
 
-    motor.start();
-    motor.forward(10);
+    motor1.moveStraight(10);
     _delay_ms(3000);
-    motor.forward(1);
+    motor1.moveStraight(40);
     _delay_ms(3000);
-    motor.stop();
-
+    motor1.moveStraight(0);
 }

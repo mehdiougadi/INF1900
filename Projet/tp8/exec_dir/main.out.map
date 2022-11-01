@@ -1,12 +1,13 @@
 Archive member included to satisfy reference by file (symbol)
 
 ../lib_dir/lib_dir.a(motor.o)
-                              main.o (_ZN6Engine5startEv)
-../lib_dir/lib_dir.a(pwm.o)   ../lib_dir/lib_dir.a(motor.o) (_ZN3PWM17setPercentageLeftEh)
-/usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodqi4.o)
-                              ../lib_dir/lib_dir.a(pwm.o) (__udivmodqi4)
+                              main.o (_ZN5motor12moveStraightEh)
+/usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_divmodhi4.o)
+                              ../lib_dir/lib_dir.a(motor.o) (__divmodhi4)
 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
                               /usr/lib/gcc/avr/11.2.0/../../../../avr/lib/avr5/crtatmega324pa.o (exit)
+/usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodhi4.o)
+                              /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_divmodhi4.o) (__udivmodhi4)
 
 Memory Configuration
 
@@ -131,7 +132,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x0000000000000000      0x336
+.text           0x0000000000000000      0x258
  *(.vectors)
  .vectors       0x0000000000000000       0x7c /usr/lib/gcc/avr/11.2.0/../../../../avr/lib/avr5/crtatmega324pa.o
                 0x0000000000000000                __vectors
@@ -216,62 +217,70 @@ END GROUP
                 0x0000000000000090                __vector_18
                 0x0000000000000090                __vector_20
  .text          0x0000000000000094        0x0 main.o
- .text          0x0000000000000094      0x17a ../lib_dir/lib_dir.a(motor.o)
-                0x0000000000000094                _ZN6Engine5startEv
-                0x00000000000000a0                _ZN6Engine4stopEv
-                0x00000000000000a4                _ZN6Engine7forwardEh
-                0x00000000000000d4                _ZN6Engine8backwardEh
-                0x0000000000000104                _ZN6Engine9turnRightEv
-                0x0000000000000150                _ZN6Engine8turnLeftEv
-                0x000000000000019c                _ZN6Engine5uTurnEv
- .text          0x000000000000020e       0xa6 ../lib_dir/lib_dir.a(pwm.o)
-                0x000000000000020e                _ZN3PWM15percentageToIntEh
-                0x0000000000000222                _ZN3PWM17setPercentageLeftEh
-                0x0000000000000228                _ZN3PWM18setPercentageRightEh
-                0x000000000000022e                _ZNK3PWM17getPercentageLeftEv
-                0x0000000000000234                _ZNK3PWM18getPercentageRightEv
-                0x000000000000023a                _ZN3PWM9adjustPWMEhh
-                0x0000000000000274                _ZN3PWM11generatePWMEv
-                0x000000000000029a                _ZN3PWM9resumePWMEv
-                0x000000000000029e                _ZN3PWM7stopPWMEv
- .text          0x00000000000002b4        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodqi4.o)
- .text          0x00000000000002b4        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
-                0x00000000000002b4                . = ALIGN (0x2)
+ .text          0x0000000000000094      0x118 ../lib_dir/lib_dir.a(motor.o)
+                0x0000000000000094                _ZN5motor13moveLeftWheelE9direction
+                0x00000000000000a8                _ZN5motor14moveRightWheelE9direction
+                0x00000000000000bc                _ZN5motor9adjustPWMEhh
+                0x00000000000000d2                _ZN5motor15percentageToIntEi
+                0x00000000000000ee                _ZN5motor12moveStraightEh
+                0x000000000000011a                _ZN5motorC1Ev
+                0x000000000000011a                _ZN5motorC2Ev
+                0x0000000000000142                _ZN5motor8moveBackEh
+                0x000000000000016e                _ZN5motor4turnEhh
+ .text          0x00000000000001ac        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_divmodhi4.o)
+ .text          0x00000000000001ac        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
+ .text          0x00000000000001ac        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodhi4.o)
+                0x00000000000001ac                . = ALIGN (0x2)
  *(.text.*)
- .text.startup  0x00000000000002b4       0x66 main.o
-                0x00000000000002b4                main
+ .text.startup  0x00000000000001ac       0x58 main.o
+                0x00000000000001ac                main
  .text.libgcc.mul
-                0x000000000000031a        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodqi4.o)
+                0x0000000000000204        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_divmodhi4.o)
  .text.libgcc.div
-                0x000000000000031a       0x18 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodqi4.o)
-                0x000000000000031a                __udivmodqi4
- .text.libgcc   0x0000000000000332        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodqi4.o)
+                0x0000000000000204       0x28 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_divmodhi4.o)
+                0x0000000000000204                __divmodhi4
+                0x0000000000000204                _div
+ .text.libgcc   0x000000000000022c        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_divmodhi4.o)
  .text.libgcc.prologue
-                0x0000000000000332        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodqi4.o)
+                0x000000000000022c        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_divmodhi4.o)
  .text.libgcc.builtins
-                0x0000000000000332        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodqi4.o)
+                0x000000000000022c        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_divmodhi4.o)
  .text.libgcc.fmul
-                0x0000000000000332        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodqi4.o)
+                0x000000000000022c        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_divmodhi4.o)
  .text.libgcc.fixed
-                0x0000000000000332        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodqi4.o)
+                0x000000000000022c        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_divmodhi4.o)
  .text.libgcc.mul
-                0x0000000000000332        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
+                0x000000000000022c        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
  .text.libgcc.div
-                0x0000000000000332        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
- .text.libgcc   0x0000000000000332        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
+                0x000000000000022c        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
+ .text.libgcc   0x000000000000022c        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
  .text.libgcc.prologue
-                0x0000000000000332        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
+                0x000000000000022c        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
  .text.libgcc.builtins
-                0x0000000000000332        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
+                0x000000000000022c        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
  .text.libgcc.fmul
-                0x0000000000000332        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
+                0x000000000000022c        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
  .text.libgcc.fixed
-                0x0000000000000332        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
-                0x0000000000000332                . = ALIGN (0x2)
+                0x000000000000022c        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
+ .text.libgcc.mul
+                0x000000000000022c        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodhi4.o)
+ .text.libgcc.div
+                0x000000000000022c       0x28 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodhi4.o)
+                0x000000000000022c                __udivmodhi4
+ .text.libgcc   0x0000000000000254        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodhi4.o)
+ .text.libgcc.prologue
+                0x0000000000000254        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodhi4.o)
+ .text.libgcc.builtins
+                0x0000000000000254        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodhi4.o)
+ .text.libgcc.fmul
+                0x0000000000000254        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodhi4.o)
+ .text.libgcc.fixed
+                0x0000000000000254        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodhi4.o)
+                0x0000000000000254                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000000000000332        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
-                0x0000000000000332                exit
-                0x0000000000000332                _exit
+ .fini9         0x0000000000000254        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
+                0x0000000000000254                exit
+                0x0000000000000254                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -290,25 +299,25 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000000000000332        0x4 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
+ .fini0         0x0000000000000254        0x4 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
  *(.fini0)
  *(.hightext)
  *(.hightext*)
  *(.progmemx.*)
-                0x0000000000000336                . = ALIGN (0x2)
+                0x0000000000000258                . = ALIGN (0x2)
  *(.jumptables)
  *(.jumptables*)
-                0x0000000000000336                _etext = .
+                0x0000000000000258                _etext = .
 
-.data           0x0000000000800100        0x0 load address 0x0000000000000336
+.data           0x0000000000800100        0x0 load address 0x0000000000000258
                 [!provide]                        PROVIDE (__data_start = .)
  *(.data)
  .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/11.2.0/../../../../avr/lib/avr5/crtatmega324pa.o
  .data          0x0000000000800100        0x0 main.o
  .data          0x0000000000800100        0x0 ../lib_dir/lib_dir.a(motor.o)
- .data          0x0000000000800100        0x0 ../lib_dir/lib_dir.a(pwm.o)
- .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodqi4.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_divmodhi4.o)
  .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodhi4.o)
  *(.data*)
  *(.gnu.linkonce.d*)
  *(.rodata)
@@ -324,14 +333,14 @@ END GROUP
  .bss           0x0000000000800100        0x0 /usr/lib/gcc/avr/11.2.0/../../../../avr/lib/avr5/crtatmega324pa.o
  .bss           0x0000000000800100        0x0 main.o
  .bss           0x0000000000800100        0x0 ../lib_dir/lib_dir.a(motor.o)
- .bss           0x0000000000800100        0x0 ../lib_dir/lib_dir.a(pwm.o)
- .bss           0x0000000000800100        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodqi4.o)
+ .bss           0x0000000000800100        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_divmodhi4.o)
  .bss           0x0000000000800100        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
+ .bss           0x0000000000800100        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodhi4.o)
  *(.bss*)
  *(COMMON)
                 [!provide]                        PROVIDE (__bss_end = .)
-                0x0000000000000336                __data_load_start = LOADADDR (.data)
-                0x0000000000000336                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0000000000000258                __data_load_start = LOADADDR (.data)
+                0x0000000000000258                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x0000000000800100        0x0
                 [!provide]                        PROVIDE (__noinit_start = .)
@@ -356,17 +365,15 @@ END GROUP
 .signature
  *(.signature*)
 
-.stab           0x0000000000000000      0xa14
+.stab           0x0000000000000000      0x66c
  *(.stab)
- .stab          0x0000000000000000      0x198 main.o
- .stab          0x0000000000000198      0x4c8 ../lib_dir/lib_dir.a(motor.o)
-                                        0x4d4 (size before relaxing)
- .stab          0x0000000000000660      0x3b4 ../lib_dir/lib_dir.a(pwm.o)
-                                        0x3c0 (size before relaxing)
+ .stab          0x0000000000000000      0x150 main.o
+ .stab          0x0000000000000150      0x51c ../lib_dir/lib_dir.a(motor.o)
+                                        0x528 (size before relaxing)
 
-.stabstr        0x0000000000000000     0x16ae
+.stabstr        0x0000000000000000      0xb45
  *(.stabstr)
- .stabstr       0x0000000000000000     0x16ae main.o
+ .stabstr       0x0000000000000000      0xb45 main.o
 
 .stab.excl
  *(.stab.excl)
@@ -385,7 +392,6 @@ END GROUP
  .comment       0x0000000000000000       0x23 main.o
                                          0x24 (size before relaxing)
  .comment       0x0000000000000023       0x24 ../lib_dir/lib_dir.a(motor.o)
- .comment       0x0000000000000023       0x24 ../lib_dir/lib_dir.a(pwm.o)
 
 .note.gnu.avr.deviceinfo
                 0x0000000000000000       0x40

@@ -5,24 +5,21 @@
 #include <pwm.h>
 #include <util/delay.h>
 
-class Engine
+enum class direction {forward, backward};
+class motor
 {
 public:
-
-    //Méthode Publique
-    Engine()=default;
-    void start();
-    void stop();
-    void forward(uint8_t percent);
-    void backward(uint8_t percent);
-    void turnRight();
-    void turnLeft();
-    void uTurn();
+	motor();
+	void moveStraight(uint8_t pwm);
+	void moveBack(uint8_t pwm);
+	void turn(uint8_t pwm1 , uint8_t pwm2);
 private:
-
-    //Attributs
-    PWM pwm_=PWM();
-    bool direction_;
+	//Attribut
+	const uint8_t maxValue = 255;
+	void moveLeftWheel(direction direction);
+	void moveRightWheel(direction direction);
+	uint8_t percentageToInt(int percentage);
+	void adjustPWM( uint8_t rightPWM, uint8_t leftPWM);
 };
 
 #endif

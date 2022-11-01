@@ -52,9 +52,8 @@ void PWM::adjustPWM(uint8_t leftPWM, uint8_t rightPWM)
     OCR1A = leftPWM;
     OCR1B = rightPWM;
 
-    TCCR1A |= (1<<WGM10)|(1<<COM1A1)|(1<<COM1B1);
+    TCCR1A |= (1<<WGM10)|(1<<COM1A1)|(1<<COM1B1)|(1<<COM1A0)|(1<<COM1B0);
     TCCR1B |= (1<< CS11); //prescaler à 8
-    TCCR1C |= 0;
 
 
 }

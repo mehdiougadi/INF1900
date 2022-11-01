@@ -11,7 +11,7 @@ const uint8_t delay= 5;
 void setIOPorts()
 {
     //Mode input
-    DDRD &= ~( 1<< PD2);
+    DDRD = 0xff;
 
     //Mode output
     DDRA |= ((1<< PA1) | (1<< PA0));
@@ -70,24 +70,26 @@ void ajustementPwm ( uint8_t valeurPWM ) {
 // et valeur de TOP fixe à 0xFF (mode #1 de la table 16-5
 // page 130 de la description technique du ATmega324PA)
 
-OCR1A = 0;
+OCR1A = valeurPWM;
 OCR1B = valeurPWM;
 
 // division d'horloge par 8 - implique une fréquence de PWM fixe
 
-TCCR1A |= (1<<WGM10)|(1<<COM1A1)|(1<<COM1B1);
-TCCR1B |= (1<< CS11); //prescaler à 8
+
+TCCR1A |= (1<<WGM10)|(1<<COM1A1)|(1<<COM1B1)|(1<<COM1A0)|(1<<COM1B0);
+//TCCR1B |= (1<< CS11); //prescaler à 8
 TCCR1C |= 0;
 
 }
 
 int main()
 {
+    
+    
     setIOPorts();
 
-    ajustementPwm(0);
+    /*ajustementPwm(0);
     _delay_ms(2000);
-    PORTA=0x01;
     ajustementPwm(64);
     _delay_ms(2000);
     ajustementPwm(128);
@@ -95,5 +97,15 @@ int main()
     ajustementPwm(191);
     _delay_ms(2000);
     ajustementPwm(255);
-    _delay_ms(2000);
+    _delay_ms(2000);*/
+    
+
+    TCCR1A |= (1<<WGM10)|(1<<COM1A1)|(1<<COM1B1)|(1<<COM1A0)|(1<<COM1B0);
+    TCCR1B |= (1<< CS11); //prescaler à 8
+    TCCR1C = 0;
+    OCR1A = 128;
+    OCR1B = 128;
+    _delay_ms(1000);
+    OCR1A = 255;
+    OCR1B = 255;
 }
