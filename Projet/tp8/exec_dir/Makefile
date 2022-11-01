@@ -17,9 +17,13 @@
 #####      Details specifique a la cible       #####
 #####  Vous devez les adapter a votre projet   #####
 
+# Nom du microcontroleur cible
+# (exemple: 'at90s8515')
+MCU=atmega324pa
+
 # Nom de votre projet
 # (utilisez un seul mot, exemple: 'monprojet')
-PROJECTNAME=exec_dir
+PROJECTNAME=main
 
 # Fichiers sources
 # Utilisez le suffixe .cpp pour les fichiers C++
@@ -31,7 +35,15 @@ PRJSRC= main.cpp
 INC= -I../lib_dir
 
 # Libraires a lier (ex: -lmylib)
-LIBS= -L../lib_dir -lib_dir
+LIBS= -L../lib_dir -llibrairie
+
+# Niveau d'optimization
+# Utilisez s (size opt), 1, 2, 3 ou 0 (off)
+OPTLEVEL=s
+
+# Programmer ID - Ne pas changer 
+# Liste complete des IDs disponible avec avrdude
+AVRDUDE_PROGRAMMERID=usbasp
 
 ####################################################
 #####         Configuration terminee           #####
@@ -42,7 +54,16 @@ LIBS= -L../lib_dir -lib_dir
 #####   ce Makefile en vue de sa modification  #####
 ####################################################
 
-
+#compilateur utilise
+CC=avr-gcc
+#Pour créer la librairie statique
+AR=avr-ar
+#pour copier le contenu d'un fichier objet vers un autre
+OBJCOPY=avr-objcopy
+#pour permettre le transfert vers le microcontroleur
+AVRDUDE=avrdude
+#pour supprimer les fichiers lorsque l'on appel make clean
+REMOVE=rm -f
 
 ####### variables #######
 
