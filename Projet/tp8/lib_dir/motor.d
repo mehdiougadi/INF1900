@@ -1,1 +1,1 @@
-motor.o: motor.cpp motor.h pwm.h
+motor.o: motor.cpp motor.h

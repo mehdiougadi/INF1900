@@ -32,8 +32,8 @@ void LED::colorRed()
 
 void LED::colorAmber()
 {
-    _delay_ms(2);
     colorGreen();
-    _delay_ms(15);
+    _delay_ms(10);
     colorRed();
+    _delay_ms(5);
 }

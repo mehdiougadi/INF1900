@@ -1,7 +1,8 @@
 Archive member included to satisfy reference by file (symbol)
 
+../lib_dir/lib_dir.a(LED.o)   main.o (_ZN3LED7initLEDEv)
 ../lib_dir/lib_dir.a(motor.o)
-                              main.o (_ZN5motor12moveStraightEh)
+                              main.o (_ZN5motorC1Ev)
 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_divmodhi4.o)
                               ../lib_dir/lib_dir.a(motor.o) (__divmodhi4)
 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
@@ -132,7 +133,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x0000000000000000      0x264
+.text           0x0000000000000000      0x46c
  *(.vectors)
  .vectors       0x0000000000000000       0x7c /usr/lib/gcc/avr/11.2.0/../../../../avr/lib/avr5/crtatmega324pa.o
                 0x0000000000000000                __vectors
@@ -217,68 +218,75 @@ END GROUP
                 0x0000000000000090                __vector_18
                 0x0000000000000090                __vector_20
  .text          0x0000000000000094        0x0 main.o
- .text          0x0000000000000094       0xec ../lib_dir/lib_dir.a(motor.o)
-                0x0000000000000094                _ZN5motor9adjustPWMEhh
-                0x00000000000000aa                _ZN5motor15percentageToIntEi
-                0x00000000000000c6                _ZN5motor12moveStraightEh
-                0x00000000000000f2                _ZN5motorC1Ev
-                0x00000000000000f2                _ZN5motorC2Ev
-                0x000000000000011a                _ZN5motor8moveBackEh
-                0x0000000000000146                _ZN5motor4turnEhh
- .text          0x0000000000000180        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_divmodhi4.o)
- .text          0x0000000000000180        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
- .text          0x0000000000000180        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodhi4.o)
-                0x0000000000000180                . = ALIGN (0x2)
+ .text          0x0000000000000094       0x54 ../lib_dir/lib_dir.a(LED.o)
+                0x0000000000000094                _ZN3LED7initLEDEv
+                0x000000000000009c                _ZN3LED10colorGreenEv
+                0x00000000000000a4                _ZN3LED7noColorEv
+                0x00000000000000ae                _ZN3LED8colorRedEv
+                0x00000000000000b6                _ZN3LED10colorAmberEv
+ .text          0x00000000000000e8      0x110 ../lib_dir/lib_dir.a(motor.o)
+                0x00000000000000e8                _ZN5motorC1Ev
+                0x00000000000000e8                _ZN5motorC2Ev
+                0x000000000000011e                _ZN5motor9adjustPWMEhh
+                0x0000000000000134                _ZN5motor15percentageToIntEi
+                0x0000000000000150                _ZN5motor12moveStraightEh
+                0x000000000000017c                _ZN5motor8moveBackEh
+                0x00000000000001a8                _ZN5motor4turnEhh
+                0x00000000000001e2                _ZN5motor4stopEv
+ .text          0x00000000000001f8        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_divmodhi4.o)
+ .text          0x00000000000001f8        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
+ .text          0x00000000000001f8        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodhi4.o)
+                0x00000000000001f8                . = ALIGN (0x2)
  *(.text.*)
- .text.startup  0x0000000000000180       0x90 main.o
-                0x0000000000000180                main
+ .text.startup  0x00000000000001f8      0x220 main.o
+                0x00000000000001f8                main
  .text.libgcc.mul
-                0x0000000000000210        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_divmodhi4.o)
+                0x0000000000000418        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_divmodhi4.o)
  .text.libgcc.div
-                0x0000000000000210       0x28 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_divmodhi4.o)
-                0x0000000000000210                __divmodhi4
-                0x0000000000000210                _div
- .text.libgcc   0x0000000000000238        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_divmodhi4.o)
+                0x0000000000000418       0x28 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_divmodhi4.o)
+                0x0000000000000418                __divmodhi4
+                0x0000000000000418                _div
+ .text.libgcc   0x0000000000000440        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_divmodhi4.o)
  .text.libgcc.prologue
-                0x0000000000000238        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_divmodhi4.o)
+                0x0000000000000440        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_divmodhi4.o)
  .text.libgcc.builtins
-                0x0000000000000238        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_divmodhi4.o)
+                0x0000000000000440        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_divmodhi4.o)
  .text.libgcc.fmul
-                0x0000000000000238        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_divmodhi4.o)
+                0x0000000000000440        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_divmodhi4.o)
  .text.libgcc.fixed
-                0x0000000000000238        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_divmodhi4.o)
+                0x0000000000000440        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_divmodhi4.o)
  .text.libgcc.mul
-                0x0000000000000238        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
+                0x0000000000000440        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
  .text.libgcc.div
-                0x0000000000000238        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
- .text.libgcc   0x0000000000000238        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
+                0x0000000000000440        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
+ .text.libgcc   0x0000000000000440        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
  .text.libgcc.prologue
-                0x0000000000000238        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
+                0x0000000000000440        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
  .text.libgcc.builtins
-                0x0000000000000238        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
+                0x0000000000000440        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
  .text.libgcc.fmul
-                0x0000000000000238        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
+                0x0000000000000440        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
  .text.libgcc.fixed
-                0x0000000000000238        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
+                0x0000000000000440        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
  .text.libgcc.mul
-                0x0000000000000238        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodhi4.o)
+                0x0000000000000440        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodhi4.o)
  .text.libgcc.div
-                0x0000000000000238       0x28 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodhi4.o)
-                0x0000000000000238                __udivmodhi4
- .text.libgcc   0x0000000000000260        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodhi4.o)
+                0x0000000000000440       0x28 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodhi4.o)
+                0x0000000000000440                __udivmodhi4
+ .text.libgcc   0x0000000000000468        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodhi4.o)
  .text.libgcc.prologue
-                0x0000000000000260        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodhi4.o)
+                0x0000000000000468        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodhi4.o)
  .text.libgcc.builtins
-                0x0000000000000260        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodhi4.o)
+                0x0000000000000468        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodhi4.o)
  .text.libgcc.fmul
-                0x0000000000000260        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodhi4.o)
+                0x0000000000000468        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodhi4.o)
  .text.libgcc.fixed
-                0x0000000000000260        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodhi4.o)
-                0x0000000000000260                . = ALIGN (0x2)
+                0x0000000000000468        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_udivmodhi4.o)
+                0x0000000000000468                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000000000000260        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
-                0x0000000000000260                exit
-                0x0000000000000260                _exit
+ .fini9         0x0000000000000468        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
+                0x0000000000000468                exit
+                0x0000000000000468                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -297,21 +305,22 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000000000000260        0x4 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
+ .fini0         0x0000000000000468        0x4 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
  *(.fini0)
  *(.hightext)
  *(.hightext*)
  *(.progmemx.*)
-                0x0000000000000264                . = ALIGN (0x2)
+                0x000000000000046c                . = ALIGN (0x2)
  *(.jumptables)
  *(.jumptables*)
-                0x0000000000000264                _etext = .
+                0x000000000000046c                _etext = .
 
-.data           0x0000000000800100        0x0 load address 0x0000000000000264
+.data           0x0000000000800100        0x0 load address 0x000000000000046c
                 [!provide]                        PROVIDE (__data_start = .)
  *(.data)
  .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/11.2.0/../../../../avr/lib/avr5/crtatmega324pa.o
  .data          0x0000000000800100        0x0 main.o
+ .data          0x0000000000800100        0x0 ../lib_dir/lib_dir.a(LED.o)
  .data          0x0000000000800100        0x0 ../lib_dir/lib_dir.a(motor.o)
  .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_divmodhi4.o)
  .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
@@ -330,6 +339,7 @@ END GROUP
  *(.bss)
  .bss           0x0000000000800100        0x0 /usr/lib/gcc/avr/11.2.0/../../../../avr/lib/avr5/crtatmega324pa.o
  .bss           0x0000000000800100        0x0 main.o
+ .bss           0x0000000000800100        0x0 ../lib_dir/lib_dir.a(LED.o)
  .bss           0x0000000000800100        0x0 ../lib_dir/lib_dir.a(motor.o)
  .bss           0x0000000000800100        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_divmodhi4.o)
  .bss           0x0000000000800100        0x0 /usr/lib/gcc/avr/11.2.0/avr5/libgcc.a(_exit.o)
@@ -337,8 +347,8 @@ END GROUP
  *(.bss*)
  *(COMMON)
                 [!provide]                        PROVIDE (__bss_end = .)
-                0x0000000000000264                __data_load_start = LOADADDR (.data)
-                0x0000000000000264                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x000000000000046c                __data_load_start = LOADADDR (.data)
+                0x000000000000046c                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x0000000000800100        0x0
                 [!provide]                        PROVIDE (__noinit_start = .)
@@ -363,15 +373,17 @@ END GROUP
 .signature
  *(.signature*)
 
-.stab           0x0000000000000000      0x5ac
+.stab           0x0000000000000000      0xb10
  *(.stab)
- .stab          0x0000000000000000      0x1a4 main.o
- .stab          0x00000000000001a4      0x408 ../lib_dir/lib_dir.a(motor.o)
-                                        0x414 (size before relaxing)
+ .stab          0x0000000000000000      0x468 main.o
+ .stab          0x0000000000000468      0x234 ../lib_dir/lib_dir.a(LED.o)
+                                        0x240 (size before relaxing)
+ .stab          0x000000000000069c      0x474 ../lib_dir/lib_dir.a(motor.o)
+                                        0x480 (size before relaxing)
 
-.stabstr        0x0000000000000000      0x946
+.stabstr        0x0000000000000000      0xe49
  *(.stabstr)
- .stabstr       0x0000000000000000      0x946 main.o
+ .stabstr       0x0000000000000000      0xe49 main.o
 
 .stab.excl
  *(.stab.excl)
@@ -389,6 +401,7 @@ END GROUP
  *(.comment)
  .comment       0x0000000000000000       0x23 main.o
                                          0x24 (size before relaxing)
+ .comment       0x0000000000000023       0x24 ../lib_dir/lib_dir.a(LED.o)
  .comment       0x0000000000000023       0x24 ../lib_dir/lib_dir.a(motor.o)
 
 .note.gnu.avr.deviceinfo
