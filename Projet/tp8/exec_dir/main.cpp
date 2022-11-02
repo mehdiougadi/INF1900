@@ -1,5 +1,6 @@
 #include "motor.h"
 #include "LED.h"
+#include "timer.h"
 
 int main()
 {
