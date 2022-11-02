@@ -15,7 +15,7 @@ int main()
 
     ledLibre.colorRed();
     motor1.turn(0,50);
-    _delay_ms(2500);
+    _delay_ms(2000);
     motor1.stop();
     _delay_ms(3000);    
 
@@ -27,7 +27,7 @@ int main()
 
     ledLibre.colorRed();
     motor1.turn(0,50);
-    _delay_ms(2500);
+    _delay_ms(2000);
     motor1.stop();
     _delay_ms(3000);  
 
@@ -39,7 +39,7 @@ int main()
 
     ledLibre.colorRed();
     motor1.turn(0,50);
-    _delay_ms(2500);
+    _delay_ms(2000);
     motor1.stop();
     _delay_ms(3000); 
 
@@ -51,7 +51,7 @@ int main()
 
     ledLibre.colorRed();
     motor1.turn(0,50);
-    _delay_ms(2500);
+    _delay_ms(2000);
     motor1.stop();
     _delay_ms(3000); 
 
