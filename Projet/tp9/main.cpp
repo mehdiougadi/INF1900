@@ -14,6 +14,15 @@
 #include "timer.h"
 #include "usart.h"
 
+//Variables globales
+volatile bool isBegin = false;
+uint8_t operand;
+uint8_t nameInstruction;
+uint16_t PC = 0x00;
+uint16_t address;
+uint16_t localCounter;
+
+
 enum instruction 
 {
     dbt = 0x01, //Début
@@ -33,55 +42,110 @@ enum instruction
     fin = 0xFF  //fin du programme
 };
 
-
-int main()
+void setObjects()
 {
+    MOTOR motor;
+    LED led;
+    Memoire24CXXX memory;
+    SOUND speaker;
+}
 
-    switch(instruction)
+
+void doInstructions()
+{
+    switch (instruction)
     {
-        case dbt:
-            break;
-
         case att:
+            for (uint8_t i = 0; i < operand; i++) 
+            {
+                _delay_ms(25);
+            }
             break;
 
         case dal:
+            if (operand == 1)
+                led.colorGreen();
+            else if (operand == 2)
+                led.colorRed();
+            else if (operand == 3)
+                led.colorAmber();
             break;
 
         case det:
+            led.noColor();
             break;
 
         case sgo:
+            speaker.playSound(operand);
             break;
 
         case sar:
+            speaker.stopSound();
             break;
 
         case mar0:
+            motor.stop();
             break;
 
         case mar1:
+            motor.stop();
             break;
 
         case mav:
+            motor.moveStraight(motor.intToPercentage(operand));
             break;
 
         case mre:
+            motor.moveBack(motor.intToPercentage(operand));
             break;
 
         case trd:
+            motor.turn(50, 0);
+            _delay_ms(2000);
             break;
 
         case trg:
+            motor.turn(0, 50);
+            _delay_ms(2000);
             break;
 
         case dbc:
+            address = PC + 1;
+            localCounter = operand;
             break;
 
         case fbc:
+            if (localCounter > 0)
+            {
+                PC = address;
+                localCounter--;
+            }
             break;
 
         case fin:
+            isBegin = false;
             break;
+    }
+}
+
+int main()
+{
+    setObjects();
+
+    while (true)
+    {
+        if (instruction == dbt)
+        {
+            isBegin = true;
+
+            while (isBegin)
+            {
+                memory.lecture(PC, &operand);
+                memory.lecture(PC, &nameInstruction);
+
+                doInstructions();
+                PC++; 
+            }
+        }
     }
 }

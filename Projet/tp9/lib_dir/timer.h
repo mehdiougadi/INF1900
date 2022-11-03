@@ -16,9 +16,10 @@
 //Les timers possibles
 enum class waveform { normalMode, ctc };
 enum class compare { toggle, setLow, setHigh, off};
-class timer {
+
+class TIMER {
 public:
-    timer(waveform mode1, compare mode2);
+    TIMER(waveform mode1, compare mode2);
     void waveformMode();
     void compareMode();
 private:

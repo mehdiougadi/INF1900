@@ -8,16 +8,17 @@
 
 #include "timer.h"
 
-timer::timer(waveform mode1, compare mode2)
+TIMER::TIMER(waveform mode1, compare mode2)
 {
     currentMode1 = mode1;
     currentMode2 = mode2;
     TCNT1 = 0;
-    TCCR1B &= ~(1 << CS11);
+    TCCRB &= ~(1 << CS11);
     TCCR1B |= (1 << CS12) | (1 << CS10);
     TIMSK1 = (1 << OCIE1A);
 }
-void timer::waveformMode()
+
+void TIMER::waveformMode()
 {
     switch (currentMode1) 
     {
@@ -32,7 +33,8 @@ void timer::waveformMode()
             break;
     }
 }
-void timer::compareMode()
+
+void TIMER::compareMode()
 {
     switch (currentMode2) 
     {
@@ -52,7 +54,8 @@ void timer::compareMode()
             break;
     }
 }
-void timer::timeTraduction (uint8_t time, uint16_t prescaler)
+
+void TIMER::timeTraduction (uint8_t time, uint16_t prescaler)
 {
     uint16_t period = prescaler / F_CPU;
     uint16_t timeCounter = time / period;

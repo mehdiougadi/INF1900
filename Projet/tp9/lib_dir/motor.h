@@ -14,9 +14,13 @@ public:
 	void moveBack(uint8_t pwm);
 	void turn(uint8_t pwm1 , uint8_t pwm2);
 	void stop();
+
+	uint8_t intToPercentage(double value);
+	
 private:
 	//Attribut
 	const uint8_t maxValue = 255;
+	//Methode
 	uint8_t percentageToInt(int percentage);
 	void adjustPWM( uint8_t rightPWM, uint8_t leftPWM);
 };

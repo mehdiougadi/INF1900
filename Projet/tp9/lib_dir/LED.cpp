@@ -8,7 +8,7 @@
 
 #include "LED.h"
 
-void LED::initLED()
+LED::LED()
 {
     DDRB |= ( ( 1 << PINB0) | ( 1 << PINB1 ) );
 }

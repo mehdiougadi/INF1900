@@ -17,7 +17,7 @@
 class LED 
 {
 public:
-    void initLED();
+    LED();
     void colorGreen();
     void colorRed();
     void colorAmber();
