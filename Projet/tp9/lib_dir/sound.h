@@ -5,6 +5,7 @@
 
 #include <avr/io.h>
 #include <util/delay.h>
+#include "timer.h"
 
 class SOUND
 {
@@ -14,7 +15,7 @@ public:
 	void stopSound();
 
 private:
-
+	uint8_t note;
 };
 
 #endif

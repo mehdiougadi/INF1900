@@ -1,13 +1,15 @@
 #include "sound.h"
 
+TIMER timer0(waveform::ctc, compare::toggle); //compare??
+
 SOUND::SOUND()
 {
-    //ports
+    //ports du haut-parleur
 }
 
 void SOUND::playSound(uint8_t note)
 {
-    TIMER timer0(waveform::ctc, compare::toggle); //compare??
+    TIMER timer0(waveform::ctc, compare::toggle);
 
     //switch-case
 }
