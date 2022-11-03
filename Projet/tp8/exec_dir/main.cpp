@@ -4,7 +4,7 @@
 
 int main()
 {
-    motor motor1;
+    MOTOR motor1;
     LED ledLibre;
     ledLibre.initLED();
 
