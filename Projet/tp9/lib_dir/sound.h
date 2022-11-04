@@ -5,7 +5,23 @@
 
 #include <avr/io.h>
 #include <util/delay.h>
-#include "timer.h"
+
+enum class octave 
+{
+	octave2,
+	octave3,
+	octave4,
+	octave5
+};
+
+enum note
+{
+	A = 110;
+	Bb = 116.54;
+	B = 123.47;
+	C
+}
+
 
 class SOUND
 {

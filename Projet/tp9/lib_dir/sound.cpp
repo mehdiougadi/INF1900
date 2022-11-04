@@ -1,20 +1,18 @@
 #include "sound.h"
 
-TIMER timer0(waveform::ctc, compare::toggle); //compare??
-
 SOUND::SOUND()
 {
-    //ports du haut-parleur
+    DDRB |= (1 << PB2);
+    TCCR0A |= (1<<WGM11)|(1<<COM0A1)|(1<<COM0B1)|(1<<COM0A0)|(1<<COM0B0);
+	TCCR0B |= (1<< CS01); //prescaler à 8
 }
 
 void SOUND::playSound(uint8_t note)
 {
-    TIMER timer0(waveform::ctc, compare::toggle);
-
-    //switch-case
+    
 }
 
 void SOUND::stopSound()
 {
-
+    OCR0A = 0xFF;
 }
