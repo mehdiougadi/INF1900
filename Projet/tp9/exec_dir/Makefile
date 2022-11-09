@@ -29,7 +29,7 @@ PROJECTNAME=exec_dir
 # Utilisez le suffixe .cpp pour les fichiers C++
 # Listez tous les fichiers a compiler, separes par
 # un espace. exemple: 'tp1.c tp2.cpp':
-PRJSRC= checkMemory.cpp
+PRJSRC= writeMemory.cpp
 
 # Inclusions additionnels (ex: -I/path/to/mydir)
 INC= -I../lib_dir

@@ -23,6 +23,7 @@ uint16_t PC = 0x00;
 uint16_t address;
 uint16_t localCounter;
 
+//Objets globaux
 MOTOR motor;
 LED led;
 Memoire24CXXX memory;
@@ -36,7 +37,6 @@ enum instruction
     det = 0x45, //Eteindre la del
     sgo = 0x48, //Jouer la sonorité
     sar = 0x09, //Arreter la sonorité
-    //mar = 0x60, //Arreter les moteurs
     mar = 0x61, //Arreter les moteurs
     mav = 0x62, //Avancer
     mre = 0x63, //Reculer
@@ -46,6 +46,22 @@ enum instruction
     fbc = 0xC1, //Fin boucle
     fin = 0xFF  //fin du programme
 };
+
+void starting()
+{
+    led.colorRed();
+    speaker.introSong();
+    led.colorGreen();
+    motor.moveStraight(100);
+    _delay_ms(500);
+    motor.stop();
+    _delay_ms(200);
+    motor.moveBack(100);
+    _delay_ms(500);
+    led.noColor();
+    motor.stop();
+    _delay_ms(3000);
+}
 
 void doInstructions(uint8_t valueInstruction)
 {
@@ -125,6 +141,7 @@ void doInstructions(uint8_t valueInstruction)
 
         case fin:
             isBegin = false;
+            speaker.outroSong();
             break;
 
         default:
@@ -146,7 +163,8 @@ int main()
         if (valueInstruction == instruction::dbt)
         {
             isBegin = true;
-
+            starting();
+            
             while (isBegin)
             {
                 memory.lecture(PC, &valueInstruction);

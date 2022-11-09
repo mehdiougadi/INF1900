@@ -12,6 +12,7 @@
 
 int main()
 {
+    //Objets
     usart transmit;
     Memoire24CXXX mem;
     LED led;

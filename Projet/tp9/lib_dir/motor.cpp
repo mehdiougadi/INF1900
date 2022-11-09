@@ -17,7 +17,7 @@ void MOTOR::adjustPWM ( uint8_t rightPWM,uint8_t leftPWM)
 
 uint8_t MOTOR::percentageToInt(int percentage)
 {
-    if ( (percentage > 100) || (percentage < 0) )
+    if ( (percentage <= 100) && (percentage >= 0) )
     {
         return 255 - (percentage*maxValue)/100;
     }

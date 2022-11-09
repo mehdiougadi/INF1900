@@ -12,13 +12,13 @@
 
 int main()
 {
+    //Objets
     usart transmit;
     Memoire24CXXX mem;
     LED led;
 
     uint16_t address = 0x00;
     uint8_t data;
-
 
     while (true)
     {

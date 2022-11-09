@@ -1,376 +1,44 @@
-    dbt;
-
-        sgo 51;
-        att 5;
-        sar;
-        att 5;
-
-        sgo 52;
-        att 8;
-        sar;
-        att 8;
-
-        att 3;
-
-        sgo 54;
-        att 5;
-        sar;
-        att 5;
-
-        sgo 55;
-        att 8;
-        sar;
-        att 8;
-
-        att 3;
-
-        sgo 51;
-        att 5;
-        sar;
-        att 5;
-
-        sgo 52;
-        att 5;
-        sar;
-        att 5;
-
-        att 2;
-
-        sgo 53;
-        att 1;
-        sar;
-        att 1;
-
-        sgo 55;
-        att 5;
-        sar;
-        att 5;
-
-        att 2;
-
-        sgo 60;
-        att 1;
-        sar;
-        att 1;
-
-        sgo 59;
-        att 5;
-        sar;
-        att 5;
-
-        att 2;
-
-        sgo 52;
-        att 1;
-        sar;
-        att 1;
-
-        sgo 55;
-        att 5;
-        sar;
-        att 5;
-
-        att 2;
-
-        sgo 59;
-        att 1;
-        sar;
-        att 1;
-
-        sgo 58;
-        att 12;
-        sar;
-        att 12;
-
-        sgo 57;
-        att 4;
-        sar;
-        att 4;
-
-        sgo 55;
-        att 4;
-        sar;
-        att 4;
-
-        sgo 52;
-        att 4;
-        sar;
-        att 4;
-
-        sgo 50;
-        att 4;
-        sar;
-        att 4;
-
-        sgo 52;
-        att 18;
-        sar;
-        att 18;
-
-        // Fin de la première phrase
-
-        sgo 51;
-        att 5;
-        sar;
-        att 5;
-
-        sgo 52;
-        att 8;
-        sar;
-        att 8;
-
-        att 3;
-
-        sgo 54;
-        att 5;
-        sar;
-        att 5;
-
-        sgo 55;
-        att 8;
-        sar;
-        att 8;
-
-        att 3;
-
-        sgo 51;
-        att 5;
-        sar;
-        att 5;
-
-        sgo 52;
-        att 5;
-        sar;
-        att 5;
-
-        att 2;
-
-        sgo 53;
-        att 1;
-        sar;
-        att 1;
-
-        sgo 55;
-        att 5;
-        sar;
-        att 5;
-
-        att 2;
-
-        sgo 60;
-        att 1;
-        sar;
-        att 1;
-
-        sgo 59;
-        att 5;
-        sar;
-        att 5;
-
-        att 2;
-
-        sgo 55;
-        att 1;
-        sar;
-        att 1;
-
-        sgo 59;
-        att 5;
-        sar;
-        att 5;
-
-        att 2;
-
-        sgo 64;
-        att 1;
-        sar;
-        att 1;
-
-        sgo 63;
-        att 30;
-        sar;
-        att 30;
-
-        // fin deuxième phrase
-
-        sgo 51;
-        att 5;
-        sar;
-        att 5;
-
-        sgo 52;
-        att 8;
-        sar;
-        att 8;
-
-        att 3;
-
-        sgo 54;
-        att 5;
-        sar;
-        att 5;
-
-        sgo 55;
-        att 8;
-        sar;
-        att 8;
-
-        att 3;
-
-        sgo 51;
-        att 5;
-        sar;
-        att 5;
-
-        sgo 52;
-        att 5;
-        sar;
-        att 5;
-
-        att 2;
-
-        sgo 53;
-        att 1;
-        sar;
-        att 1;
-
-        sgo 55;
-        att 5;
-        sar;
-        att 5;
-
-        att 2;
-
-        sgo 60;
-        att 1;
-        sar;
-        att 1;
-
-        sgo 59;
-        att 5;
-        sar;
-        att 5;
-
-        att 2;
-
-        sgo 52;
-        att 1;
-        sar;
-        att 1;
-
-        sgo 55;
-        att 5;
-        sar;
-        att 5;
-
-        att 2;
-
-        sgo 59;
-        att 1;
-        sar;
-        att 1;
-
-        sgo 58;
-        att 12;
-        sar;
-        att 12;
-
-        sgo 57;
-        att 4;
-        sar;
-        att 4;
-
-        sgo 55;
-        att 4;
-        sar;
-        att 4;
-
-        sgo 52;
-        att 4;
-        sar;
-        att 4;
-
-        sgo 50;
-        att 4;
-        sar;
-        att 4;
-
-        sgo 52;
-        att 18;
-        sar;
-        att 18;
-
-        // fin troisième phrase
-
-        att 8;
-
-        sgo 64;
-        att 5;
-        sar;
-        att 5;
-
-        sgo 62;
-        att 2;
-        sar;
-        att 2;
-
-        sgo 59;
-        att 5;
-        sar;
-        att 5;
-
-        sgo 57;
-        att 2;
-        sar;
-        att 2;
-
-        sgo 55;
-        att 5;
-        sar;
-        att 5;
-
-        sgo 52;
-        att 2;
-        sar;
-        att 2;
-
-        dbc 3;
-
-        sgo 58;
-        att 3;
-        sar;
-        att 3;
-
-        sgo 57;
-        att 6;
-        sar;
-        att 6;
-
-        fbc;
-
-        sgo 55;
-        att 4;
-        sar;
-        att 4;
-
-        sgo 52;
-        att 4;
-        sar;
-        att 4;
-
-        sgo 50;
-        att 4;
-        sar;
-        att 4;
-
-        sgo 52;
-        att 4;
-        sar;
-        att 4;
-
-        sgo 52;
-        att 16;
-        sar;
-        att 16;
-
-        fin;
+dbt;
+dbc 2;
+dal 1;
+mav 200;
+att 160;
+mar;
+att 200; 
+trg;
+att 150;
+mav 200;
+att 160;
+mar;
+att 200; 
+trd;
+att 150;
+mav 200;
+att 220;
+mar;
+att 200;
+dal 2;
+mre 200;
+att 160;
+mar;
+att 200;
+trd;
+att 150;
+mav 200;
+att 160;
+mar;
+att 200;
+trd;
+att 150;
+mav 200;
+att 220;
+mar;
+att 200;
+trg;
+att 150;
+trg;
+att 150;
+mar;
+det;
+fbc;
+fin; 
