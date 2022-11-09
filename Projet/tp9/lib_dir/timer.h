@@ -1,4 +1,4 @@
-// Cours:       INF1900 - Projet initial de syst?me embarqu?
+// Cours:       INF1900 - Projet initial de système embarqué
 // Auteurs:     THOELEN Nathan
 //              OUGADI Mehdi
 //              ALLAIRE Mederic
@@ -17,11 +17,13 @@
 enum class waveform { normalMode, ctc };
 enum class compare { toggle, setLow, setHigh, off};
 
-class TIMER {
+class timer {
+
 public:
-    TIMER(waveform mode1, compare mode2);
+    timer(waveform mode1, compare mode2);
     void waveformMode();
     void compareMode();
+
 private:
     //time in seconds
     void timeTraduction (uint8_t time, uint16_t prescaler);
@@ -33,4 +35,4 @@ private:
     compare currentMode2;
 };
 
-#endif
+#endif // !TIMER_H

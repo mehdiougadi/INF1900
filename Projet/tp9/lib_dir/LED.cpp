@@ -10,24 +10,24 @@
 
 LED::LED()
 {
-    DDRB |= ( ( 1 << PINB0) | ( 1 << PINB1 ) );
+    DDRC |= ( ( 1 << PINC6) | ( 1 << PINC7 ) );
 }
 
 void LED::colorGreen()
 {
-    PORTB &= ( 0 << PB1 );
-    PORTB |= ( 1 << PB0 );
+    PORTC &= ( 0 << PC7 );
+    PORTC |= ( 1 << PC6 );
 }
  void LED::noColor()
 {
-    PORTB &= ( 0 << PB0 );
-    PORTB &= ( 0 << PB1 );
+    PORTC &= ( 0 << PC6 );
+    PORTC &= ( 0 << PC7 );
 }
 
 void LED::colorRed()
 {
-    PORTB &= ( 0 << PB0 );
-    PORTB |= ( 1 << PB1 );
+    PORTC &= ( 0 << PC6 );
+    PORTC |= ( 1 << PC7 );
 }
 
 void LED::colorAmber()

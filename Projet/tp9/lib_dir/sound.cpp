@@ -1,18 +1,21 @@
 #include "sound.h"
+#include "LED.h"
 
 SOUND::SOUND()
 {
-    DDRB |= (1 << PB2);
-    TCCR0A |= (1<<WGM11)|(1<<COM0A1)|(1<<COM0B1)|(1<<COM0A0)|(1<<COM0B0);
-	TCCR0B |= (1<< CS01); //prescaler à 8
+    DDRB |= (1 << PB3);
+    TCCR0A |= (1 << COM0A0) | (1 << WGM01);
+    TCCR0B |= (1 << CS02);
 }
 
 void SOUND::playSound(uint8_t note)
 {
-    
+    PORTB |= (1 << PB2);
+    double frequenceNote = boardFrequency[note - 45];
+    OCR0A = 8000000 * (1 / frequenceNote) / 2 / 256;
 }
 
 void SOUND::stopSound()
 {
-    OCR0A = 0xFF;
+   PORTB &= ~(1 << PB2);
 }

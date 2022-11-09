@@ -1,0 +1,8 @@
+make lib
+make exec
+./progmem fichier out
+make clean
+make install writeMemory
+send data truc serialusb ((led en vert))
+make clean
+make install le main

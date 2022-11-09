@@ -15,8 +15,7 @@ usart::usart()
     UBRR0H = 0;
     UBRR0L = 0xCF;
     // permettre la réception et la transmission par le UART0
-    UCSR0A |= ( 1 << RXC0 ) | ( 1 << TXC0 );
-    UCSR0B |= ( 1 << TXEN0 );
+    UCSR0B |= ( 1 << TXEN0) | (1 << RXEN0);
     // Format des trames: 8 bits, 1 stop bits, sans parité
     UCSR0C |= ( 1 << UCSZ01 ) | ( 1 << UCSZ00 );
 }
