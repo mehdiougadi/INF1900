@@ -5,7 +5,7 @@ MOTOR::MOTOR()
 {
     DDRD |= ((1<< PD4) | (1<< PD5)| (1<< PD6) | (1<< PD7));
     TCCR1A |= (1<<WGM10)|(1<<COM1A1)|(1<<COM1B1)|(1<<COM1A0)|(1<<COM1B0);
-	TCCR1B |= (1<< CS11); //prescaler à 8
+    TCCR1B |= (1<< CS11); //prescaler à 8
     stop();
 }
 
