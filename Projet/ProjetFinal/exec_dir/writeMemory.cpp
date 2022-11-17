@@ -11,9 +11,9 @@
 
 int main()
 {
-    USART transmit;
-    MEMORY mem;
-    LED led;
+    Usart transmit;
+    Memory mem;
+    Led led;
 
     uint16_t address = 0x00;
     uint8_t data;
