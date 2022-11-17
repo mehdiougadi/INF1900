@@ -12,7 +12,7 @@
 
 class Usart {
 public:
-    USART();
+    Usart();
     void transmissionUART (uint8_t data);
     uint8_t receive();
     void sendMessage(uint8_t message[], uint8_t messageLength);
