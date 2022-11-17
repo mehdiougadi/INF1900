@@ -5,35 +5,35 @@
 
 #include "memory.h"
 
-uint8_t MEMORY::m_adresse_peripherique = 0xA0;
+uint8_t Memory::m_adresse_peripherique = 0xA0;
 
-MEMORY::MEMORY() : PAGE_SIZE(128)
+Memory::Memory() : PAGE_SIZE(128)
 {
    init();
 }
 
-MEMORY::~MEMORY() {}
+Memory::~Memory() {}
 
-void MEMORY::init()
+void Memory::init()
 {
    choisir_banc(0);
    TWSR = 0;
    TWBR =  (F_CPU / 100000UL - 16) / 2;
 }
 
-uint8_t MEMORY::choisir_banc(const uint8_t banc)
+uint8_t Memory::choisir_banc(const uint8_t banc)
 {
    uint8_t temp = banc & 0x03;
    uint8_t rv = 255;
    if(banc == temp)
    {
-      MEMORY::m_adresse_peripherique = (0xA0 | ( banc << 1 ));
-      rv = MEMORY::m_adresse_peripherique;
+      Memory::m_adresse_peripherique = (0xA0 | ( banc << 1 ));
+      rv = Memory::m_adresse_peripherique;
    }
    return rv;
 }
 
-uint8_t MEMORY::lecture(const uint16_t adresse, uint8_t *donnee)
+uint8_t Memory::lecture(const uint16_t adresse, uint8_t *donnee)
 {
   uint8_t rv = 0;
 
@@ -91,7 +91,7 @@ uint8_t MEMORY::lecture(const uint16_t adresse, uint8_t *donnee)
   return rv;
 }
 
-uint8_t MEMORY::lecture(const uint16_t adresse, uint8_t *donnee, uint8_t longueur)
+uint8_t Memory::lecture(const uint16_t adresse, uint8_t *donnee, uint8_t longueur)
 {
   uint8_t twcr;
 
@@ -153,7 +153,7 @@ uint8_t MEMORY::lecture(const uint16_t adresse, uint8_t *donnee, uint8_t longueu
   return 0;
 }
 
-uint8_t MEMORY::ecriture(const uint16_t adresse, const uint8_t donnee)
+uint8_t Memory::ecriture(const uint16_t adresse, const uint8_t donnee)
 {
   //Attente de la fin d'un cycle d'ecriture
   for ( ; ; )
@@ -203,7 +203,7 @@ uint8_t MEMORY::ecriture(const uint16_t adresse, const uint8_t donnee)
 }
 
 
-uint8_t MEMORY::ecriture(const uint16_t adresse, uint8_t *donnee, const uint8_t longueur)
+uint8_t Memory::ecriture(const uint16_t adresse, uint8_t *donnee, const uint8_t longueur)
 {
   uint8_t rv;
   uint16_t copieAdresse = adresse;
@@ -221,7 +221,7 @@ uint8_t MEMORY::ecriture(const uint16_t adresse, uint8_t *donnee, const uint8_t 
 }
 
 
-uint8_t MEMORY::ecrire_page(const uint16_t adresse, uint8_t *donnee, const uint8_t longueur)
+uint8_t Memory::ecrire_page(const uint16_t adresse, uint8_t *donnee, const uint8_t longueur)
 {
   uint16_t addr_fin;
   uint8_t rv = 0;

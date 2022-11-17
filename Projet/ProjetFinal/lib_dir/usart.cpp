@@ -1,6 +1,6 @@
 #include "usart.h"
 
-USART::USART()
+Usart::Usart()
 {
     // 2400 bauds
     UBRR0H = 0;
@@ -11,19 +11,19 @@ USART::USART()
     UCSR0C |= ( 1 << UCSZ01 ) | ( 1 << UCSZ00 );
 }
 
-void USART::transmissionUART ( uint8_t data )
+void Usart::transmissionUART ( uint8_t data )
 {
     while ( ! ( UCSR0A & ( 1 << UDRE0 ) ) ) {};
     UDR0 = data;
 }
 
-uint8_t USART::receive()
+uint8_t Usart::receive()
 {
     while ( ! ( UCSR0A & ( 1 << RXC0 ) ) ) {};
     return UDR0;
 }
 
-void USART::sendMessage(uint8_t message[], uint8_t messageLength)
+void Usart::sendMessage(uint8_t message[], uint8_t messageLength)
 {
     for ( uint8_t i = 0; i < messageLength; i++)
     {

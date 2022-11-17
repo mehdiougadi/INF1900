@@ -1,6 +1,6 @@
 #include "can.h"
 
-CAN::CAN()
+Can::Can()
 {
    // ADC mux : reference analogique externe
    ADMUX  = ( 0 << REFS1 ) | ( 0 << REFS0 ) | ( 0 << ADLAR ) | ( 0 << MUX4 ) |
@@ -11,13 +11,13 @@ CAN::CAN()
             ( 0 << ADIE ) | ( 1 << ADPS2 ) | ( 1 << ADPS1 ) | ( 0 << ADPS0 ) ;
 }
 
-CAN::~CAN()
+Can::~Can()
 {
    ADCSRA = 0 << ADEN ;
 }
 
 //Conversion pour avoir resultat sur 16 bits avec seulement 10 premiers significatifs.
-uint16_t CAN::lecture( uint8_t pos)
+uint16_t Can::lecture( uint8_t pos)
 {
    uint16_t adcVal;
 

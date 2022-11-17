@@ -6,10 +6,10 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-class MOTOR
+class Motor
 {
 public:
-	MOTOR();
+	Motor();
 	void moveStraight(uint8_t pwm);
 	void moveBack(uint8_t pwm);
 	void turn(uint8_t pwm1 , uint8_t pwm2);

@@ -7,30 +7,30 @@
 
 #include "LED.h"
 
-LED::LED()
+Led::Led()
 {
     DDRC |= ( ( 1 << PINC6) | ( 1 << PINC7 ) );
 }
 
-void LED::colorGreen()
+void Led::colorGreen()
 {
     PORTC &= ( 0 << PC7 );
     PORTC |= ( 1 << PC6 );
 }
 
-void LED::noColor()
+void Led::noColor()
 {
     PORTC &= ( 0 << PC6 );
     PORTC &= ( 0 << PC7 );
 }
 
-void LED::colorRed()
+void Led::colorRed()
 {
     PORTC &= ( 0 << PC6 );
     PORTC |= ( 1 << PC7 );
 }
 
-void LED::colorAmber()
+void Led::colorAmber()
 {
     colorGreen();
     _delay_ms(10);

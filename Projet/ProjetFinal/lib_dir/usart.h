@@ -10,7 +10,7 @@
 
 #include <avr/io.h>
 
-class USART {
+class Usart {
 public:
     USART();
     void transmissionUART (uint8_t data);

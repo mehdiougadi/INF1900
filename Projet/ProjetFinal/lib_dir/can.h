@@ -10,12 +10,12 @@
 
 #include <avr/io.h> 
 
-class CAN
+class Can
 {
 public:
 
-   CAN();
-   ~CAN();
+   Can();
+   ~Can();
 
    uint16_t lecture(uint8_t pos);
 

@@ -61,10 +61,10 @@ const double boardFrequency[] =
 	880.0   //A  index 81
 };
 
-class SOUND
+class Sound
 {
 public:
-	SOUND();
+	Sound();
 	void playSound(uint8_t note);
 	void stopSound();
 	

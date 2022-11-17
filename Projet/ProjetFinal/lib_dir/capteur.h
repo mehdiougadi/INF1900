@@ -10,11 +10,11 @@
 #include "can.h"
 #define F_CPU 8000000
 
-class CAPTEUR 
+class Capteur 
 {
 public:
 
-CAPTEUR();
+Capteur ();
 uint8_t getIRvalue();
 uint8_t getDMvalue();
 

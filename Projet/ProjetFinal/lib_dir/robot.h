@@ -19,10 +19,10 @@
 #include "sound.h"
 #include "usart.h"
 
-class ROBOT
+class Robot
 {
 public:
-    ROBOT();
+    Robot();
 
     void start();
     void startingSequence(); //Uitlisée dans la fonction start()
@@ -43,10 +43,10 @@ public:
 
 private:
     //Objets
-    MOTOR motor;
-    LED led;
-    MEMORY memory;
-    SOUND speaker;
+    Motor motor;
+    Led led;
+    Memory memory;
+    Sound speaker;
     
     //Variables
     uint8_t operand;

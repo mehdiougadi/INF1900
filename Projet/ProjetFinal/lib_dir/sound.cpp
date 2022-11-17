@@ -1,25 +1,25 @@
 #include "sound.h"
 
-SOUND::SOUND()
+Sound::SOUND()
 {
     DDRB |= (1 << PB3);
     TCCR0A |= (1 << COM0A0) | (1 << WGM01);
     TCCR0B |= (1 << CS02);
 }
 
-void SOUND::playSound(uint8_t note)
+void Sound::playSound(uint8_t note)
 {
     PORTB |= (1 << PB2);
     double frequenceNote = boardFrequency[note - 45];
     OCR0A = 8000000 * (1 / frequenceNote) / 2 / 256;
 }
 
-void SOUND::stopSound()
+void Sound::stopSound()
 {
    PORTB &= ~(1 << PB2);
 }
 
-void SOUND::introSong()
+void Sound::introSong()
 {
     playSound(64);
     _delay_ms(200);
@@ -59,7 +59,7 @@ void SOUND::introSong()
     stopSound();
 }
 
-void SOUND::outroSong()
+void Sound::outroSong()
 {
     playSound(71);
     _delay_ms(300);

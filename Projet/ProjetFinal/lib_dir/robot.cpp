@@ -1,16 +1,16 @@
  #include "robot.h"
 
 //Constructeur robot
-ROBOT::ROBOT()
+Robot::Robot()
 {
-    MOTOR motor;
-    LED led;
-    MEMORY memory;
-    SOUND speaker;
+    Motor motor;
+    Led led;
+    Memory memory;
+    Ssound speaker;
 }
 
 //Séquence de départ avec LED et moteurs
- void ROBOT::startingSequence()
+ void Robot::startingSequence()
  {
     led.colorRed();
     speaker.introSong();
@@ -27,7 +27,7 @@ ROBOT::ROBOT()
  }
 
 //Fonction qui fait attendre 25ms fois l'opérande
-void ROBOT::wait(uint8_t operand)
+void Robot::wait(uint8_t operand)
 {
     for (uint8_t i = 0; i < operand; i++)
     {
@@ -36,7 +36,7 @@ void ROBOT::wait(uint8_t operand)
 }
 
 //Allume la LED d'une couleur selon l'opérande
-void ROBOT::turnLED(uint8_t operand)
+void Robot::turnLED(uint8_t operand)
 {
     if (operand == 1)
         led.colorGreen();
@@ -47,7 +47,7 @@ void ROBOT::turnLED(uint8_t operand)
 }
 
 //Pour commencer une boucle
-void ROBOT::startLoop(uint8_t operand)
+void Robot::startLoop(uint8_t operand)
 {
     address = PC;
     localCounter = operand;
@@ -55,7 +55,7 @@ void ROBOT::startLoop(uint8_t operand)
 }
 
 //Pour terminer la boucle
-void ROBOT::endLoop()
+void Robot::endLoop()
 {
     if (localCounter > 0)
     {
@@ -65,7 +65,7 @@ void ROBOT::endLoop()
 }
 
 //Lorsque l'instruction de fin (fin) est lu, la boucle de la sequence s'arrete et une musique est jouée
-void ROBOT::end()
+void Robot::end()
 {
     isBegin = false;
     speaker.outroSong();
@@ -91,7 +91,7 @@ enum instruction
 };
 
 //Interprétation des instructions en BYTECODE a notre robot
-void ROBOT::doInstructions(uint8_t valueInstruction)
+void Robot::doInstructions(uint8_t valueInstruction)
 {
     switch (valueInstruction)
     {
@@ -153,7 +153,7 @@ void ROBOT::doInstructions(uint8_t valueInstruction)
 }
 
 //Vérifie si l'instruction est dbt, si oui : séquence de départ
-void ROBOT::start()
+void Robot::start()
 {
     if (valueInstruction == instruction::dbt)
     {
@@ -163,7 +163,7 @@ void ROBOT::start()
 }
 
 //Lecture des instructions et opérandes en mémoire
-void ROBOT::readMemory()
+void Robot::readMemory()
 {
     memory.lecture(PC, &valueInstruction);
     PC++;
@@ -173,7 +173,7 @@ void ROBOT::readMemory()
 
 //Séquence a inclure dans le main
 //Lit le bytecode en mémoire jusqu'a temps de trouver l'instruction de début (dbt), puis commence les instructions
-void ROBOT::sequence()
+void Robot::sequence()
 {
     while (true)
     {

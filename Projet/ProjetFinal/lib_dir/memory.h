@@ -12,12 +12,12 @@
 #include <avr/io.h>
 #include <util/twi.h>
 
-class MEMORY
+class Memory
 {
 public:
 
-   MEMORY();
-   ~MEMORY();
+   Memory();
+   ~Memory();
 
    void init(); //appeler par le constructeur
    

@@ -13,10 +13,10 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-class LED 
+class Led 
 {
 public:
-    LED();
+    Led();
     void colorGreen();
     void colorRed();
     void colorAmber();
