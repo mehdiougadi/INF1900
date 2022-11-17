@@ -24,22 +24,16 @@ class Robot
 public:
     Robot();
 
-    void start();
-    void startingSequence(); //Uitlisée dans la fonction start()
+    //Movement
+    void turnRight();
+    void turnLeft();
+    void forward();
+    void backward();
+    void freeze();
 
-    //Fonctions utilisées pour l'interprétation des instructions
-    void wait(uint8_t operand);
-    void turnLED(uint8_t operand);
-    void startLoop(uint8_t operand);
-    void endLoop();
-    void end();
-
-    //Pour lire instructions et opérandes en mémoire
-    void readMemory();
-
-    //Fonctions qui traduit instructions et les exécutent
-    void doInstructions(uint8_t valueInstruction);
-    void sequence();
+    //Getter
+    uint8_t getValueDM();
+    uint8_t getValueIR();
 
 private:
     //Objets
@@ -47,14 +41,8 @@ private:
     Led led;
     Memory memory;
     Sound speaker;
-    
-    //Variables
-    uint8_t operand;
-    volatile bool isBegin = false;
-    uint16_t PC;
-    uint16_t address;
-    uint16_t localCounter;
-    uint8_t valueInstruction;
+    Capteur capteur;
+
 };
 
 #endif

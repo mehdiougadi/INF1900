@@ -1,15 +1,23 @@
 #include "Robot.h"
 
-//Section d'interruption
+//Constantes globaux
 volatile uint8_t counter=0x01;
 
-enum Mode
+static enum Mode
 {
-    mode1=0x01;
-    mode2=0x02;
-    mode3=0x03;
+    modeA=0x01;
+    modeB=0x02;
+    modeC=0x03;
+}
+static enum Action
+{
+    forward = 0b00100;
+    turnRight = 0b00011;
+    turnLeft = 0b11000;
+    changeMode = 0b11111;
 }
 
+//ISR
 ISR(INT0_vect)
 {
     if(counter>=0x01 && counter<=0x03)
@@ -22,6 +30,7 @@ ISR(INT0_vect)
     }
 }
 
+//Fonctions d'interruption
 void initInterrupt()
 {
     cli(); //Est une routine qui bloque toutes les interruptions
@@ -35,21 +44,41 @@ void initInterrupt()
     sei(); //Permet de recevoir à nouveau des interruptions
 }
 
-//Section de code
-uint8_t changeMode(Mode mode)
+//Section de traitement
+uint8_t changeMode(Robot robot,Mode mode)
 {
     switch(mode)
     {
-        case mode::mode1:
+        case mode::modeA:
+            robot.turnLED(0x01);
             break;
-        case mode::mode2:
+        case mode::modeB:
+            robot.turnLED(0x02);
             break;
-        case mode::mode3:
+        case mode::modeC:
+            robot.turnLED(0x03);
             break;
     }
 }
 
 void trajectory()
 {
-
+    while(true)
+    {
+        switch(robot.getValueIR())
+        {
+            case Action::forward:
+                robot.forward();
+                break;
+            case Action::turnRight:
+                robot.turnRight();
+                break;
+            case Action::turnLeft:
+                robot.turnLeft();
+                break;
+            case Action::changeMode:
+                changeMode(++counter);
+                break;
+        }
+    }
 }
