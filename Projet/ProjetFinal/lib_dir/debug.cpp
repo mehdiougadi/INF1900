@@ -10,7 +10,7 @@
 
 void sendError ( const char message[] , uint8_t messageLength )
 {
-	USART messageUSBtoRS32;
+	Usart messageUSBtoRS32;
 
 	#ifdef ERROR_PRINT
 		ERROR_PRINT(message, messageLength);

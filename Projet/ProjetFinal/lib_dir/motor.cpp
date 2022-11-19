@@ -47,8 +47,8 @@ void Motor::moveBack(uint8_t percentage)
 
 void Motor::turn(uint8_t percent1 , uint8_t percent2)
 {
-    uint8_t pwm1 = percentageToInt(percent1);
-    uint8_t pwm2 = percentageToInt(percent2);
+    uint8_t pwm1 = percentageToInt(percent1); //Left 
+    uint8_t pwm2 = percentageToInt(percent2); //Right
     adjustPWM(pwm1, pwm2);
     _delay_ms(2000);
 }

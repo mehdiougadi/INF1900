@@ -35,7 +35,6 @@ private:
     Led led;
     Memory memory;
     Sound speaker;
-    Capteur capteur;
 
 };
 

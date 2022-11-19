@@ -1,6 +1,6 @@
 #include "sound.h"
 
-Sound::SOUND()
+Sound::Sound()
 {
     DDRB |= (1 << PB3);
     TCCR0A |= (1 << COM0A0) | (1 << WGM01);

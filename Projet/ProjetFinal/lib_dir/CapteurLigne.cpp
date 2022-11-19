@@ -11,7 +11,7 @@ CapteurLigne::CapteurLigne()
          &  ~(1<<PA4);
 }
 
-CapteurLigne::suivreLigne()
+void CapteurLigne::suivreLigne()
 {
     switch(valueIR)
     
@@ -21,25 +21,26 @@ CapteurLigne::suivreLigne()
             break;
 
         case valueLSS05::smallAdjustLeft:
-            motorCapteur.turn();
+            motorCapteur.turn(40,50);
             break;
 
         case valueLSS05::bigAdjustLeft:
-            motorCapteur.turn();
+            motorCapteur.turn(40,60);
             break;
 
         case valueLSS05::smallAdjustRight:
-            motorCapteur.turn();
+            motorCapteur.turn(50,40);
             break;
 
         case valueLSS05::bigAdjustRight:
-            motorCapteur.turn();
+            motorCapteur.turn(60,40);
             break;
 
         case valueLSS05::turnLeft:
             break;
 
         case valueLSS05::turnRight:
+            /*
             motorCapteur.turn();
             while(PINA2 == 0x01)
             {
@@ -70,6 +71,7 @@ CapteurLigne::suivreLigne()
                 valueIR = valueLSS05::smallAdjustRight;
                 break;       
             }
+            */
             break;
 
         case valueLSS05::changeMode:
@@ -78,6 +80,3 @@ CapteurLigne::suivreLigne()
 
     }
 }
-
-CapteurLigne::Rebondissement()
-{}
