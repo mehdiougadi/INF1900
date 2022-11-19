@@ -23,17 +23,11 @@ class Robot
 {
 public:
     Robot();
-
-    //Movement
-    void turnRight();
-    void turnLeft();
-    void forward();
-    void backward();
-    void freeze();
-
-    //Getter
-    uint8_t getValueDM();
-    uint8_t getValueIR();
+    
+    //Mode
+    void modeA();
+    void modeB();
+    void modeS();
 
 private:
     //Objets
