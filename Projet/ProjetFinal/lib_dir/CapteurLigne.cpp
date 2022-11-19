@@ -17,23 +17,23 @@ void CapteurLigne::suivreLigne()
     
     {
         case valueLSS05::forward:
-            motorCapteur.moveStraight(50);
+            led.colorAmber();
             break;
 
         case valueLSS05::smallAdjustLeft:
-            motorCapteur.turn(40,50);
+            led.colorGreen();
             break;
 
         case valueLSS05::bigAdjustLeft:
-            motorCapteur.turn(40,60);
+            led.colorRed();
             break;
 
         case valueLSS05::smallAdjustRight:
-            motorCapteur.turn(50,40);
+            led.colorGreen();
             break;
 
         case valueLSS05::bigAdjustRight:
-            motorCapteur.turn(60,40);
+            led.colorRed();
             break;
 
         case valueLSS05::turnLeft:

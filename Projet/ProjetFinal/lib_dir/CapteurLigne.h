@@ -8,6 +8,7 @@
 #ifndef CAPTEURLIGNE_H
 #define CAPTEURLIGNE_H
 #include "motor.h"
+#include "LED.h"
 #define F_CPU 8000000
 
 enum valueLSS05
@@ -31,6 +32,7 @@ public:
 
 private:
 Motor motorCapteur;
+Led led;
 uint8_t valueIR =( (PINA0<<PA0)  //DS1
                 &  (PINA1<<PA1)  //DS2
                 &  (PINA2<<PA2)  //DS3
