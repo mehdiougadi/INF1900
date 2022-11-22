@@ -14,13 +14,16 @@
 #include "usart.h"
 #include "sound.h"
 #include "CapteurLigne.h"
+#include "CapteurPoteau.h"
 #include <math.h>
 
 int main()
 {
-    CapteurLigne capteur;
+    CapteurPoteau capteur;
+    CapteurLigne capteur2;
     while(true)
     {
-        capteur.suivreLigne();
+        capteur2.suivreLigne();
     }
+    capteur.distance();
 }
