@@ -4,79 +4,61 @@
 
 CapteurLigne::CapteurLigne()
 {
-    DDRA &= ~(1<<PA0)
-         &  ~(1<<PA1)
-         &  ~(1<<PA2)
-         &  ~(1<<PA3)
-         &  ~(1<<PA4);
+    DDRA &= ~((1<<PA0) | (1<<PA1) | (1<<PA2) | (1<<PA3) |  (1<<PA4) | (1<<PA5));
 }
-
+void CapteurLigne::updateCondition()
+{
+    isON = 0x00;
+    DS1 = (PINA & pin5) == pin5;
+    DS2 = (PINA & pin4) == pin4;
+    DS3 = (PINA & pin3) == pin3;
+    DS4 = (PINA & pin2) == pin2;
+    DS5 = (PINA & pin1) == pin1;
+    if (DS1) {isON++;}
+    if (DS2) {isON++;}
+    if (DS3) {isON++;}
+    if (DS4) {isON++;}
+    if (DS5) {isON++;}
+}
 void CapteurLigne::suivreLigne()
 {
-    switch(valueIR)
-    
+    updateCondition();
+    if(isON>=0x04)
     {
-        case valueLSS05::forward:
-            led.colorAmber();
-            break;
+        motorCapteur.stop();
+    }
+    else if(isON == 0x01 && DS3)
+    {
+        motorCapteur.moveStraight(40);
+    }
 
-        case valueLSS05::smallAdjustLeft:
-            led.colorGreen();
-            break;
 
-        case valueLSS05::bigAdjustLeft:
-            led.colorRed();
-            break;
-
-        case valueLSS05::smallAdjustRight:
-            led.colorGreen();
-            break;
-
-        case valueLSS05::bigAdjustRight:
-            led.colorRed();
-            break;
-
-        case valueLSS05::turnLeft:
-            break;
-
-        case valueLSS05::turnRight:
-            /*
-            motorCapteur.turn();
-            while(PINA2 == 0x01)
-            {
-                motorCapteur.turn();
-            }
-            if (PINA3=0x01)
-            {
-                valueIR = valueLSS05::smallAdjustLeft;
-                break;
-            }
-            else if(PINA3=0x01)
-            {
-                valueIR = valueLSS05::smallAdjustLeft;
-                break;
-            }
-            else if(PINA4=0x01)
-            {
-                valueIR = valueLSS05::bigAdjustLeft;
-                break;            
-            }
-            else if(PINA0=0x01)
-            {
-                valueIR = valueLSS05::bigAdjustRight;
-                break;          
-            }
-            else if(PINA1=0x01)
-            {
-                valueIR = valueLSS05::smallAdjustRight;
-                break;       
-            }
-            */
-            break;
-
-        case valueLSS05::changeMode:
-            motorCapteur.stop();
-            break;
-
+    else if (isON ==0x02 && DS3 && DS4)
+    {
+        motorCapteur.turn(50,40);
+    }
+    else if (isON ==0x02 && DS3 && DS2)
+    {
+        motorCapteur.turn(40,50);
+    }
+    else if (isON ==0x01 && DS4)
+    {
+        motorCapteur.turn(60,40);
+    }
+    else if (isON ==0x01 && DS2)
+    {
+        motorCapteur.turn(40,60);
+    }
+    else if (isON ==0x01 && DS5)
+    {
+        motorCapteur.turn(70,40);
+    }
+    else if (isON ==0x01 && DS1)
+    {
+        motorCapteur.turn(40,70);
+    }
+    else 
+    {
+        motorCapteur.stop();
     }
 }

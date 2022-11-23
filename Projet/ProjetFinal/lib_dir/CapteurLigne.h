@@ -11,36 +11,34 @@
 #include "LED.h"
 #define F_CPU 8000000
 
-enum valueLSS05
-{
-    forward          = 0b00100,
-    smallAdjustLeft  = 0b01000,
-    bigAdjustLeft    = 0b10000,
-    smallAdjustRight = 0b00010,
-    bigAdjustRight   = 0b00001,
-    turnLeft         = 0b11100,
-    turnRight        = 0b00111,
-    changeMode       = 0b11111
-};
-
 class CapteurLigne 
 {
 public:
     CapteurLigne();
     void suivreLigne();
     //void Rebondissement();
-
+    void updateCondition();
 private:
+//Objects
 Motor motorCapteur;
 Led led;
-uint8_t valueIR =( (PINA0<<PA0)  //DS1
-                &  (PINA1<<PA1)  //DS2
-                &  (PINA2<<PA2)  //DS3
-                &  (PINA3<<PA3)  //DS4
-                &  (PINA4<<PA4) //DS5
-                //Ces bits ne sont pas utiles pour la situation
-                &  ~(1<<PA5)
-                &  ~(1<<PA6)
-                &  ~(1<<PA7)  );
+
+//Number of triggered sensor
+uint8_t isON;
+
+//PIN used for LSS05
+const uint8_t pin1 =0x02;  //DS5
+const uint8_t pin2 =0x04;  //DS4
+const uint8_t pin3 =0x08;  //DS3
+const uint8_t pin4 =0x10;  //DS2
+const uint8_t pin5 =0x20;  //DS1
+bool DS1 = (PINA & pin5) == pin5;
+bool DS2 = (PINA & pin4) == pin4;
+bool DS3 = (PINA & pin3) == pin3;
+bool DS4 = (PINA & pin2) == pin2;
+bool DS5 = (PINA & pin1) == pin1;
+
+
 };
+
 #endif

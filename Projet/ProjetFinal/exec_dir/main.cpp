@@ -23,7 +23,7 @@ int main()
     CapteurLigne capteur2;
     while(true)
     {
-        capteur2.suivreLigne();
+        capteur2.suivreLigne(); 
     }
     capteur.distance();
 }
