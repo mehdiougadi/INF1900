@@ -5,7 +5,8 @@
 #include "sound.h"
 #include <avr/io.h> 
 #include <util/delay.h>
-
+#include "motor.h"
+#include "usart.h"
 class CapteurPoteau{
 
     public:
@@ -13,8 +14,9 @@ class CapteurPoteau{
         uint8_t readValueDM();
         void distance();
     private:
+        Motor moteurDistance;
         Can sensor;
-        Sound son;
+        Sound sonCapteur;
         const uint8_t PIN = 0x07;
 
         //Constante

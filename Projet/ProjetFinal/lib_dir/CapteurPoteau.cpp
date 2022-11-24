@@ -14,13 +14,15 @@ void CapteurPoteau::distance()
     uint8_t value = readValueDM();
     if (value>=MEDIUM)
     {
-        son.playSound(81); //AIGUE
+        sonCapteur.playSound(81); //AIGUE
+        
         _delay_ms(1000);
     }
     else if(value<=MEDIUM && value>=FAR)
     {
-        son.playSound(45); //GRAVE
+        sonCapteur.playSound(45); //GRAVE
+        moteurDistance.stop();
         _delay_ms(1000);
     }
-    son.stopSound();
+    sonCapteur.stopSound();
 }

@@ -3,28 +3,13 @@
 //              OUGADI Mehdi
 //              ALLAIRE Mederic
 //              WACRENIER Paul
-//              LAZZALI Younes
 // Date:        03 novembre 2022
 
-#include "LED.h"
-#include "can.h"
-#include "debug.h"
-#include "memory.h"
-#include "motor.h"
-#include "usart.h"
-#include "sound.h"
-#include "CapteurLigne.h"
-#include "CapteurPoteau.h"
+#include "robot.h"
 #include <math.h>
 
 int main()
 {
-    CapteurPoteau capteur;
-    CapteurLigne capteur2;
-    
-    while(true)
-    {
-        capteur2.suivreLigne(); 
-    }
-    capteur.distance();
+    Robot Sonic;
+    Sonic.modeA();
 }

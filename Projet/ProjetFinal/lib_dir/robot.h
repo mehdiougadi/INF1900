@@ -18,23 +18,38 @@
 #include "motor.h"
 #include "sound.h"
 #include "usart.h"
+#include "CapteurLigne.h"
+#include "CapteurPoteau.h"
+
+enum class mode
+{
+    MODEA,
+    MODEB,
+    MODES
+};
 
 class Robot
 {
 public:
+
     Robot();
-    
+    void trajet();
+
     //Mode
     void modeA();
     void modeB();
     void modeS();
 
 private:
+    //Mode attributs
+    mode currentMode = mode::MODEA;
+
     //Objets
-    Motor motor;
     Led led;
     Memory memory;
     Sound speaker;
+    CapteurLigne capteurIR;
+    CapteurPoteau capteurDistance;
 
 };
 
