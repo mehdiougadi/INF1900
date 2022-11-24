@@ -18,6 +18,7 @@ public:
     void suivreLigne();
     //void Rebondissement();
     void updateCondition();
+    void jumpStart();
 private:
 //Objects
 Motor motorCapteur;
@@ -25,6 +26,7 @@ Led led;
 
 //Number of triggered sensor
 uint8_t isON;
+uint8_t chain = 0;
 
 //PIN used for LSS05
 const uint8_t pin1 =0x02;  //DS5

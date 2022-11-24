@@ -21,6 +21,7 @@ int main()
 {
     CapteurPoteau capteur;
     CapteurLigne capteur2;
+    
     while(true)
     {
         capteur2.suivreLigne(); 
