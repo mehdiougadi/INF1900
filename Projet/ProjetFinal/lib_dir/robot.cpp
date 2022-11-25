@@ -1,13 +1,5 @@
  #include "robot.h"
 
-//Constructeur robot
-Robot::Robot()
-{
-    Led led;
-    Memory memory;
-    Sound speaker;
-}
-
 void Robot::trajet()
 {  
     switch(currentMode)
@@ -34,6 +26,5 @@ void Robot::modeA()
         capteurIR.suivreLigne();
     }
 }
-void Robot::modeB()
-{}
+void Robot::modeB(){}
 void Robot::modeS(){}

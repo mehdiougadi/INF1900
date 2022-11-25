@@ -11,6 +11,18 @@
 #include "LED.h"
 #define F_CPU 8000000
 
+
+enum usedValue
+{
+    ZERO =0x00,
+    ONE  =0x01,
+    TWO  =0x02,
+    THREE=0x03,
+    FOUR =0x04,
+    FIVE =0x05
+};
+
+
 class CapteurLigne 
 {
 public:
@@ -23,8 +35,10 @@ private:
 //Objects
 Motor motorCapteur;
 Led led;
+
 //Number of triggered sensor
 uint8_t isON=0x00;
+
 //PIN used for LSS05
 const uint8_t pin1 =0x02;  //DS5
 const uint8_t pin2 =0x04;  //DS4
@@ -36,7 +50,6 @@ bool DS2 = (PINA & pin4) == pin4;
 bool DS3 = (PINA & pin3) == pin3;
 bool DS4 = (PINA & pin2) == pin2;
 bool DS5 = (PINA & pin1) == pin1;
-
 
 };
 

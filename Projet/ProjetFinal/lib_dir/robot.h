@@ -32,7 +32,7 @@ class Robot
 {
 public:
 
-    Robot();
+    Robot()=default;
     void trajet();
 
     //Mode

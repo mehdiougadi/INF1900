@@ -9,7 +9,7 @@ CapteurLigne::CapteurLigne()
 
 void CapteurLigne::updateCondition()
 {
-    isON=0x00;
+    isON = ZERO;
     DS1 = (PINA & pin5) == pin5;
     DS2 = (PINA & pin4) == pin4;
     DS3 = (PINA & pin3) == pin3;
@@ -27,85 +27,54 @@ void CapteurLigne::suivreLigne()
         updateCondition();
         switch(isON)
         {
-            case 0x01:
-                if (DS3)
+            case usedValue::ZERO:
+                motorCapteur.stop();
+                break;
+            case usedValue::ONE:
+                if      (DS3){ motorCapteur.moveStraight(55);}
+                else if (DS4){ motorCapteur.turn(65,40);}
+                else if (DS5){ motorCapteur.turn(75,40);}
+                else if (DS1){ motorCapteur.turn(40,75);}
+                else if (DS2){ motorCapteur.turn(40,65);}
+                break;
+            case usedValue::TWO:
+                if     (DS1 && DS2){ motorCapteur.turn(40,50);}
+                else if(DS5 && DS4){ motorCapteur.turn(50,40);}
+                else if(DS2 && DS3){ motorCapteur.turn(40,50);}
+                else if(DS4 && DS3){ motorCapteur.turn(50,40);}
+                break;
+            case usedValue::THREE:
+                if(DS3 && DS4 && DS5)
                 {
-                    motorCapteur.moveStraight(55);
+                    motorCapteur.moveStraight(60);
+                    _delay_ms(100);
+                    while(true)
+                    {
+                        updateCondition();
+                        if(DS3){ break;}
+                        motorCapteur.turn(50,20);
+                    }
                 }
-                else if (DS4)
+                else if(DS1 && DS2 && DS3)
                 {
-                    motorCapteur.turn(65,40);
-                }
-                else if (DS5)
-                {
-                    motorCapteur.turn(75,40);
-                }
-                else if (DS1)
-                {
-                    motorCapteur.turn(40,75);
-                }
-                else if (DS2)
-                {
-                    motorCapteur.turn(40,65);
+                    motorCapteur.moveStraight(35);
+                    _delay_ms(100);
+                    while(true)
+                    {
+                        updateCondition();
+                        if(DS3){ break;}
+                        motorCapteur.turn(20,50);
+                    }
                 }
                 break;
-            case 0x02:
-                else if(DS1 && DS2)
-                {
-                    motorCapteur.turn(40,50);
-                }
-                else if(DS5 && DS4)
-                {
-                    motorCapteur.turn(50,40);
-                }
-                else if(DS2 && DS3)
-                {
-                    motorCapteur.turn(40,50);
-                }
-                else if(DS4 && DS3)
-                {
-                    motorCapteur.turn(50,40);
-                }
+            case usedValue::FOUR:
                 break;
-            case 0x03:
+            case usedValue::FIVE:
+                 motorCapteur.stop();
                 break;
             default:
-                break;
+                break;       
         }
-        if(DS1 && DS2 && DS3 && DS4 && DS5)
-        {
-            motorCapteur.stop();
-        }
-        else if(DS3 && DS4 && DS5)
-        {
-            motorCapteur.moveStraight(60);
-            _delay_ms(100);
-            while(true)
-            {
-                updateCondition();
-                if(DS3)
-                {
-                    break;
-                }
-                motorCapteur.turn(50,20);
-            }
-        }
-        else if(DS1 && DS2 && DS3)
-        {
-            motorCapteur.moveStraight(35);
-            _delay_ms(100);
-            while(true)
-            {
-                updateCondition();
-                if(DS3)
-                {
-                    break;
-                }
-                motorCapteur.turn(20,50);
-            }
-        }
-        else
-        {}
 }
 
 /*
