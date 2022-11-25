@@ -33,8 +33,20 @@ void CapteurLigne::suivreLigne()
             case usedValue::ONE:
                 if      (DS3){ motorCapteur.moveStraight(55);}
                 else if (DS4){ motorCapteur.turn(65,40);}
-                else if (DS5){ motorCapteur.turn(75,40);}
-                else if (DS1){ motorCapteur.turn(40,75);}
+                else if (DS5){                   
+                    while(true)
+                    {
+                        updateCondition();
+                        if(DS3){ break;}
+                        motorCapteur.turn(50,20);
+                    }}
+                else if (DS1){                     
+                    while(true)
+                    {
+                        updateCondition();
+                        if(DS3){ break;}
+                        motorCapteur.turn(20,50);
+                    }}
                 else if (DS2){ motorCapteur.turn(40,65);}
                 break;
             case usedValue::TWO:

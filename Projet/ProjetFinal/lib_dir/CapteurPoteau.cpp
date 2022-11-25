@@ -15,7 +15,7 @@ void CapteurPoteau::distance()
     if (value>=MEDIUM)
     {
         sonCapteur.playSound(81); //AIGUE
-        
+        motorDistance.stop();
         _delay_ms(1000);
     }
     else if(value<=MEDIUM && value>=FAR)
