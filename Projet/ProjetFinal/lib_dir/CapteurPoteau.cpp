@@ -9,20 +9,22 @@ uint8_t CapteurPoteau::readValueDM()
     return sensor.lecture(PIN) >> BITSHIFT;
 }
 
-void CapteurPoteau::distance()
+bool CapteurPoteau::distance()
 {
-    uint8_t value = readValueDM();
-    if (value>=MEDIUM)
+    _delay_ms(30);
+    use.transmissionUART(readValueDM());
+    _delay_ms(500);
+    if (readValueDM()>=MEDIUM && readValueDM()<=CLOSE)
     {
-        sonCapteur.playSound(81); //AIGUE
-        motorDistance.stop();
-        _delay_ms(1000);
+        return false;
     }
-    else if(value<=MEDIUM && value>=FAR)
+    else if(readValueDM()<=MEDIUM && readValueDM()>=FAR)
     {
-        sonCapteur.playSound(45); //GRAVE
-        moteurDistance.stop();
-        _delay_ms(1000);
+        return false;
     }
-    sonCapteur.stopSound();
+    else if (readValueDM()<FAR)
+    {
+        return true;
+    }
+    return true;
 }

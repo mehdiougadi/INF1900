@@ -9,6 +9,8 @@
 #define CAPTEURLIGNE_H
 #include "motor.h"
 #include "LED.h"
+#include "can.h"
+#include "sound.h"
 #define F_CPU 8000000
 
 
@@ -30,16 +32,21 @@ public:
     void suivreLigne();
     //void Rebondissement();
     void updateCondition();
+    bool distance();
+    uint8_t readValueDM();
     
 private:
 //Objects
 Motor motorCapteur;
 Led led;
+Can sensor;
+Sound sonCapteur;
 
 //Number of triggered sensor
 uint8_t isON=0x00;
+const uint8_t PIN = 0x07;
 
-//PIN used for LSS05
+//PIN used for sensor
 const uint8_t pin1 =0x02;  //DS5
 const uint8_t pin2 =0x04;  //DS4
 const uint8_t pin3 =0x08;  //DS3
@@ -50,7 +57,10 @@ bool DS2 = (PINA & pin4) == pin4;
 bool DS3 = (PINA & pin3) == pin3;
 bool DS4 = (PINA & pin2) == pin2;
 bool DS5 = (PINA & pin1) == pin1;
-
+const uint8_t BITSHIFT = 2;
+const uint8_t CLOSE = 255;
+const uint8_t MEDIUM = 77;
+const uint8_t FAR = 47;
 };
 
 #endif

@@ -21,10 +21,7 @@ void Robot::trajet()
     
 void Robot::modeA()
 {
-    while(true)
-    {
-        capteurIR.suivreLigne();
-    }
+    capteurIR.suivreLigne();
 }
 void Robot::modeB(){}
 void Robot::modeS(){}

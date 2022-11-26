@@ -12,18 +12,19 @@ class CapteurPoteau{
     public:
         CapteurPoteau();
         uint8_t readValueDM();
-        void distance();
+        bool distance();
     private:
         Motor moteurDistance;
         Can sensor;
+        Usart use;
         Sound sonCapteur;
         const uint8_t PIN = 0x07;
 
         //Constante
         const uint8_t BITSHIFT = 2;
-        const uint8_t CLOSE = 132;
-        const uint8_t MEDIUM = 64;
-        const uint8_t FAR = 40;
+        const uint8_t CLOSE = 255;
+        const uint8_t MEDIUM = 77;
+        const uint8_t FAR = 50;
         
 };
 

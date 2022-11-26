@@ -50,6 +50,7 @@ private:
     Sound speaker;
     CapteurLigne capteurIR;
     CapteurPoteau capteurDistance;
+    Motor mainMoteur;
 
 };
 
