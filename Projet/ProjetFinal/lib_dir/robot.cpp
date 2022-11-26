@@ -21,7 +21,15 @@ void Robot::trajet()
     
 void Robot::modeA()
 {
-    capteurIR.suivreLigne();
+    capteurIR.suivreLigneA();
 }
+
 void Robot::modeB(){}
-void Robot::modeS(){}
+
+void Robot::modeS()
+{
+    while(gMinuterieExpiree==0)
+    {
+        capteurIR.suivreLigneS();
+    }
+}

@@ -29,8 +29,10 @@ class CapteurLigne
 {
 public:
     CapteurLigne();
-    void suivreLigne();
+    void suivreLigneA();
+    void suivreLigneS();
     //void Rebondissement();
+
     void updateCondition();
     bool distance();
     uint8_t readValueDM();

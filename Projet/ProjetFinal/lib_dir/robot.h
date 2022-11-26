@@ -39,7 +39,7 @@ public:
     void modeA();
     void modeB();
     void modeS();
-
+    uint8_t gMinuterieExpiree = 0;
 private:
     //Mode attributs
     mode currentMode = mode::MODEA;
