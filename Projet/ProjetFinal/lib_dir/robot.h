@@ -12,14 +12,12 @@
 
 #include <avr/io.h>
 #include <util/delay.h>
-
 #include "LED.h"
 #include "memory.h"
 #include "motor.h"
 #include "sound.h"
 #include "usart.h"
 #include "CapteurLigne.h"
-#include "CapteurPoteau.h"
 
 enum class mode
 {
@@ -49,7 +47,6 @@ private:
     Memory memory;
     Sound speaker;
     CapteurLigne capteurIR;
-    CapteurPoteau capteurDistance;
     Motor mainMoteur;
 
 };

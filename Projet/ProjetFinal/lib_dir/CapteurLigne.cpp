@@ -8,18 +8,26 @@ CapteurLigne::CapteurLigne()
 
 uint8_t CapteurLigne::readValueDM()
 {
-    return sensor.lecture(PIN) >> BITSHIFT;
+    double data = 0;
+    for(uint16_t i=0; i<10; i++)
+    {
+        data = data + (sensor.lecture(PIN) >> BITSHIFT);
+        _delay_ms(1);
+    }
+    return data / 10.0;
 }
+
 
 bool CapteurLigne::distance()
 {
-    _delay_ms(30);
     if (readValueDM()>=MEDIUM && readValueDM()<=CLOSE)
     {
+        grave = false;
         return false;
     }
     else if(readValueDM()<=MEDIUM && readValueDM()>=FAR)
     {
+        grave =true;
         return false;
     }
     else if (readValueDM()<FAR)
@@ -116,17 +124,33 @@ void CapteurLigne::suivreLigneA()
         }
         else
         {
-            motorCapteur.stop();
-            sonCapteur.playSound(56);
-            _delay_ms(1000);
-            sonCapteur.stopSound();
-            motorCapteur.moveStraight(60);
-            _delay_ms(1000);
+            if (grave == false)
+            {
+                motorCapteur.stop();
+                sonCapteur.playSound(81);
+                _delay_ms(1000);
+                sonCapteur.stopSound();
+                for(uint16_t i=0; i<65000;i++)
+                {
+                    suivreLigneS();
+                }
+            }
+            else
+            {
+                motorCapteur.stop();
+                sonCapteur.playSound(45);
+                _delay_ms(1000);
+                sonCapteur.stopSound();
+                for(uint16_t i=0; i<65000;i++)
+                {
+                    suivreLigneS();
+                }
+            }
         }
     }
 }
 
-void CapteurLigne::suivreLigneS()
+void CapteurLigne::suivreLigneB()
 {
     updateCondition();
     switch(isON)
@@ -182,6 +206,10 @@ void CapteurLigne::suivreLigneS()
                     motorCapteur.turn(20,50);
                 }
             }
+            else
+            {
+                motorCapteur.stop();
+            }
             break;
         case usedValue::FOUR:
             break;
@@ -193,34 +221,128 @@ void CapteurLigne::suivreLigneS()
     }
 }
 
-/*
-void CapteurLigne::Rebondissement()
+void CapteurLigne::suivreLigneS()
 {
-    counter = 0x00;
-    uint8_t leftSpeed= 70;
-    uint8_t rightSpeed = 50;
-    uint8_t temp;
     while(true)
     {
-        while(!DS1 && ((counter%0x02)==0x00))
+        updateCondition();
+        switch(isON)
+        {
+            case usedValue::ZERO:
+                parking =true;
+                motorCapteur.stop();
+                motorCapteur.moveBack(50);
+                break;
+            case usedValue::ONE:
+                if      (DS3){ motorCapteur.moveStraight(60);}
+                else if (DS4){ motorCapteur.turn(65,40);}
+                else if (DS5){                   
+                    while(true)
+                    {
+                        updateCondition();
+                        if(DS3){ break;}
+                        motorCapteur.turn(50,20);
+                    }}
+                else if (DS1){                     
+                    while(true)
+                    {
+                        updateCondition();
+                        if(DS3){ break;}
+                        motorCapteur.turn(20,50);
+                    }}
+                else if (DS2){ motorCapteur.turn(40,65);}
+                break;
+            case usedValue::TWO:
+                if     (DS1 && DS2){ motorCapteur.turn(40,50);}
+                else if(DS5 && DS4){ motorCapteur.turn(50,40);}
+                else if(DS2 && DS3){ motorCapteur.turn(40,50);}
+                else if(DS4 && DS3){ motorCapteur.turn(50,40);}
+                break;
+            case usedValue::THREE:
+                if(DS3 && DS4 && DS5)
+                {
+                    motorCapteur.moveStraight(60);
+                    _delay_ms(100);
+                    while(true)
+                    {
+                        updateCondition();
+                        if(DS3){ break;}
+                        motorCapteur.turn(50,20);
+                    }
+                }
+                else if(DS1 && DS2 && DS3)
+                {
+                    motorCapteur.moveStraight(35);
+                    _delay_ms(100);
+                    while(true)
+                    {
+                        updateCondition();
+                        if(DS3){ break;}
+                        motorCapteur.turn(20,50);
+                    }
+                }
+                break;
+            case usedValue::FOUR:
+                break;
+            case usedValue::FIVE:
+                motorCapteur.stop();
+                break;
+            default:
+                break;       
+        }
+        if(parking)
+        {
+            motorCapteur.moveBack(60);
+            _delay_ms(1900);
+            while(true)
+            {
+                    updateCondition();
+                    motorCapteur.turn(60,0);
+                    if(DS1){break;}
+            }
+            while(true)
+            {
+                    updateCondition();
+                    motorCapteur.turn(0,60);
+                    if(isON == usedValue::FIVE){break;}
+            }
+            motorCapteur.moveBack(60);
+            _delay_ms(1500);
+            motorCapteur.stop();
+            break;
+        }
+    }
+}
+
+void CapteurLigne::Rebondissement()
+{
+    uint8_t leftSpeed= 60;
+    uint8_t rightSpeed = 40;
+    while(true)
+    {
+        updateCondition();
+        while(!DS5)
         {
             updateCondition();
-            if(DS1)
+            for(uint16_t i=0; i<100;i++)
             {
-                counter++;
+                motorCapteur.turn(leftSpeed,rightSpeed);
             }
-            motorCapteur.turn(leftSpeed,rightSpeed);
+            if(DS5){ break;}
         }
 
-        temp = leftSpeed;
-        leftSpeed = rightSpeed;
-        rightSpeed = leftSpeed;
-
-        while(DS1 && ((counter%0x02) !=0x00))
+        updateCondition();
+        while(!DS1)
         {
             updateCondition();
+            for(uint16_t i=0; i<100;i++)
+            {
+                motorCapteur.turn(rightSpeed,leftSpeed);
+            }
+            if(DS1){ break;}
         }
     }
     
 }
-*/
+
+

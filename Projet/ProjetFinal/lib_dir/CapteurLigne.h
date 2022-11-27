@@ -11,6 +11,7 @@
 #include "LED.h"
 #include "can.h"
 #include "sound.h"
+#include "usart.h"
 #define F_CPU 8000000
 
 
@@ -24,14 +25,14 @@ enum usedValue
     FIVE =0x05
 };
 
-
 class CapteurLigne 
 {
 public:
     CapteurLigne();
     void suivreLigneA();
+    void suivreLigneB();
     void suivreLigneS();
-    //void Rebondissement();
+    void Rebondissement();
 
     void updateCondition();
     bool distance();
@@ -42,11 +43,18 @@ private:
 Motor motorCapteur;
 Led led;
 Can sensor;
+Usart use;
 Sound sonCapteur;
 
 //Number of triggered sensor
 uint8_t isON=0x00;
 const uint8_t PIN = 0x07;
+uint8_t nbrPoteau =0;
+bool parking=false;
+bool grave;
+uint8_t P1;
+uint8_t P2;
+uint8_t P3;
 
 //PIN used for sensor
 const uint8_t pin1 =0x02;  //DS5
@@ -62,7 +70,7 @@ bool DS5 = (PINA & pin1) == pin1;
 const uint8_t BITSHIFT = 2;
 const uint8_t CLOSE = 255;
 const uint8_t MEDIUM = 77;
-const uint8_t FAR = 47;
+const uint8_t FAR = 35;
 };
 
 #endif

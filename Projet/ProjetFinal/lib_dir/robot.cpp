@@ -24,12 +24,12 @@ void Robot::modeA()
     capteurIR.suivreLigneA();
 }
 
-void Robot::modeB(){}
+void Robot::modeB()
+{
+    capteurIR.Rebondissement();
+}
 
 void Robot::modeS()
 {
-    while(gMinuterieExpiree==0)
-    {
-        capteurIR.suivreLigneS();
-    }
+    capteurIR.suivreLigneS();
 }
