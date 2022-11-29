@@ -8,13 +8,9 @@ CapteurLigne::CapteurLigne()
 
 uint8_t CapteurLigne::readValueDM()
 {
-    double data = 0;
-    for(uint16_t i=0; i<10; i++)
-    {
-        data = data + (sensor.lecture(PIN) >> BITSHIFT);
-        _delay_ms(1);
-    }
-    return data / 10.0;
+    _delay_ms(20);
+    use.transmissionUART(sensor.lecture(PIN) >> BITSHIFT);
+    return (sensor.lecture(PIN) >> BITSHIFT);
 }
 
 
@@ -130,9 +126,10 @@ void CapteurLigne::suivreLigneA()
                 sonCapteur.playSound(81);
                 _delay_ms(1000);
                 sonCapteur.stopSound();
-                for(uint16_t i=0; i<65000;i++)
+                motorCapteur.moveStraight(50);
+                for(uint16_t i = 0;i< 65000; i++)
                 {
-                    suivreLigneS();
+                    suivreLigneB();
                 }
             }
             else
@@ -141,9 +138,10 @@ void CapteurLigne::suivreLigneA()
                 sonCapteur.playSound(45);
                 _delay_ms(1000);
                 sonCapteur.stopSound();
-                for(uint16_t i=0; i<65000;i++)
+                motorCapteur.moveStraight(50);
+                for(uint16_t i = 0;i< 65000; i++)
                 {
-                    suivreLigneS();
+                    suivreLigneB();
                 }
             }
         }
@@ -303,7 +301,7 @@ void CapteurLigne::suivreLigneS()
             while(true)
             {
                     updateCondition();
-                    motorCapteur.turn(0,60);
+                    motorCapteur.turn(0,54);
                     if(isON == usedValue::FIVE){break;}
             }
             motorCapteur.moveBack(60);

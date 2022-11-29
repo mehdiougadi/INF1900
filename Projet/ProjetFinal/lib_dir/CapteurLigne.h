@@ -70,7 +70,7 @@ bool DS5 = (PINA & pin1) == pin1;
 const uint8_t BITSHIFT = 2;
 const uint8_t CLOSE = 255;
 const uint8_t MEDIUM = 77;
-const uint8_t FAR = 35;
+const uint8_t FAR = 40;
 };
 
 #endif

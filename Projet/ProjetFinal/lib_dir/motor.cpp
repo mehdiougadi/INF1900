@@ -2,7 +2,8 @@
 
 Motor::Motor()
 {
-    DDRD |= ((1<< PD4) | (1<< PD5)| (1<< PD6) | (1<< PD7));
+    DDRD |= ((1<< PD4) | (1<< PD5));
+    DDRB |= ((1<< PB6) | (1<< PB7));
     TCCR1A |= (1<<WGM10)|(1<<COM1A1)|(1<<COM1B1)|(1<<COM1A0)|(1<<COM1B0);
 	TCCR1B |= (1<< CS11); //prescaler à 8
     stop();
@@ -32,16 +33,16 @@ uint8_t Motor::intToPercentage(double value)
 void Motor::moveStraight(uint8_t percentage)
 {
     uint8_t pwm = percentageToInt(percentage);
-    PORTD &= ~(1 << PD6);
-    PORTD &= ~(1 << PD7);
+    PORTB &= ~(1 << PB6);
+    PORTB &= ~(1 << PB7);
     adjustPWM(pwm, pwm);
 }
 
 void Motor::moveBack(uint8_t percentage)
 {
     uint8_t pwm = percentageToInt(percentage);
-    PORTD |= (1 << PD6);
-    PORTD |= (1 << PD7);
+    PORTB |= (1 << PB6);
+    PORTB |= (1 << PB7);
     adjustPWM(pwm, pwm);
 }
 

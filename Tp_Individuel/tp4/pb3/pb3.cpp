@@ -84,28 +84,10 @@ TCCR1C |= 0;
 
 int main()
 {
-    
-    
-    setIOPorts();
+    DDRB |= (1 << PB3) | (1 << PB5);
+    TCCR0A |= (1 << COM0A0) | (1 << WGM01);
+    TCCR0B |= (1 << CS02);
+    OCR0A = 75;
 
-    /*ajustementPwm(0);
-    _delay_ms(2000);
-    ajustementPwm(64);
-    _delay_ms(2000);
-    ajustementPwm(128);
-    _delay_ms(2000);
-    ajustementPwm(191);
-    _delay_ms(2000);
-    ajustementPwm(255);
-    _delay_ms(2000);*/
-    
 
-    TCCR1A |= (1<<WGM10)|(1<<COM1A1)|(1<<COM1B1)|(1<<COM1A0)|(1<<COM1B0);
-    TCCR1B |= (1<< CS11); //prescaler à 8
-    TCCR1C = 0;
-    OCR1A = 128;
-    OCR1B = 128;
-    _delay_ms(1000);
-    OCR1A = 255;
-    OCR1B = 255;
 }
