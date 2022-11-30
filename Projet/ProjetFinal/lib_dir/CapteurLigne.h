@@ -12,8 +12,8 @@
 #include "can.h"
 #include "sound.h"
 #include "usart.h"
+#include "memory.h"
 #define F_CPU 8000000
-
 
 enum usedValue
 {
@@ -43,18 +43,21 @@ private:
 Motor motorCapteur;
 Led led;
 Can sensor;
-Usart use;
+Memory mem;
 Sound sonCapteur;
 
 //Number of triggered sensor
 uint8_t isON=0x00;
 const uint8_t PIN = 0x07;
+
+//Poteau
 uint8_t nbrPoteau =0;
+int listPoteau[3];
+
+//Bool
 bool parking=false;
 bool grave;
-uint8_t P1;
-uint8_t P2;
-uint8_t P3;
+
 
 //PIN used for sensor
 const uint8_t pin1 =0x02;  //DS5

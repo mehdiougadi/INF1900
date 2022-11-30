@@ -4,10 +4,9 @@
 #include "avr/io.h"
 #include <avr/interrupt.h>
 
-volatile uint8_t gMinuterieExpiree=0;
 uint16_t counter = 0;
 
-
+/*
 ISR(TIMER2_COMPA_vect)
 {
     if (counter!=90)
@@ -30,25 +29,47 @@ void partirMinuterie(uint8_t duree)
 
     OCR2A=duree;
     sei();
+}*/
+
+ISR(INT0_vect)
+{
+    counter =2;
+}
+
+ISR(INT1_vect)
+{
+    counter = 1;
+}
+
+void confirm()
+{
+    cli(); //Est une routine qui bloque toutes les interruptions
+    DDRD &= ~( 1<< PD2);
+    EICRA|=(1<<ISC00) | (1<<ISC01); //Rising edge Clock
+    EIMSK|=(1<<INT0); //Ajuste le registre EIMSK de l'ATmega324PA pour permettre les interruptions externes
+    sei(); //Permet de recevoir à nouveau des interruptions
+}
+
+void pending()
+{
+    cli(); //Est une routine qui bloque toutes les interruptions
+    DDRD &= ~( 1<< PD3);
+    EICRA|=(1<<ISC10) | (1<<ISC11); //Rising edge Clock
+    EIMSK|=(1<<INT1); //Ajuste le registre EIMSK de l'ATmega324PA pour permettre les interruptions externes
+    sei(); //Permet de recevoir à nouveau des interruptions
 }
 
 int main()
 {
-    DDRD = 0xff;
-    partirMinuterie(255);
+    DDRC  = 0xff;
+    pending();
+    confirm();
 
-    do
+    while(true)
     {
-        PORTD =0xff;
-        PORTC =0xff;
-    }while(gMinuterieExpiree == 0 );
-
-    OCR2A =0;
-
-    if (gMinuterieExpiree == 1)
-    {
-        PORTD =0x00;
-        PORTC =0x00;
+        if(counter == 0){PORTC = 0x01;}
+        else if(counter ==1){PORTC = 0x02;}
+        else{PORTC = 0x00;}
     }
 
 }

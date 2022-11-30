@@ -17,6 +17,7 @@
 #include "motor.h"
 #include "sound.h"
 #include "usart.h"
+#include <avr/interrupt.h>
 #include "CapteurLigne.h"
 
 enum class mode
@@ -31,21 +32,19 @@ class Robot
 public:
 
     Robot()=default;
-    void trajet();
 
     //Mode
     void modeA();
     void modeB();
     void modeS();
-    uint8_t gMinuterieExpiree = 0;
-private:
-    //Mode attributs
-    mode currentMode = mode::MODEA;
 
     //Objets
     Led led;
-    Memory memory;
     Sound speaker;
+private:
+    
+    //Objets
+    Memory memory;
     CapteurLigne capteurIR;
     Motor mainMoteur;
 

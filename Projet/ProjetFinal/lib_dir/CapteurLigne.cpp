@@ -9,7 +9,6 @@ CapteurLigne::CapteurLigne()
 uint8_t CapteurLigne::readValueDM()
 {
     _delay_ms(20);
-    use.transmissionUART(sensor.lecture(PIN) >> BITSHIFT);
     return (sensor.lecture(PIN) >> BITSHIFT);
 }
 
@@ -50,103 +49,126 @@ void CapteurLigne::updateCondition()
 
 void CapteurLigne::suivreLigneA()
 {
-    while(true)
+    if(distance()==true)
     {
-        if(distance()==true)
+        updateCondition();
+        switch(isON)
         {
-            updateCondition();
-            switch(isON)
+            case usedValue::ZERO:
+                motorCapteur.stop();
+                break;
+            case usedValue::ONE:
+                if      (DS3){ motorCapteur.moveStraight(60);}
+                else if (DS4){ motorCapteur.turn(65,40);}
+                else if (DS5){                   
+                    while(true)
+                    {
+                        updateCondition();
+                        if(DS3){ break;}
+                        motorCapteur.turn(50,20);
+                    }}
+                else if (DS1){                     
+                    while(true)
+                    {
+                        updateCondition();
+                        if(DS3){ break;}
+                        motorCapteur.turn(20,50);
+                    }}
+                else if (DS2){ motorCapteur.turn(40,65);}
+                break;
+            case usedValue::TWO:
+                if     (DS1 && DS2){ motorCapteur.turn(40,50);}
+                else if(DS5 && DS4){ motorCapteur.turn(50,40);}
+                else if(DS2 && DS3){ motorCapteur.turn(40,50);}
+                else if(DS4 && DS3){ motorCapteur.turn(50,40);}
+                break;
+            case usedValue::THREE:
+                if(DS3 && DS4 && DS5)
+                {
+                    motorCapteur.moveStraight(60);
+                    _delay_ms(100);
+                    while(true)
+                    {
+                        updateCondition();
+                        if(DS3){ break;}
+                        motorCapteur.turn(50,20);
+                    }
+                }
+                else if(DS1 && DS2 && DS3)
+                {
+                    motorCapteur.moveStraight(35);
+                    _delay_ms(100);
+                    while(true)
+                    {
+                        updateCondition();
+                        if(DS3){ break;}
+                        motorCapteur.turn(20,50);
+                    }
+                }
+                break;
+            case usedValue::FOUR:
+                break;
+            case usedValue::FIVE:
+                switch(nbrPoteau)
+                {
+                    case 0x02:
+                        mem.ecriture(0x00,nbrPoteau);
+                        mem.ecriture(0x01,listPoteau[0]);
+                        mem.ecriture(0x02,listPoteau[1]);
+                        break;
+                    case 0x03:
+                        mem.ecriture(0x00,nbrPoteau);
+                        mem.ecriture(0x01,listPoteau[0]);
+                        mem.ecriture(0x02,listPoteau[1]);
+                        mem.ecriture(0x03,listPoteau[2]);
+                        break;
+                    default:
+                        mem.ecriture(0x00,0xff);
+                        break;
+                }
+                motorCapteur.stop();
+                break;
+            default:
+                break;       
+        }
+    }
+    else
+    {
+        /*
+        Poteau proche = 0x01;
+        Poteau loin   = 0x02;
+        Pas de poteau = 0x00;
+        */
+        if (grave == false)
+        {
+            listPoteau[nbrPoteau++]=0x01;
+            motorCapteur.stop();
+            sonCapteur.playSound(81);
+            _delay_ms(1000);
+            sonCapteur.stopSound();
+            motorCapteur.moveStraight(50);
+            for(uint16_t i = 0;i< 65000; i++)
             {
-                case usedValue::ZERO:
-                    motorCapteur.stop();
-                    break;
-                case usedValue::ONE:
-                    if      (DS3){ motorCapteur.moveStraight(60);}
-                    else if (DS4){ motorCapteur.turn(65,40);}
-                    else if (DS5){                   
-                        while(true)
-                        {
-                            updateCondition();
-                            if(DS3){ break;}
-                            motorCapteur.turn(50,20);
-                        }}
-                    else if (DS1){                     
-                        while(true)
-                        {
-                            updateCondition();
-                            if(DS3){ break;}
-                            motorCapteur.turn(20,50);
-                        }}
-                    else if (DS2){ motorCapteur.turn(40,65);}
-                    break;
-                case usedValue::TWO:
-                    if     (DS1 && DS2){ motorCapteur.turn(40,50);}
-                    else if(DS5 && DS4){ motorCapteur.turn(50,40);}
-                    else if(DS2 && DS3){ motorCapteur.turn(40,50);}
-                    else if(DS4 && DS3){ motorCapteur.turn(50,40);}
-                    break;
-                case usedValue::THREE:
-                    if(DS3 && DS4 && DS5)
-                    {
-                        motorCapteur.moveStraight(60);
-                        _delay_ms(100);
-                        while(true)
-                        {
-                            updateCondition();
-                            if(DS3){ break;}
-                            motorCapteur.turn(50,20);
-                        }
-                    }
-                    else if(DS1 && DS2 && DS3)
-                    {
-                        motorCapteur.moveStraight(35);
-                        _delay_ms(100);
-                        while(true)
-                        {
-                            updateCondition();
-                            if(DS3){ break;}
-                            motorCapteur.turn(20,50);
-                        }
-                    }
-                    break;
-                case usedValue::FOUR:
-                    break;
-                case usedValue::FIVE:
-                    motorCapteur.stop();
-                    break;
-                default:
-                    break;       
+                suivreLigneB();
             }
         }
         else
         {
-            if (grave == false)
+            listPoteau[nbrPoteau++]=0x02;
+            nbrPoteau++;
+            motorCapteur.stop();
+            sonCapteur.playSound(45);
+            _delay_ms(1000);
+            sonCapteur.stopSound();
+            motorCapteur.moveStraight(50);
+            for(uint16_t i = 0;i< 65000; i++)
             {
-                motorCapteur.stop();
-                sonCapteur.playSound(81);
-                _delay_ms(1000);
-                sonCapteur.stopSound();
-                motorCapteur.moveStraight(50);
-                for(uint16_t i = 0;i< 65000; i++)
-                {
-                    suivreLigneB();
-                }
-            }
-            else
-            {
-                motorCapteur.stop();
-                sonCapteur.playSound(45);
-                _delay_ms(1000);
-                sonCapteur.stopSound();
-                motorCapteur.moveStraight(50);
-                for(uint16_t i = 0;i< 65000; i++)
-                {
-                    suivreLigneB();
-                }
+                suivreLigneB();
             }
         }
     }
 }
+
 
 void CapteurLigne::suivreLigneB()
 {
@@ -221,103 +243,97 @@ void CapteurLigne::suivreLigneB()
 
 void CapteurLigne::suivreLigneS()
 {
-    while(true)
+    updateCondition();
+    switch(isON)
     {
-        updateCondition();
-        switch(isON)
-        {
-            case usedValue::ZERO:
-                parking =true;
-                motorCapteur.stop();
-                motorCapteur.moveBack(50);
-                break;
-            case usedValue::ONE:
-                if      (DS3){ motorCapteur.moveStraight(60);}
-                else if (DS4){ motorCapteur.turn(65,40);}
-                else if (DS5){                   
-                    while(true)
-                    {
-                        updateCondition();
-                        if(DS3){ break;}
-                        motorCapteur.turn(50,20);
-                    }}
-                else if (DS1){                     
-                    while(true)
-                    {
-                        updateCondition();
-                        if(DS3){ break;}
-                        motorCapteur.turn(20,50);
-                    }}
-                else if (DS2){ motorCapteur.turn(40,65);}
-                break;
-            case usedValue::TWO:
-                if     (DS1 && DS2){ motorCapteur.turn(40,50);}
-                else if(DS5 && DS4){ motorCapteur.turn(50,40);}
-                else if(DS2 && DS3){ motorCapteur.turn(40,50);}
-                else if(DS4 && DS3){ motorCapteur.turn(50,40);}
-                break;
-            case usedValue::THREE:
-                if(DS3 && DS4 && DS5)
+        case usedValue::ZERO:
+            parking =true;
+            motorCapteur.stop();
+            motorCapteur.moveBack(50);
+            break;
+        case usedValue::ONE:
+            if      (DS3){ motorCapteur.moveStraight(60);}
+            else if (DS4){ motorCapteur.turn(65,40);}
+            else if (DS5){                   
+                while(true)
                 {
-                    motorCapteur.moveStraight(60);
-                    _delay_ms(100);
-                    while(true)
-                    {
-                        updateCondition();
-                        if(DS3){ break;}
-                        motorCapteur.turn(50,20);
-                    }
-                }
-                else if(DS1 && DS2 && DS3)
+                    updateCondition();
+                    if(DS3){ break;}
+                    motorCapteur.turn(50,20);
+                }}
+            else if (DS1){                     
+                while(true)
                 {
-                    motorCapteur.moveStraight(35);
-                    _delay_ms(100);
-                    while(true)
-                    {
-                        updateCondition();
-                        if(DS3){ break;}
-                        motorCapteur.turn(20,50);
-                    }
+                    updateCondition();
+                    if(DS3){ break;}
+                    motorCapteur.turn(20,50);
+                }}
+            else if (DS2){ motorCapteur.turn(40,65);}
+            break;
+        case usedValue::TWO:
+            if     (DS1 && DS2){ motorCapteur.turn(40,50);}
+            else if(DS5 && DS4){ motorCapteur.turn(50,40);}
+            else if(DS2 && DS3){ motorCapteur.turn(40,50);}
+            else if(DS4 && DS3){ motorCapteur.turn(50,40);}
+            break;
+        case usedValue::THREE:
+            if(DS3 && DS4 && DS5)
+            {
+                motorCapteur.moveStraight(60);
+                _delay_ms(100);
+                while(true)
+                {
+                    updateCondition();
+                    if(DS3){ break;}
+                    motorCapteur.turn(50,20);
                 }
-                break;
-            case usedValue::FOUR:
-                break;
-            case usedValue::FIVE:
-                motorCapteur.stop();
-                break;
-            default:
-                break;       
-        }
-        if(parking)
-        {
-            motorCapteur.moveBack(60);
-            _delay_ms(1900);
-            while(true)
-            {
-                    updateCondition();
-                    motorCapteur.turn(60,0);
-                    if(DS1){break;}
             }
-            while(true)
+            else if(DS1 && DS2 && DS3)
             {
+                motorCapteur.moveStraight(35);
+                _delay_ms(100);
+                while(true)
+                {
                     updateCondition();
-                    motorCapteur.turn(0,54);
-                    if(isON == usedValue::FIVE){break;}
+                    if(DS3){ break;}
+                    motorCapteur.turn(20,50);
+                }
             }
-            motorCapteur.moveBack(60);
-            _delay_ms(1500);
+            break;
+        case usedValue::FOUR:
+            break;
+        case usedValue::FIVE:
             motorCapteur.stop();
             break;
-        }
+        default:
+            break; 
     }
+    if(parking)
+    {
+        motorCapteur.moveBack(60);
+        _delay_ms(1900);
+        while(true)
+        {
+                updateCondition();
+                motorCapteur.turn(60,0);
+                if(DS1){break;}
+        }
+        while(true)
+        {
+                updateCondition();
+                motorCapteur.turn(0,52);
+                if(isON == usedValue::FIVE){break;}
+        }
+        motorCapteur.moveBack(60);
+        _delay_ms(1500);
+        motorCapteur.stop();
+    }      
 }
 
 void CapteurLigne::Rebondissement()
 {
-    uint8_t leftSpeed= 60;
-    uint8_t rightSpeed = 40;
-    while(true)
-    {
+    uint8_t leftSpeed= 70;
+    uint8_t rightSpeed = 35;
         updateCondition();
         while(!DS5)
         {
@@ -339,8 +355,17 @@ void CapteurLigne::Rebondissement()
             }
             if(DS1){ break;}
         }
-    }
-    
+
+        updateCondition();
+        while(!DS5)
+        {
+            updateCondition();
+            for(uint16_t i=0; i<100;i++)
+            {
+                motorCapteur.turn(leftSpeed,rightSpeed);
+            }
+            if(DS5){ break;}
+        }
 }
 
 

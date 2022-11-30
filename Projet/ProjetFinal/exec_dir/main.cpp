@@ -6,37 +6,65 @@
 // Date:        03 novembre 2022
 
 #include "robot.h"
-#include <avr/interrupt.h>
 
-volatile uint8_t gMinuterieExpiree=0;
-uint16_t counter = 0;
+volatile uint8_t pendingMode=0x00;
+volatile uint8_t currentMode=0x00;
+volatile bool confirmed = false;
 
-ISR(TIMER2_COMPA_vect)
+
+ISR(INT0_vect)
 {
-    if (counter!=90)
-    {
-        counter++;
-        TCNT2 = 0;
-    }
-    else{gMinuterieExpiree=1;}
+    confirmed = true;
 }
 
-void partirMinuterie(uint8_t duree)
+ISR(INT1_vect)
 {
-    cli();
-    TCNT2=0;
+    Led led;
+    confirmed = false;
+    if(pendingMode==2){pendingMode = 0;}
+    else{pendingMode++;}
+}
 
-    TCCR2A|=(1<< COM2A0); //Mode CTC
-    TCCR2B|=(1<< CS20)|(1<< CS22)|(1<< WGM21); //prescale 1024
-    
-    TIMSK2|=(1<<OCIE2A); //Interrupt comp A
+void confirm()
+{
+    cli(); //Est une routine qui bloque toutes les interruptions
+    DDRD &= ~( 1<< PD2);
+    EICRA|=(1<<ISC00) | (1<<ISC01); //Rising edge Clock
+    EIMSK|=(1<<INT0); //Ajuste le registre EIMSK de l'ATmega324PA pour permettre les interruptions externes
+    sei(); //Permet de recevoir à nouveau des interruptions
+}
 
-    OCR2A=duree;
-    sei();
+void pending()
+{
+    cli(); //Est une routine qui bloque toutes les interruptions
+    DDRD &= ~( 1<< PD3);
+    EICRA|=(1<<ISC10) | (1<<ISC11); //Rising edge Clock
+    EIMSK|=(1<<INT1); //Ajuste le registre EIMSK de l'ATmega324PA pour permettre les interruptions externes
+    sei(); //Permet de recevoir à nouveau des interruptions
 }
 
 int main()
 {
-    Robot test;
-    test.modeS();
+    Robot Sonic;
+    pending();
+    confirm();
+    while(true)
+    {
+        switch(pendingMode)
+        {
+            case 0x00:
+                Sonic.led.colorGreen();
+                if (confirmed){Sonic.modeA();}
+                break;
+            case 0x01:
+                Sonic.led.colorRed();
+                if (confirmed){Sonic.modeB();}
+                break;
+            case 0x02:
+                Sonic.led.colorAmber();
+                if (confirmed){Sonic.modeS();}
+                break;
+        }
+    }
+
 }
