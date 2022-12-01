@@ -41,12 +41,12 @@ public:
     //Objets
     Led led;
     Sound speaker;
+    Motor mainMoteur;
 private:
     
     //Objets
     Memory memory;
     CapteurLigne capteurIR;
-    Motor mainMoteur;
 
 };
 

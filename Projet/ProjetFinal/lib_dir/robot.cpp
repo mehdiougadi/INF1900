@@ -7,7 +7,7 @@ ISR(TIMER2_COMPA_vect)
 {
     if(gMinuterieExpiree==0)
     {
-        if (counter!=150)
+        if (counter!=110)
         {
             counter++;
             TCNT2 = 0;
@@ -15,20 +15,6 @@ ISR(TIMER2_COMPA_vect)
         else
         {
             gMinuterieExpiree=1;
-            counter = 0;
-        }
-
-    }
-    else
-    {
-        if (counter!= 180)
-        {
-            counter++;
-            TCNT2 = 0;
-        }
-        else
-        {
-            gMinuterieExpiree=2;
             counter = 0;
         }
     }
@@ -54,13 +40,14 @@ void Robot::modeA()
 
 void Robot::modeB()
 {
-    capteurIR.suivreLigneB();
+    partirMinuterie(255);
+    while(gMinuterieExpiree == 0){capteurIR.suivreLigneB();}
 }
 
 void Robot::modeS()
 {
     partirMinuterie(255);
     while(gMinuterieExpiree == 0){capteurIR.suivreLigneS();}
-    for(uint8_t i=0;i<2;i++){capteurIR.Rebondissement();}
-    while(gMinuterieExpiree == 2){capteurIR.suivreLigneS();}
+    capteurIR.Rebondissement();
+    while(gMinuterieExpiree == 1){capteurIR.suivreLigneS();}
 }

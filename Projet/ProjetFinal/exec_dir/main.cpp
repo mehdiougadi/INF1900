@@ -11,7 +11,6 @@ volatile uint8_t pendingMode=0x00;
 volatile uint8_t currentMode=0x00;
 volatile bool confirmed = false;
 
-
 ISR(INT0_vect)
 {
     confirmed = true;

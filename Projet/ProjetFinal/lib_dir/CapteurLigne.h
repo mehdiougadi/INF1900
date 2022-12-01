@@ -44,6 +44,7 @@ Motor motorCapteur;
 Led led;
 Can sensor;
 Memory mem;
+Usart use;
 Sound sonCapteur;
 
 //Number of triggered sensor
@@ -52,7 +53,9 @@ const uint8_t PIN = 0x07;
 
 //Poteau
 uint8_t nbrPoteau =0;
-int listPoteau[3];
+uint8_t P1 =0;
+uint8_t P2 =0;
+uint8_t P3 =0;
 
 //Bool
 bool parking=false;
@@ -71,9 +74,9 @@ bool DS3 = (PINA & pin3) == pin3;
 bool DS4 = (PINA & pin2) == pin2;
 bool DS5 = (PINA & pin1) == pin1;
 const uint8_t BITSHIFT = 2;
-const uint8_t CLOSE = 255;
-const uint8_t MEDIUM = 77;
-const uint8_t FAR = 40;
+const uint8_t CLOSE = 150;
+const uint8_t MEDIUM = 55;
+const uint8_t FAR = 41;
 };
 
 #endif

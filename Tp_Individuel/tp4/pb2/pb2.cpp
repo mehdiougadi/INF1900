@@ -2,43 +2,17 @@
 
 #include <util/delay.h>
 #include "avr/io.h"
-#include <avr/interrupt.h>
 
-uint16_t counter = 0;
-
-/*
-ISR(TIMER2_COMPA_vect)
-{
-    if (counter!=90)
-    {
-        counter++;
-        TCNT2 = 0;
-    }
-    else{gMinuterieExpiree=1;}
-}
-
-void partirMinuterie(uint8_t duree)
-{
-    cli();
-    TCNT2=0;
-
-    TCCR2A|=(1<< COM2A0); //Mode CTC
-    TCCR2B|=(1<< CS20)|(1<< CS22)|(1<< WGM21); //prescale 1024
-    
-    TIMSK2|=(1<<OCIE2A); //Interrupt comp A
-
-    OCR2A=duree;
-    sei();
-}*/
+volatile uint8_t counter=0x00;
 
 ISR(INT0_vect)
 {
-    counter =2;
+    counter =1;
 }
 
 ISR(INT1_vect)
 {
-    counter = 1;
+    counter =2;
 }
 
 void confirm()
@@ -62,14 +36,11 @@ void pending()
 int main()
 {
     DDRC  = 0xff;
-    pending();
-    confirm();
-
     while(true)
     {
-        if(counter == 0){PORTC = 0x01;}
-        else if(counter ==1){PORTC = 0x02;}
-        else{PORTC = 0x00;}
+        if(counter =1){PORTC =0x01;}
+        else if(counter =1){PORTC =0x02;}
+        else {PORTC = 0x00;}
     }
 
 }
