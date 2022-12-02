@@ -21,6 +21,9 @@ public:
     void colorRed();
     void colorAmber();
     void noColor();
+    void clignoterVert();
+    void clignoterRouge();
+    void clignoterAmbre();
 };
 
 #endif

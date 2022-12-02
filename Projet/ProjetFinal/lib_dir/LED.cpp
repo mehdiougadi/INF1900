@@ -33,7 +33,42 @@ void Led::colorRed()
 void Led::colorAmber()
 {
     colorGreen();
-    _delay_ms(10);
+    _delay_ms(15);
     colorRed();
     _delay_ms(5);
+}
+    
+void Led::clignoterVert()
+{
+    for(uint8_t i=0;i<10;i++)
+    {
+        colorGreen();
+        _delay_ms(100);
+        noColor();
+        _delay_ms(100);
+    }
+}
+void Led::clignoterRouge()
+{
+    for(uint8_t i=0;i<10;i++)
+    {
+        colorRed();
+        _delay_ms(100);
+        noColor();
+        _delay_ms(100);
+    }
+}
+void Led::clignoterAmbre()
+{
+    for(uint8_t i=0;i<10;i++)
+    {
+        for(uint8_t i=0;i<7;i++){
+        colorGreen();
+        _delay_ms(10);
+        colorRed();
+        _delay_ms(5);
+ }
+        noColor();
+        _delay_ms(100);
+    }
 }

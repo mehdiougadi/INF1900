@@ -147,11 +147,6 @@ void CapteurLigne::suivreLigneA()
     }
     else
     {
-        /*
-        Poteau proche = 0x01;
-        Poteau loin   = 0x02;
-        Pas de poteau = 0x00;
-        */
         if (grave == false)
         {
             if(nbrPoteau==0){P1=1;}
@@ -166,7 +161,15 @@ void CapteurLigne::suivreLigneA()
         }
         else
         {
-            _delay_ms(20);
+            /*if(nbrPoteau==0){P1=1;}
+            else if(nbrPoteau==1){P2=1;}
+            else if(nbrPoteau==2){P3=1;}
+            nbrPoteau++;
+            motorCapteur.stop();
+            sonCapteur.playSound(45);
+            _delay_ms(1000);
+            sonCapteur.stopSound();*/
+            
             uint8_t rebound = readValueDM();
             if(rebound<=CLOSE && rebound>=MEDIUM)
             {
@@ -192,11 +195,13 @@ void CapteurLigne::suivreLigneA()
                 sonCapteur.stopSound();
             }
         }
-        motorCapteur.turn(45,40);
-        _delay_ms(2000);
+        for(uint16_t i=0;i<10;i++)
+        {
+            suivreLigneS();
+            _delay_ms(100);
+        }
     }
 }
-
 
 void CapteurLigne::suivreLigneB()
 {
@@ -207,7 +212,7 @@ void CapteurLigne::suivreLigneB()
             motorCapteur.stop();
             break;
         case usedValue::ONE:
-            if      (DS3){ motorCapteur.moveStraight(60);}
+            if      (DS3){ motorCapteur.moveStraight(50);}
             else if (DS4){ motorCapteur.turn(65,40);}
             else if (DS5){                   
                 while(true)
@@ -245,7 +250,7 @@ void CapteurLigne::suivreLigneB()
             }
             else if(DS1 && DS2 && DS3)
             {
-                motorCapteur.moveStraight(35);
+                motorCapteur.moveStraight(60);
                 _delay_ms(100);
                 while(true)
                 {
@@ -253,10 +258,6 @@ void CapteurLigne::suivreLigneB()
                     if(DS3){ break;}
                     motorCapteur.turn(20,50);
                 }
-            }
-            else
-            {
-                motorCapteur.stop();
             }
             break;
         case usedValue::FOUR:
