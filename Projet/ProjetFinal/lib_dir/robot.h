@@ -45,8 +45,12 @@ public:
 private:
     
     //Objets
-    Memory memory;
+    Memory mem;
     CapteurLigne capteurIR;
+    uint8_t p1;
+    uint8_t p2;
+    uint8_t p3;
+
 
 };
 

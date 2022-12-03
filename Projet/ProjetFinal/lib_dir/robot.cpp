@@ -12,7 +12,7 @@ ISR(TIMER2_COMPA_vect)
     
     if(gMinuterieExpiree2==0)
     {
-        if (counter!=110)
+        if (counter!=90)
         {
             counter++;
             TCNT2 = 0;
@@ -24,9 +24,9 @@ ISR(TIMER2_COMPA_vect)
         }
     }
 
-    if (gMinuterieExpiree ==0)
+    else if (gMinuterieExpiree ==0)
     {
-        if (counter!=830)
+        if (counter!=190)
         {
             counter++;
             TCNT2 = 0;
@@ -34,6 +34,32 @@ ISR(TIMER2_COMPA_vect)
         else
         {
             gMinuterieExpiree=1;
+            counter = 0;
+        }
+    }
+    else if (gMinuterieExpiree ==1)
+    {
+        if (counter!=565)
+        {
+            counter++;
+            TCNT2 = 0;
+        }
+        else
+        {
+            gMinuterieExpiree=2;
+            counter = 0;
+        }
+    }
+    else if (gMinuterieExpiree ==2)
+    {
+        if (counter!=540)
+        {
+            counter++;
+            TCNT2 = 0;
+        }
+        else
+        {
+            gMinuterieExpiree=3;
             counter = 0;
         }
     }
@@ -57,6 +83,7 @@ void Robot::modeA()
 {
     if(startingA)
     {
+        speaker.introSong();
         led.clignoterVert();
         mainMoteur.turn(55,58);
         _delay_ms(800);
@@ -69,14 +96,30 @@ void Robot::modeB()
 {
     if(startingB)
     {
+       mem.lecture(0x01, &p1);
+       _delay_ms(15);
+       mem.lecture(0x02, &p2);
+       _delay_ms(15);
+       mem.lecture(0x03, &p3);
+       _delay_ms(15);
         led.clignoterRouge();
         mainMoteur.turn(55,58);
         _delay_ms(800);
         startingB = false;
     }
     partirMinuterie(255);
-    while(gMinuterieExpiree == 0){capteurIR.suivreLigneB();}
+    while(gMinuterieExpiree==0){capteurIR.suivreLigneSimple();}
     mainMoteur.stop();
+    _delay_ms(1000);
+    partirMinuterie(255);
+    while(gMinuterieExpiree==1){capteurIR.suivreLigneB(p1,p2,p3);}
+    mainMoteur.stop();
+    _delay_ms(1000);
+    partirMinuterie(255);
+    while(gMinuterieExpiree==2){capteurIR.suivreLigneB(p1,p2,p3);}
+    mainMoteur.stop();
+    _delay_ms(1000);
+    while(gMinuterieExpiree==3){capteurIR.suivreLigneSimple();}
 }
 
 void Robot::modeS()

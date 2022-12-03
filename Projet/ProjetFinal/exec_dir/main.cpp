@@ -45,6 +45,7 @@ void pending()
 int main()
 {
     Robot Sonic;
+    Memory mem;
     pending();
     confirm();
     while(true)

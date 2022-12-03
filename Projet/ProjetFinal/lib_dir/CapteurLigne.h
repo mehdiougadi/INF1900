@@ -30,8 +30,9 @@ class CapteurLigne
 public:
     CapteurLigne();
     void suivreLigneA();
-    void suivreLigneB();
+    void suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3);
     void suivreLigneS();
+    void suivreLigneSimple();
     void Rebondissement();
 
     void updateCondition();
@@ -53,13 +54,18 @@ const uint8_t PIN = 0x07;
 
 //Poteau
 uint8_t nbrPoteau =0;
+uint8_t index =2;
 uint8_t P1 =0;
 uint8_t P2 =0;
 uint8_t P3 =0;
+uint8_t counter=0;
+uint8_t counter2=0;
 
 //Bool
 bool parking=false;
+bool post1 =true;
 bool grave;
+
 
 
 //PIN used for sensor
@@ -74,7 +80,7 @@ bool DS3 = (PINA & pin3) == pin3;
 bool DS4 = (PINA & pin2) == pin2;
 bool DS5 = (PINA & pin1) == pin1;
 const uint8_t BITSHIFT = 2;
-const uint8_t CLOSE = 150;
+const uint8_t CLOSE = 255;
 const uint8_t MEDIUM = 55;
 const uint8_t FAR = 41;
 };
