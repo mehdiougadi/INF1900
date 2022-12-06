@@ -58,7 +58,7 @@ uint8_t index =2;
 uint8_t P1 =0;
 uint8_t P2 =0;
 uint8_t P3 =0;
-uint8_t counter=0;
+bool activeB=false;
 uint8_t counter2=0;
 
 //Bool
@@ -82,7 +82,7 @@ bool DS5 = (PINA & pin1) == pin1;
 const uint8_t BITSHIFT = 2;
 const uint8_t CLOSE = 255;
 const uint8_t MEDIUM = 55;
-const uint8_t FAR = 41;
+const uint8_t FAR = 30;
 };
 
 #endif

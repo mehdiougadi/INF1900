@@ -144,10 +144,8 @@ void problem2()
 
 int main()
 {
-    //Initialisation
-    setIOPorts();
+    DDRB = 0b11111111;
 
-    //Problème 2
-    problem2();
+    PORTB = 0xff;
 
 }
