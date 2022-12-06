@@ -188,12 +188,12 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                             motorCapteur.stop();
                             _delay_ms(2000);
                             motorCapteur.moveStraight(60);
-                            _delay_ms(700);
+                            _delay_ms(1000);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(50,20);
+                                motorCapteur.turn(50,0);
                             }
                         }
                         else if(p1==0x02)
@@ -202,12 +202,12 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                             motorCapteur.stop();
                             _delay_ms(2000);
                             motorCapteur.moveStraight(60);
-                            _delay_ms(700);
+                            _delay_ms(1000);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(20,50);
+                                motorCapteur.turn(0,50);
                             }
                         }
                         post1=false;
@@ -220,12 +220,12 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                             motorCapteur.stop();
                             _delay_ms(2000);
                             motorCapteur.moveStraight(60);
-                            _delay_ms(700);
+                            _delay_ms(1000);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(50,20);
+                                motorCapteur.turn(50,0);
                             }
                         }
                         else if(p2==0x02)
@@ -234,12 +234,12 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                             motorCapteur.stop();
                             _delay_ms(2000);
                             motorCapteur.moveStraight(60);
-                            _delay_ms(700);
+                            _delay_ms(1000);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(20,50);
+                                motorCapteur.turn(0,50);
                             }
                         }
                         post1=false;
@@ -254,12 +254,12 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                             motorCapteur.stop();
                             _delay_ms(2000);
                             motorCapteur.moveStraight(60);
-                            _delay_ms(700);
+                            _delay_ms(1000);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(50,20);
+                                motorCapteur.turn(50,0);
                             }
                         }
                         else if(p1==0x02)
@@ -268,12 +268,12 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                             motorCapteur.stop();
                             _delay_ms(2000);
                             motorCapteur.moveStraight(60);
-                            _delay_ms(700);
+                            _delay_ms(1000);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(20,50);
+                                motorCapteur.turn(0,50);
                             }
                         }
                         post1=false;
@@ -285,12 +285,12 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                             motorCapteur.stop();
                             _delay_ms(2000);
                             motorCapteur.moveStraight(60);
-                            _delay_ms(700);
+                            _delay_ms(1000);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(50,20);
+                                motorCapteur.turn(50,0);
                             }
                         }
                         else if(p3==0x02)
@@ -299,12 +299,12 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                             motorCapteur.stop();
                             _delay_ms(2000);
                             motorCapteur.moveStraight(60);
-                            _delay_ms(700);
+                            _delay_ms(1000);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(20,50);
+                                motorCapteur.turn(0,50);
                             }
                         }
                         post1=false;
@@ -326,12 +326,12 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                             motorCapteur.stop();
                             _delay_ms(2000);
                             motorCapteur.moveStraight(60);
-                            _delay_ms(700);
+                            _delay_ms(1000);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(50,20);
+                                motorCapteur.turn(50,0);
                             }
                         }
                         else if(p1==0x02)
@@ -340,12 +340,12 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                             motorCapteur.stop();
                             _delay_ms(2000);
                             motorCapteur.moveStraight(60);
-                            _delay_ms(700);
+                            _delay_ms(1000);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(20,50);
+                                motorCapteur.turn(0,50);
                             }
                         }
                         post1=false;
@@ -358,12 +358,12 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                             motorCapteur.stop();
                             _delay_ms(2000);
                             motorCapteur.moveStraight(60);
-                            _delay_ms(700);
+                            _delay_ms(1000);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(50,20);
+                                motorCapteur.turn(50,0);
                             }
                         }
                         else if(p2==0x02)
@@ -372,12 +372,12 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                             motorCapteur.stop();
                             _delay_ms(2000);
                             motorCapteur.moveStraight(60);
-                            _delay_ms(700);
+                            _delay_ms(1000);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(20,50);
+                                motorCapteur.turn(0,50);
                             }
                         }
                         post1=false;
@@ -397,7 +397,7 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(50,20);
+                                motorCapteur.turn(50,0);
                             }
                         }
                         else if(p1==0x02)
@@ -411,7 +411,7 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(20,50);
+                                motorCapteur.turn(0,50);
                             }
                         }
                         post1=false;
@@ -428,7 +428,7 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(50,20);
+                                motorCapteur.turn(50,0);
                             }
                         }
                         else if(p3==0x02)
@@ -442,7 +442,7 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(20,50);
+                                motorCapteur.turn(0,50);
                             }
                         }
                         post1=false;
@@ -456,12 +456,12 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                     motorCapteur.stop();
                     _delay_ms(1000);
                     motorCapteur.moveStraight(60);
-                    _delay_ms(700);
+                    _delay_ms(1000);
                     while(true)
                     {
                         updateCondition();
                         if(DS3){ break;}
-                        motorCapteur.turn(20,50);
+                        motorCapteur.turn(0,50);
                     }
                     counter2++;
                 }
@@ -470,12 +470,12 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                     motorCapteur.stop();
                     _delay_ms(1000);
                     motorCapteur.moveStraight(60);
-                    _delay_ms(700);
+                    _delay_ms(1000);
                     while(true)
                     {
                         updateCondition();
                         if(DS3){ break;}
-                        motorCapteur.turn(50,20);
+                        motorCapteur.turn(50,0);
                     }
                     counter2++;
                 }
@@ -488,12 +488,12 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                     motorCapteur.stop();
                     _delay_ms(1000);
                     motorCapteur.moveStraight(60);
-                    _delay_ms(700);
+                    _delay_ms(1000);
                     while(true)
                     {
                         updateCondition();
                         if(DS3){ break;}
-                        motorCapteur.turn(50,20);
+                        motorCapteur.turn(50,0);
                     }
                 }
                 if(counter2!=0)
@@ -501,12 +501,12 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                     motorCapteur.stop();
                     _delay_ms(1000);
                     motorCapteur.moveStraight(60);
-                    _delay_ms(700);
+                    _delay_ms(1000);
                     while(true)
                     {
                         updateCondition();
                         if(DS3){ break;}
-                        motorCapteur.turn(20,50);
+                        motorCapteur.turn(0,50);
                     }
                     counter2++;
                 }
@@ -525,7 +525,7 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                     {
                         updateCondition();
                         if(DS3){ break;}
-                        motorCapteur.turn(20,50);
+                        motorCapteur.turn(0,50);
                     }
                 if(counter2!=0)
                 {
@@ -537,7 +537,7 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                     {
                         updateCondition();
                         if(DS3){ break;}
-                        motorCapteur.turn(50,20);
+                        motorCapteur.turn(50,0);
                     }
                     counter2++;
                 }
@@ -555,7 +555,7 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                     {
                         updateCondition();
                         if(DS3){ break;}
-                        motorCapteur.turn(50,20);
+                        motorCapteur.turn(50,0);
                     }
                 }
                 if(counter2!=0)
@@ -568,7 +568,7 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                     {
                         updateCondition();
                         if(DS3){ break;}
-                        motorCapteur.turn(20,50);
+                        motorCapteur.turn(0,50);
                     }
                     counter2++;
                 }
@@ -590,7 +590,7 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(50,20);
+                                motorCapteur.turn(50,0);
                             }
                         }
                         else if(p1==0x02)
@@ -604,7 +604,7 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(20,50);
+                                motorCapteur.turn(0,50);
                             }
                         }
                         post1=false;
@@ -622,7 +622,7 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(50,20);
+                                motorCapteur.turn(50,0);
                             }
                         }
                         else if(p2==0x02)
@@ -636,7 +636,7 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(20,50);
+                                motorCapteur.turn(0,50);
                             }
                         }
                         post1=false;
@@ -691,6 +691,30 @@ void CapteurLigne::suivreLigneSimple()
                 else if(DS4 && DS3){ motorCapteur.turn(50,40);}
                 break;
         case usedValue::THREE:
+            if(DS3 && DS4 && DS5)
+            {
+                motorCapteur.moveStraight(60);
+                _delay_ms(100);
+                while(true)
+                {
+                    updateCondition();
+                    if(DS3){ break;}
+                    motorCapteur.turn(50,20);
+                }
+            }
+            else if(DS1 && DS2 && DS3)
+            {
+                motorCapteur.moveStraight(35);
+                _delay_ms(100);
+                while(true)
+                {
+                    updateCondition();
+                    if(DS3){ break;}
+                    motorCapteur.turn(20,50);
+                }
+            }
+            break;
+        case usedValue::FOUR:
             if(DS3 && DS4 && DS5)
             {
                 motorCapteur.moveStraight(60);
