@@ -13,7 +13,7 @@ ISR(TIMER2_COMPA_vect)
     //PARTIE S
     if(gMinuterieExpiree2==0)
     {
-        if (counter!=140)
+        if (counter!=110)
         {
             counter++;
             TCNT2 = 0;
@@ -27,7 +27,7 @@ ISR(TIMER2_COMPA_vect)
     //PARTIE B
     else if (gMinuterieExpiree ==0)
     {
-        if (counter!=220)
+        if (counter!=310)
         {
             counter++;
             TCNT2 = 0;
@@ -40,7 +40,7 @@ ISR(TIMER2_COMPA_vect)
     }
     else if (gMinuterieExpiree ==1)
     {
-        if (counter!=560)
+        if (counter!=600)
         {
             counter++;
             TCNT2 = 0;
@@ -53,7 +53,7 @@ ISR(TIMER2_COMPA_vect)
     }
     else if (gMinuterieExpiree ==2)
     {
-        if (counter!=500)
+        if (counter!=310)
         {
             counter++;
             TCNT2 = 0;
@@ -66,7 +66,7 @@ ISR(TIMER2_COMPA_vect)
     }
     else if (gMinuterieExpiree ==3)
     {
-        if (counter!=90)
+        if (counter!=110)
         {
             counter++;
             TCNT2 = 0;
@@ -79,7 +79,7 @@ ISR(TIMER2_COMPA_vect)
     }
     else if (gMinuterieExpiree ==4)
     {
-        if (counter!=90)
+        if (counter!=62)
         {
             counter++;
             TCNT2 = 0;
@@ -112,8 +112,8 @@ void Robot::modeA()
     {
         speaker.introSong();
         led.clignoterVert();
-        mainMoteur.moveStraight(40);
-        _delay_ms(1500);
+        mainMoteur.turn(55,58);
+        _delay_ms(1000);
         startingA = false;
     }
     capteurIR.suivreLigneA();
@@ -138,6 +138,8 @@ void Robot::modeB()
         }
         partirMinuterie(255);
         while(gMinuterieExpiree==0){capteurIR.suivreLigneSimple();}
+        mainMoteur.stop();
+        _delay_ms(1000);
         partirMinuterie(255);
         while(gMinuterieExpiree==1){capteurIR.suivreLigneB(p1,p2,p3);}
         /*
@@ -170,8 +172,7 @@ void Robot::modeB()
         Do Action
         */
         mainMoteur.stop();
-        led.clignoterVert();
-        _delay_ms(3000);
+        _delay_ms(2000);
         partirMinuterie(255);
         while(gMinuterieExpiree==2){capteurIR.suivreLigneB(p1,p2,p3);}
         partirMinuterie(255);
@@ -181,7 +182,7 @@ void Robot::modeB()
         while(gMinuterieExpiree==5){capteurIR.suivreLigneSimple();}
         ONCE = false;
     }
-    mainMoteur.stop();
+    if(capteurIR.isPointS){modeS();}
 }
 
 void Robot::modeS()

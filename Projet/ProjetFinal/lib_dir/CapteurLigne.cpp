@@ -67,7 +67,7 @@ void CapteurLigne::suivreLigneA()
         switch(isON)
         {
             case usedValue::ONE:
-                if      (DS3){ motorCapteur.moveStraight(50);}
+                if      (DS3){ motorCapteur.moveStraight(55);}
                 else if (DS4){ motorCapteur.turn(65,40);}
                 else if (DS5){                   
                     while(true)
@@ -132,7 +132,7 @@ void CapteurLigne::suivreLigneA()
         }
         for(uint16_t i=0;i<1500;i++)
         {
-            suivreLigneSimple();
+            suivreLigneS();
             _delay_ms(1);
         }
     }
@@ -149,35 +149,35 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
             break;
         case usedValue::ONE:
             if      (DS3){ motorCapteur.moveStraight(50);}
-            else if (DS4){ motorCapteur.turn(65,40);}
-            else if (DS5)
-            {                   
+            else if (DS4){ motorCapteur.turn(40,35);}
+            else if (DS5){                   
                 while(true)
                 {
                     updateCondition();
                     if(DS3){ break;}
-                    motorCapteur.turn(50,20);
-                }
-            }
-            else if (DS1)
-            {                     
+                    motorCapteur.turn(40,20);
+                }}
+            else if (DS1){                     
                 while(true)
                 {
                     updateCondition();
                     if(DS3){ break;}
-                    motorCapteur.turn(20,50);
-                }
-            }
-            else if (DS2){ motorCapteur.turn(40,65);}
+                    motorCapteur.turn(20,40);
+                }}
+            else if (DS2){ motorCapteur.turn(35,40);}
             break;
         case usedValue::TWO:
-            if     (DS1 && DS2){ motorCapteur.turn(40,50);}
-            else if(DS5 && DS4){ motorCapteur.turn(50,40);}
-            else if(DS2 && DS3){ motorCapteur.turn(40,50);}
-            else if(DS4 && DS3){ motorCapteur.turn(50,40);}
+            if     (DS1 && DS2){ motorCapteur.turn(40,45);}
+            else if(DS5 && DS4){ motorCapteur.turn(45,40);}
+            else if(DS2 && DS3){ motorCapteur.turn(40,45);}
+            else if(DS4 && DS3){ motorCapteur.turn(45,40);}
+            break;
+            if     (DS1 && DS2){ motorCapteur.turn(40,45);}
+            else if(DS5 && DS4){ motorCapteur.turn(45,40);}
+            else if(DS2 && DS3){ motorCapteur.turn(40,45);}
+            else if(DS4 && DS3){ motorCapteur.turn(45,40);}
             else if(!DS3 || (DS2 && DS3 && DS4) || (DS2 && DS4) || (DS1 && DS5))
             {
-                //2 POTEAU
                 if(p3==0x00)
                 {   
                     if (!post1)
@@ -185,29 +185,25 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                         if(p1==0x01)
                         {
                             led.colorRed();
-                            motorCapteur.stop();
-                            _delay_ms(2000);
-                            motorCapteur.moveStraight(60);
-                            _delay_ms(1000);
+                            motorCapteur.moveStraight(50);
+                            _delay_ms(900);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(50,0);
+                                motorCapteur.turn(45,20);
                             }
                         }
                         else if(p1==0x02)
                         {
                             led.colorGreen();
-                            motorCapteur.stop();
-                            _delay_ms(2000);
-                            motorCapteur.moveStraight(60);
-                            _delay_ms(1000);
+                            motorCapteur.moveStraight(50);
+                            _delay_ms(900);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(0,50);
+                                motorCapteur.turn(20,45);
                             }
                         }
                         post1=false;
@@ -217,29 +213,25 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                         if(p2==0x01)
                         {
                             led.colorRed();
-                            motorCapteur.stop();
-                            _delay_ms(2000);
-                            motorCapteur.moveStraight(60);
-                            _delay_ms(1000);
+                            motorCapteur.moveStraight(50);
+                            _delay_ms(900);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(50,0);
+                                motorCapteur.turn(45,20);
                             }
                         }
                         else if(p2==0x02)
                         {
                             led.colorGreen();
-                            motorCapteur.stop();
-                            _delay_ms(2000);
-                            motorCapteur.moveStraight(60);
-                            _delay_ms(1000);
+                            motorCapteur.moveStraight(50);
+                            _delay_ms(900);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(0,50);
+                                motorCapteur.turn(20,45);
                             }
                         }
                         post1=false;
@@ -251,29 +243,25 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                         if(p1==0x01)
                         {
                             led.colorRed();
-                            motorCapteur.stop();
-                            _delay_ms(2000);
-                            motorCapteur.moveStraight(60);
-                            _delay_ms(1000);
+                            motorCapteur.moveStraight(50);
+                            _delay_ms(900);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(50,0);
+                                motorCapteur.turn(45,20);
                             }
                         }
                         else if(p1==0x02)
                         {
                             led.colorGreen();
-                            motorCapteur.stop();
-                            _delay_ms(2000);
-                            motorCapteur.moveStraight(60);
-                            _delay_ms(1000);
+                            motorCapteur.moveStraight(50);
+                            _delay_ms(900);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(0,50);
+                                motorCapteur.turn(20,45);
                             }
                         }
                         post1=false;
@@ -282,29 +270,25 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                         if(p3==0x01)
                         {
                             led.colorRed();
-                            motorCapteur.stop();
-                            _delay_ms(2000);
-                            motorCapteur.moveStraight(60);
-                            _delay_ms(1000);
+                            motorCapteur.moveStraight(50);
+                            _delay_ms(900);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(50,0);
+                                motorCapteur.turn(45,20);
                             }
                         }
                         else if(p3==0x02)
                         {
                             led.colorGreen();
-                            motorCapteur.stop();
-                            _delay_ms(2000);
-                            motorCapteur.moveStraight(60);
-                            _delay_ms(1000);
+                            motorCapteur.moveStraight(50);
+                            _delay_ms(900);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(0,50);
+                                motorCapteur.turn(20,45);
                             }
                         }
                         post1=false;
@@ -315,7 +299,6 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
         case usedValue::THREE:
             if(!DS3 || (DS2 && DS3 && DS4) || (DS2 && DS4) || (DS1 && DS5))
             {
-                //2 POTEAU
                 if(p3==0x00)
                 {   
                     if (!post1)
@@ -323,29 +306,25 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                         if(p1==0x01)
                         {
                             led.colorRed();
-                            motorCapteur.stop();
-                            _delay_ms(2000);
-                            motorCapteur.moveStraight(60);
-                            _delay_ms(1000);
+                            motorCapteur.moveStraight(50);
+                            _delay_ms(900);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(50,0);
+                                motorCapteur.turn(45,20);
                             }
                         }
                         else if(p1==0x02)
                         {
                             led.colorGreen();
-                            motorCapteur.stop();
-                            _delay_ms(2000);
-                            motorCapteur.moveStraight(60);
-                            _delay_ms(1000);
+                            motorCapteur.moveStraight(50);
+                            _delay_ms(900);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(0,50);
+                                motorCapteur.turn(20,45);
                             }
                         }
                         post1=false;
@@ -355,29 +334,25 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                         if(p2==0x01)
                         {
                             led.colorRed();
-                            motorCapteur.stop();
-                            _delay_ms(2000);
-                            motorCapteur.moveStraight(60);
-                            _delay_ms(1000);
+                            motorCapteur.moveStraight(50);
+                            _delay_ms(900);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(50,0);
+                                motorCapteur.turn(45,20);
                             }
                         }
                         else if(p2==0x02)
                         {
                             led.colorGreen();
-                            motorCapteur.stop();
-                            _delay_ms(2000);
-                            motorCapteur.moveStraight(60);
-                            _delay_ms(1000);
+                            motorCapteur.moveStraight(50);
+                            _delay_ms(900);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(0,50);
+                                motorCapteur.turn(20,45);
                             }
                         }
                         post1=false;
@@ -389,29 +364,25 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                         if(p1==0x01)
                         {
                             led.colorRed();
-                            motorCapteur.stop();
-                            _delay_ms(2000);
-                            motorCapteur.moveStraight(60);
-                            _delay_ms(1000);
+                            motorCapteur.moveStraight(50);
+                            _delay_ms(900);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(50,0);
+                                motorCapteur.turn(45,20);
                             }
                         }
                         else if(p1==0x02)
                         {
                             led.colorGreen();
-                            motorCapteur.stop();
-                            _delay_ms(2000);
-                            motorCapteur.moveStraight(60);
-                            _delay_ms(1000);
+                            motorCapteur.moveStraight(50);
+                            _delay_ms(900);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(0,50);
+                                motorCapteur.turn(20,45);
                             }
                         }
                         post1=false;
@@ -420,124 +391,52 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                         if(p3==0x01)
                         {
                             led.colorRed();
-                            motorCapteur.stop();
-                            _delay_ms(2000);
-                            motorCapteur.moveStraight(60);
-                            _delay_ms(1000);
+                            motorCapteur.moveStraight(50);
+                            _delay_ms(900);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(50,0);
+                                motorCapteur.turn(45,20);
                             }
                         }
                         else if(p3==0x02)
                         {
                             led.colorGreen();
-                            motorCapteur.stop();
-                            _delay_ms(2000);
-                            motorCapteur.moveStraight(60);
-                            _delay_ms(1000);
+                            motorCapteur.moveStraight(50);
+                            _delay_ms(900);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(0,50);
+                                motorCapteur.turn(20,45);
                             }
                         }
                         post1=false;
                     }
                 }
-            }
-            else if(DS3 && DS4 && DS5)
-            {
-                if(counter2%2==0)
-                {
-                    motorCapteur.stop();
-                    _delay_ms(1000);
-                    motorCapteur.moveStraight(60);
-                    _delay_ms(1000);
-                    while(true)
-                    {
-                        updateCondition();
-                        if(DS3){ break;}
-                        motorCapteur.turn(0,50);
-                    }
-                    counter2++;
-                }
-                if(counter2!=0)
-                {
-                    motorCapteur.stop();
-                    _delay_ms(1000);
-                    motorCapteur.moveStraight(60);
-                    _delay_ms(1000);
-                    while(true)
-                    {
-                        updateCondition();
-                        if(DS3){ break;}
-                        motorCapteur.turn(50,0);
-                    }
-                    counter2++;
-                }
-            }
-            else if(DS1 && DS2 && DS3)
-            {
-                if(counter2%2==0)
-                {
-                    
-                    motorCapteur.stop();
-                    _delay_ms(1000);
-                    motorCapteur.moveStraight(60);
-                    _delay_ms(1000);
-                    while(true)
-                    {
-                        updateCondition();
-                        if(DS3){ break;}
-                        motorCapteur.turn(50,0);
-                    }
-                }
-                if(counter2!=0)
-                {
-                    motorCapteur.stop();
-                    _delay_ms(1000);
-                    motorCapteur.moveStraight(60);
-                    _delay_ms(1000);
-                    while(true)
-                    {
-                        updateCondition();
-                        if(DS3){ break;}
-                        motorCapteur.turn(0,50);
-                    }
-                    counter2++;
-                }
             } 
-            break;
-        case usedValue::FOUR:
             if(DS2 && DS3 && DS4 && DS5)
             {
                 if(counter2%2==0)
                 {
-                    motorCapteur.stop();
-                    _delay_ms(1000);
-                    motorCapteur.moveStraight(60);
+                    motorCapteur.moveStraight(40);
                     _delay_ms(1000);
                     while(true)
                     {
                         updateCondition();
-                        if(DS3){ break;}
-                        motorCapteur.turn(0,50);
+                        if(DS2){ break;}
+                        motorCapteur.turn(10,40);
                     }
                 if(counter2!=0)
                 {
-                    motorCapteur.stop();
-                    _delay_ms(1000);
-                    motorCapteur.moveStraight(60);
+                    motorCapteur.moveStraight(40);
                     _delay_ms(1000);
                     while(true)
                     {
                         updateCondition();
-                        if(DS3){ break;}
-                        motorCapteur.turn(50,0);
+                        if(DS2){ break;}
+                        motorCapteur.turn(40,10);
                     }
                     counter2++;
                 }
@@ -547,33 +446,30 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
             {
                 if(counter2%2==0)
                 {
-                    motorCapteur.stop();
-                    _delay_ms(1000);
-                    motorCapteur.moveStraight(60);
+                    motorCapteur.moveStraight(40);
                     _delay_ms(1000);
                     while(true)
                     {
                         updateCondition();
-                        if(DS3){ break;}
-                        motorCapteur.turn(50,0);
+                        if(DS4){ break;}
+                        motorCapteur.turn(40,10);
                     }
                 }
                 if(counter2!=0)
                 {
-                    motorCapteur.stop();
-                    _delay_ms(1000);
-                    motorCapteur.moveStraight(60);
+                    motorCapteur.moveStraight(40);
                     _delay_ms(1000);
                     while(true)
                     {
                         updateCondition();
-                        if(DS3){ break;}
-                        motorCapteur.turn(0,50);
+                        if(DS4){ break;}
+                        motorCapteur.turn(10,40);
                     }
                     counter2++;
                 }
             } 
-            else if(!DS3 || (DS2 && DS3 && DS4) || (DS2 && DS4) || (DS1 && DS5))
+        case usedValue::FOUR:
+            if(!DS3 || (DS2 && DS3 && DS4) || (DS2 && DS4) || (DS1 && DS5))
             {
                 if(p3==0x00)
                 {   
@@ -582,29 +478,25 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                         if(p1==0x01)
                         {
                             led.colorRed();
-                            motorCapteur.stop();
-                            _delay_ms(2000);
-                            motorCapteur.moveStraight(60);
-                            _delay_ms(1000);
+                            motorCapteur.moveStraight(50);
+                            _delay_ms(900);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(50,0);
+                                motorCapteur.turn(45,20);
                             }
                         }
                         else if(p1==0x02)
                         {
                             led.colorGreen();
-                            motorCapteur.stop();
-                            _delay_ms(2000);
-                            motorCapteur.moveStraight(60);
-                            _delay_ms(1000);
+                            motorCapteur.moveStraight(50);
+                            _delay_ms(900);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(0,50);
+                                motorCapteur.turn(20,45);
                             }
                         }
                         post1=false;
@@ -614,39 +506,140 @@ void CapteurLigne::suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3)
                         if(p2==0x01)
                         {
                             led.colorRed();
-                            motorCapteur.stop();
-                            _delay_ms(2000);
-                            motorCapteur.moveStraight(60);
-                            _delay_ms(1000);
+                            motorCapteur.moveStraight(50);
+                            _delay_ms(900);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(50,0);
+                                motorCapteur.turn(45,20);
                             }
                         }
                         else if(p2==0x02)
                         {
                             led.colorGreen();
-                            motorCapteur.stop();
-                            _delay_ms(2000);
-                            motorCapteur.moveStraight(60);
-                            _delay_ms(1000);
+                            motorCapteur.moveStraight(50);
+                            _delay_ms(900);
                             while(true)
                             {
                                 updateCondition();
                                 if(DS3){ break;}
-                                motorCapteur.turn(0,50);
+                                motorCapteur.turn(20,45);
                             }
                         }
                         post1=false;
                     }
                 }
+                //3 POTEAU
                 else
                 {
-
+                        if(p1==0x01)
+                        {
+                            led.colorRed();
+                            motorCapteur.moveStraight(50);
+                            _delay_ms(900);
+                            while(true)
+                            {
+                                updateCondition();
+                                if(DS3){ break;}
+                                motorCapteur.turn(45,20);
+                            }
+                        }
+                        else if(p1==0x02)
+                        {
+                            led.colorGreen();
+                            motorCapteur.moveStraight(50);
+                            _delay_ms(900);
+                            while(true)
+                            {
+                                updateCondition();
+                                if(DS3){ break;}
+                                motorCapteur.turn(20,45);
+                            }
+                        }
+                        post1=false;
+                    if (post1)
+                    {
+                        if(p3==0x01)
+                        {
+                            led.colorRed();
+                            motorCapteur.moveStraight(50);
+                            _delay_ms(900);
+                            while(true)
+                            {
+                                updateCondition();
+                                if(DS3){ break;}
+                                motorCapteur.turn(45,20);
+                            }
+                        }
+                        else if(p3==0x02)
+                        {
+                            led.colorGreen();
+                            motorCapteur.moveStraight(50);
+                            _delay_ms(900);
+                            while(true)
+                            {
+                                updateCondition();
+                                if(DS3){ break;}
+                                motorCapteur.turn(20,45);
+                            }
+                        }
+                        post1=false;
+                    }
+                }
+            } 
+            if(DS2 && DS3 && DS4 && DS5)
+            {
+                if(counter2%2==0)
+                {
+                    motorCapteur.moveStraight(40);
+                    _delay_ms(1000);
+                    while(true)
+                    {
+                        updateCondition();
+                        if(DS2){ break;}
+                        motorCapteur.turn(10,40);
+                    }
+                if(counter2!=0)
+                {
+                    motorCapteur.moveStraight(40);
+                    _delay_ms(1000);
+                    while(true)
+                    {
+                        updateCondition();
+                        if(DS2){ break;}
+                        motorCapteur.turn(40,10);
+                    }
+                    counter2++;
+                }
                 }
             }
+            else if(DS1 && DS2 && DS3 && DS4)
+            {
+                if(counter2%2==0)
+                {
+                    motorCapteur.moveStraight(40);
+                    _delay_ms(1000);
+                    while(true)
+                    {
+                        updateCondition();
+                        if(DS4){ break;}
+                        motorCapteur.turn(40,10);
+                    }
+                }
+                if(counter2!=0)
+                {
+                    motorCapteur.moveStraight(40);
+                    _delay_ms(1000);
+                    while(true)
+                    {
+                        updateCondition();
+                        if(DS4){ break;}
+                        motorCapteur.turn(10,40);
+                    }
+                    counter2++;
+                }
+            } 
             break;
         case usedValue::FIVE:
             break;
@@ -662,55 +655,61 @@ void CapteurLigne::suivreLigneSimple()
     {
             case usedValue::ONE:
                 if      (DS3){ motorCapteur.moveStraight(50);}
-                else if (DS4){ motorCapteur.turn(65,40);}
+                else if (DS4){ motorCapteur.turn(40,35);}
                 else if (DS5){                   
                     while(true)
                     {
                         updateCondition();
                         if(DS3){ break;}
-                        motorCapteur.turn(50,20);
+                        motorCapteur.turn(40,20);
                     }}
                 else if (DS1){                     
                     while(true)
                     {
                         updateCondition();
                         if(DS3){ break;}
-                        motorCapteur.turn(20,50);
+                        motorCapteur.turn(20,40);
                     }}
-                else if (DS2){ motorCapteur.turn(40,65);}
+                else if (DS2){ motorCapteur.turn(35,40);}
                 break;
             case usedValue::TWO:
-                if     (DS1 && DS2){ motorCapteur.turn(40,50);}
-                else if(DS5 && DS4){ motorCapteur.turn(50,40);}
-                else if(DS2 && DS3){ motorCapteur.turn(40,50);}
-                else if(DS4 && DS3){ motorCapteur.turn(50,40);}
+                if     (DS1 && DS2){ motorCapteur.turn(40,45);}
+                else if(DS5 && DS4){ motorCapteur.turn(45,40);}
+                else if(DS2 && DS3){ motorCapteur.turn(40,45);}
+                else if(DS4 && DS3){ motorCapteur.turn(45,40);}
                 break;
-                if     (DS1 && DS2){ motorCapteur.turn(40,50);}
-                else if(DS5 && DS4){ motorCapteur.turn(50,40);}
-                else if(DS2 && DS3){ motorCapteur.turn(40,50);}
-                else if(DS4 && DS3){ motorCapteur.turn(50,40);}
+                if     (DS1 && DS2){ motorCapteur.turn(40,45);}
+                else if(DS5 && DS4){ motorCapteur.turn(45,40);}
+                else if(DS2 && DS3){ motorCapteur.turn(40,45);}
+                else if(DS4 && DS3){ motorCapteur.turn(45,40);}
                 break;
         case usedValue::THREE:
             if(DS3 && DS4 && DS5)
             {
-                motorCapteur.moveStraight(60);
-                _delay_ms(100);
+                motorCapteur.moveStraight(40);
+                _delay_ms(400);
                 while(true)
                 {
                     updateCondition();
-                    if(DS3){ break;}
-                    motorCapteur.turn(50,20);
+                    if(DS3)
+                    { 
+                        break;
+                    }
+                    motorCapteur.turn(45,20);
                 }
             }
             else if(DS1 && DS2 && DS3)
             {
-                motorCapteur.moveStraight(35);
-                _delay_ms(100);
+                motorCapteur.moveStraight(40);
+                _delay_ms(400);
                 while(true)
                 {
                     updateCondition();
-                    if(DS3){ break;}
-                    motorCapteur.turn(20,50);
+                    if(DS3)
+                    { 
+                        break;
+                    }
+                    motorCapteur.turn(20,45);
                 }
             }
             break;
@@ -723,7 +722,7 @@ void CapteurLigne::suivreLigneSimple()
                 {
                     updateCondition();
                     if(DS3){ break;}
-                    motorCapteur.turn(50,20);
+                    motorCapteur.turn(40,20);
                 }
             }
             else if(DS1 && DS2 && DS3)
@@ -734,12 +733,12 @@ void CapteurLigne::suivreLigneSimple()
                 {
                     updateCondition();
                     if(DS3){ break;}
-                    motorCapteur.turn(20,50);
+                    motorCapteur.turn(20,40);
                 }
             }
             break;
         case usedValue::FIVE:
-            motorCapteur.stop();
+            isPointS = true;
             break;
         default:
             break; 
@@ -751,25 +750,7 @@ void CapteurLigne::suivreLigneS()
     switch(isON)
     {
         case usedValue::ZERO:
-            motorCapteur.stop();
-            motorCapteur.moveBack(45);
-            _delay_ms(2000);
-            while(true)
-            {
-                    updateCondition();
-                    motorCapteur.turn(55,0);
-                    if(DS1){break;}
-            }
-            while(true)
-            {
-                    updateCondition();
-                    motorCapteur.turn(0,50);
-                    if(isON == usedValue::FIVE){break;}
-            }
-            motorCapteur.moveBack(50);
-            _delay_ms(1500);
-            motorCapteur.stop();
-            _delay_ms(4000);
+            ending();
             break;
         case usedValue::ONE:
             if      (DS3){ motorCapteur.moveStraight(60);}
@@ -832,8 +813,8 @@ void CapteurLigne::suivreLigneS()
 
 void CapteurLigne::Rebondissement()
 {
-    uint8_t leftSpeed= 60;
-    uint8_t rightSpeed = 20;
+    uint8_t leftSpeed= 50;
+    uint8_t rightSpeed = 30;
     for(uint8_t i=0; i<3;i++)
     {
         updateCondition();
@@ -843,7 +824,7 @@ void CapteurLigne::Rebondissement()
             motorCapteur.turn(leftSpeed,rightSpeed);
             if(DS5){ break;}
         }
-        for(uint8_t i=0; i<100;i++)
+        for(uint16_t i=0; i<400;i++)
         {
             motorCapteur.turn(rightSpeed,leftSpeed);
         }
@@ -854,12 +835,12 @@ void CapteurLigne::Rebondissement()
             motorCapteur.turn(rightSpeed,leftSpeed);
             if(DS1){ break;}
         }
-        for(uint8_t i=0; i<100;i++)
+        for(uint16_t i=0; i<400;i++)
         {
             motorCapteur.turn(leftSpeed,rightSpeed);
         }
     }
-    for(uint8_t i=0; i<100;i++)
+    for(uint16_t i=0; i<400;i++)
     {
         motorCapteur.turn(leftSpeed,rightSpeed);
     }
@@ -870,6 +851,21 @@ void CapteurLigne::Rebondissement()
         motorCapteur.turn(leftSpeed,rightSpeed);
         if(DS5){ break;}
     }
+}
+
+void CapteurLigne::ending()
+{
+    motorCapteur.stop();
+    _delay_ms(1000);
+    while(true)
+    {
+        updateCondition();
+        motorCapteur.turn(55,0);
+        if(DS3){break;}
+    }
+    motorCapteur.stop();
+    _delay_ms(1000);
+    while(true){motorCapteur.stop();}      
 }
 
 

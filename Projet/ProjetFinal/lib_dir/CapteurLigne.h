@@ -34,10 +34,13 @@ public:
     void suivreLigneS();
     void suivreLigneSimple();
     void Rebondissement();
+    void ending();
 
     void updateCondition();
     bool distance();
     uint8_t readValueDM();
+
+    bool isPointS = false;
     
 private:
 //Objects
@@ -65,8 +68,6 @@ uint8_t counter2=0;
 bool parking=false;
 bool post1 =true;
 bool grave;
-
-
 
 //PIN used for sensor
 const uint8_t pin1 =0x02;  //DS5
