@@ -48,6 +48,7 @@ int main()
     Memory mem;
     pending();
     confirm();
+    
     while(true)
     {
         switch(pendingMode)
@@ -56,15 +57,16 @@ int main()
                 Sonic.led.colorGreen();
                 if (confirmed){Sonic.modeA();}
                 break;
+
             case 0x01:
                 Sonic.led.colorRed();
                 if (confirmed){Sonic.modeB();}
                 break;
+
             case 0x02:
                 Sonic.led.colorAmber();
                 if (confirmed){Sonic.modeS();}
                 break;
         }
     }
-
 }

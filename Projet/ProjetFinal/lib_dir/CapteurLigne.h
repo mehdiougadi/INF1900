@@ -33,8 +33,7 @@ public:
     void suivreLigneB(uint8_t p1, uint8_t p2, uint8_t p3);
     void suivreLigneS();
     void suivreLigneSimple();
-    void Rebondissement();
-    void ending();
+    void rebondissement();
 
     void updateCondition();
     bool distance();
@@ -43,47 +42,47 @@ public:
     bool isPointS = false;
     
 private:
-//Objects
-Motor motorCapteur;
-Led led;
-Can sensor;
-Memory mem;
-Usart use;
-Sound sonCapteur;
+    //Objects
+    Motor motorCapteur;
+    Led led;
+    Can sensor;
+    Memory mem;
+    Usart use;
+    Sound sonCapteur;
 
-//Number of triggered sensor
-uint8_t isON=0x00;
-const uint8_t PIN = 0x07;
+    //Number of triggered sensor
+    uint8_t isON=0x00;
+    const uint8_t PIN = 0x07;
 
-//Poteau
-uint8_t nbrPoteau =0;
-uint8_t index =2;
-uint8_t P1 =0;
-uint8_t P2 =0;
-uint8_t P3 =0;
-bool activeB=false;
-uint8_t counter2=0;
+    //Poteau
+    uint8_t nbrPoteau =0;
+    uint8_t index =2;
+    uint8_t P1 =0;
+    uint8_t P2 =0;
+    uint8_t P3 =0;
+    bool activeB=false;
+    uint8_t counter2=0;
 
-//Bool
-bool parking=false;
-bool post1 =true;
-bool grave;
+    //Bool
+    //bool parking=false;
+    bool post1 =true;
+    bool grave;
 
-//PIN used for sensor
-const uint8_t pin1 =0x02;  //DS5
-const uint8_t pin2 =0x04;  //DS4
-const uint8_t pin3 =0x08;  //DS3
-const uint8_t pin4 =0x10;  //DS2
-const uint8_t pin5 =0x20;  //DS1
-bool DS1 = (PINA & pin5) == pin5;
-bool DS2 = (PINA & pin4) == pin4;
-bool DS3 = (PINA & pin3) == pin3;
-bool DS4 = (PINA & pin2) == pin2;
-bool DS5 = (PINA & pin1) == pin1;
-const uint8_t BITSHIFT = 2;
-const uint8_t CLOSE = 255;
-const uint8_t MEDIUM = 55;
-const uint8_t FAR = 30;
+    //PIN used for sensor
+    const uint8_t pin1 =0x02;  //DS5
+    const uint8_t pin2 =0x04;  //DS4
+    const uint8_t pin3 =0x08;  //DS3
+    const uint8_t pin4 =0x10;  //DS2
+    const uint8_t pin5 =0x20;  //DS1
+    bool DS1 = (PINA & pin5) == pin5;
+    bool DS2 = (PINA & pin4) == pin4;
+    bool DS3 = (PINA & pin3) == pin3;
+    bool DS4 = (PINA & pin2) == pin2;
+    bool DS5 = (PINA & pin1) == pin1;
+    const uint8_t BITSHIFT = 2;
+    const uint8_t CLOSE = 255;
+    const uint8_t MEDIUM = 55;
+    const uint8_t FAR = 30;
 };
 
 #endif

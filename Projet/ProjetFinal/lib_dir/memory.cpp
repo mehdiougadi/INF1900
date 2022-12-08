@@ -1,3 +1,10 @@
+// Cours:       INF1900 - Projet initial de syst?me embarqu?
+// Auteurs:     THOELEN Nathan
+//              OUGADI Mehdi
+//              ALLAIRE Mederic
+//              WACRENIER Paul
+// Date:        31 octobre 2022
+
 #ifndef F_CPU
 
 # define F_CPU 8000000UL

@@ -42,6 +42,7 @@ public:
     Led led;
     Sound speaker;
     Motor mainMoteur;
+    
 private:
     
     //Objets
@@ -50,8 +51,6 @@ private:
     uint8_t p1;
     uint8_t p2;
     uint8_t p3;
-
-
 };
 
 #endif
