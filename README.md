@@ -31,5 +31,3 @@ The development of the path-following robot significantly enhanced our individua
 ## Future Endeavors
 
 This project lays the foundation for exciting future endeavors in robotics. The knowledge gained and skills acquired will undoubtedly contribute to the success of upcoming projects, fostering a continued passion for innovation and exploration in the realm of autonomous systems.
-
-Feel free to customize this Markdown content according to your preferences and specific details of your project!
